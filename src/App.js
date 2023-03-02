@@ -48,7 +48,7 @@ function App() {
         <Route path="/bukajadwal" element={<BukaJadwal />} />
         <Route path="/livestreaming/:itemId" element={<DetailLivestream />} />
         <Route path="/course/:itemId" element={<HelloDetail />} />
-        <Route path="/Profile" element={<Profile />} />
+        <Route path="/Profile_Mentor" element={<Profile />} />
         <Route path="/ChangePassword" element={<ChangePassword />} />
         <Route path="/DaftarMentor" element={<DaftarMentor />} />
         <Route path="/Profile_Pic" element={<Profile_Pic />} />

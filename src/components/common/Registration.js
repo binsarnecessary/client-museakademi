@@ -8,6 +8,7 @@ import Footer from "./Footer";
 function Registration() {
   return (
     <>
+    <Navbar />
       <div class="container my-5">
         <div class="row justify-content-center align-items-center h-75">
           <div class="col-12 col-lg-4">
@@ -90,7 +91,7 @@ function Registration() {
       </div>
 
       <Footer />
-    </>
+      </>
   );
 }
 

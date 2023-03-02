@@ -15,7 +15,7 @@ function NavbarCourse() {
         <a href="#" class="d-lg-none">
           <i class="las la-bars" />
         </a>
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           <img src={LogoNavbar} alt height={30} />
         </a>
         <form class="my-1 ml-lg-3" action="#" method="GET">

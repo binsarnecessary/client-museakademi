@@ -24,7 +24,7 @@ function NavbarComp() {
     <a href="#" class="d-lg-none">
       <i class="las la-bars" />
     </a>
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/">
       <img src={pict} alt height={30} />
     </a>
     <form class="my-1 ml-lg-3" action="#" method="GET">
@@ -55,7 +55,7 @@ function NavbarComp() {
           <a>
           <NavDropdown title="Nama Profile" id="navbarScrollingDropdown">
               <NavDropdown.Item onClick={() => navigate('/profile')}>Profile</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">My Class</NavDropdown.Item>
+              <NavDropdown.Item onClick={() => navigate('/dashboard_class_mentor')}>My Class</NavDropdown.Item>
               <NavDropdown.Item href="#action5">Logout</NavDropdown.Item>
             </NavDropdown>
           </a>
