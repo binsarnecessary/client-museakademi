@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "../../assets/css/style.css";
 import "../../assets/css/bootstrap.css";
 import LogoNavbar from "../../assets/image/logo-navbar.png";
@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
+
   return (
     <div className="App">
       <nav
@@ -55,7 +56,7 @@ function Navbar() {
                 </Link>
               </li>
               <li class="nav-item d-none d-sm-inline-block">
-                <Link class="nav-link" to="/Registration">
+                <Link class="nav-link" to="/register">
                   <i class="las la-handshake d-lg-none"></i>
                   <span>Daftar Mentor</span>
                 </Link>
@@ -68,7 +69,7 @@ function Navbar() {
               <li>
                 <Link
                   class="btn btn-sm btn-outline-primary btn-navbar"
-                  to="/registration"
+                  to="/register"
                 >
                   {" "}
                   Daftar{" "}

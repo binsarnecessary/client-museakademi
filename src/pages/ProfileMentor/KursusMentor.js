@@ -4,6 +4,9 @@ import NavbarComp from "../../components/profileMentor/NavbarComp";
 import "../../assets/css/bootstrapProfileMentor.css";
 import { Dropdown } from "react-bootstrap";
 import "../../assets/css/styleProfileMentor.css";
+import Pik1 from "../../assets/image/Pikt1.jpg";
+import Pik2 from "../../assets/image/Pikt2.jpg";
+import { Link } from "react-router-dom";
 
 function KursusMentor() {
   return (
@@ -50,69 +53,131 @@ function KursusMentor() {
                   </div>
                 </div>
               </a>
-              <div class="row mt-2">
-                <div class="col-12 mb-3">
-                  <div class="card">
-                    <div class="card-body">
-                      <div id="card">
-                        <div
-                          style={{ display: "flex", alignItems: "center" }}
-                        ></div>
-                        <div class="mt-4">
-                          <table class="table custom-table">
-                            <thead class="thead-white">
-                              <tr>
-                                <th
-                                  scope="col"
-                                  class="text-left font-weight-normal"
-                                >
-                                  Gambar
-                                </th>
-                                <th
-                                  scope="col"
-                                  class="text-left font-weight-normal"
-                                >
-                                  Nama Kursus
-                                </th>
-                                <th
-                                  scope="col"
-                                  class="text-left font-weight-normal"
-                                >
-                                  Jumlah Siswa
-                                </th>
-                                <th
-                                  scope="col"
-                                  class="text-left font-weight-normal"
-                                >
-                                  Tanggal Mulai
-                                </th>
-                                <th
-                                  scope="col"
-                                  class="text-left font-weight-normal"
-                                >
-                                  Tanggal Berakhir
-                                </th>
-                                <th
-                                  scope="col"
-                                  class="text-left font-weight-normal"
-                                >
-                                  Status
-                                </th>
-                                <th
-                                  scope="col"
-                                  class="text-left font-weight-normal"
-                                >
-                                  Opsi
-                                </th>
-                              </tr>
-                            </thead>
-                          </table>
-                        </div>
-                      </div>
+              <div className="row">
+          <div className="col-12 mb-5">
+            <div className="card">
+              <div className="card-body">
+                <div className="row">
+                  <div className="col-12">
+                    <div className="table-responsive">
+                      <thead>
+                        <tr className="small text-muted">
+                          <td width="15%">Gambar</td>
+                          <td width="25%">Tema</td>
+                          <td width="15%">Waktu Mulai</td>
+                          <td width="15%">Waktu Selesai</td>
+                          <td width="15%">Tanggal</td>
+                          <td width="15%">Status</td>
+                          <td width="15%">Opsi</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <img
+                              src={Pik1}
+                              class="card-img mb-3 mt-3 px-3"
+                              alt="cover"
+                            ></img>
+                          </td>
+                          <td>New Learning Page</td>
+                          <td>09 - 00</td>
+                          <td>11 - 30</td>
+                          <td>15 Desember 2022</td>
+                          <td>
+                            <span class="small badge badge-pill badge-success">
+                              Selesai
+                            </span>
+                          </td>
+                          <td>
+                            <Link
+                              to="/live2_siswa"
+                              class="btn btn-primary d-flex align-items-center justify-content-center p-1 form-control"
+                            >
+                              <i class="las la-angle-right" title="Detail"></i>
+                            </Link>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <img
+                              src={Pik2}
+                              class="card-img mb-3 mt-3 px-3"
+                              alt="cover"
+                            ></img>
+                          </td>
+                          <td>E-Learning Class </td>
+                          <td>09 - 00</td>
+                          <td>11 - 30</td>
+                          <td>15 Desember 2022</td>
+                          <td>
+                            <span class="small badge badge-pill badge-warning">
+                              Akan datang
+                            </span>
+                          </td>
+                          <td>
+                            <a class="btn btn-primary d-flex align-items-center justify-content-center p-1">
+                              <i class="las la-angle-right" title="Detail"></i>
+                            </a>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <img
+                              src={Pik1}
+                              class="card-img mb-3 mt-3 px-3"
+                              alt="cover"
+                            ></img>
+                          </td>
+                          <td>New Learning Page</td>
+                          <td>09 - 00</td>
+                          <td>11 - 30</td>
+                          <td>15 Desember 2022</td>
+                          <td>
+                            <span class="small badge badge-pill badge-success">
+                              Selesai
+                            </span>
+                          </td>
+                          <td>
+                            <a class="btn btn-primary d-flex align-items-center justify-content-center p-1">
+                              <i class="las la-angle-right" title="Detail"></i>
+                            </a>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <img
+                              src={Pik2}
+                              class="card-img mb-3 mt-3 px-3"
+                              alt="cover"
+                            ></img>
+                          </td>
+                          <td>E-Learning Class</td>
+                          <td>09 - 00</td>
+                          <td>11 - 30</td>
+                          <td>15 Desember 2022</td>
+                          <td>
+                            <span class="small badge badge-pill badge-warning">
+                              Akan datang
+                            </span>
+                          </td>
+                          <td>
+                            <a class="btn btn-primary d-flex align-items-center justify-content-center p-1">
+                              <i class="las la-angle-right" title="Detail"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
             </div>
           </div>
         </div>

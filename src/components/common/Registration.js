@@ -1,14 +1,70 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "../../assets/css/auth.css";
 import "../../assets/css/style.css";
 import "../../assets/css/bootstrap.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Container, Button, Alert } from "react-bootstrap";
 
 function Registration() {
+  const navigate = useNavigate();
+
+  const nameField = useRef("");
+  const emailField = useRef("");
+  const roleField = useRef("");
+  const passwordField = useRef("");
+  const [profile_pictureField, setPictureField] = useState();
+  const addressField = useRef("");
+  const phoneField = useRef("");
+
+  const [errorResponse, setErrorResponse] = useState({
+    isError: false,
+    message: "",
+  });
+
+  const onRegister = async (e) => {
+    e.preventDefault();
+
+    try {
+      const userToRegisterPayload = new FormData();
+
+      userToRegisterPayload.append("name", nameField.current.value);
+      userToRegisterPayload.append("email", emailField.current.value);
+      userToRegisterPayload.append("role", roleField.current.value);
+      userToRegisterPayload.append("password", passwordField.current.value);
+      userToRegisterPayload.append("profile_picture", profile_pictureField);
+      userToRegisterPayload.append("address", addressField.current.value);
+      userToRegisterPayload.append("phone", phoneField.current.value);
+
+      const registerRequest = await axios.post(
+        "http://localhost:7000/auth/register",
+        userToRegisterPayload,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      const registerResponse = registerRequest.data;
+
+      if (registerResponse.status) navigate("/login");
+    } catch (err) {
+      console.log(err);
+      const response = err.response.data;
+
+      setErrorResponse({
+        isError: true,
+        message: response.message,
+      });
+    }
+  };
+
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div class="container my-5">
         <div class="row justify-content-center align-items-center h-75">
           <div class="col-12 col-lg-4">
@@ -18,60 +74,62 @@ function Registration() {
                 Lengkapi data untuk dapat melanjutkan proses pendaftaran akun
               </p>
             </div>
-            <form method="POST">
-              <div class="form-group">
-                <input
+
+            <Form onSubmit={onRegister}>
+              <Form.Group className="mb-3">
+                <Form.Control
                   type="text"
-                  class="form-control"
-                  name="namadepan"
-                  placeholder="Nama Depan"
+                  ref={nameField}
+                  placeholder="Masukkan nama"
                 />
-              </div>
-              <div class="form-group">
-                <input
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Control
                   type="text"
-                  class="form-control"
-                  name="namabelakang"
-                  placeholder="Nama Belakang"
+                  ref={emailField}
+                  placeholder="Masukkan Email"
                 />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  name="email"
-                  placeholder="Email"
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  name="username"
-                  placeholder="Nama Pengguna"
-                />
-              </div>
-              <div class="form-group">
-                <input
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Control
                   type="password"
-                  class="form-control"
-                  name="password"
-                  placeholder="Kata Sandi"
+                  ref={passwordField}
+                  placeholder="Masukkan Password"
                 />
-              </div>
-              <div class="form-group">
-                <input
-                  type="password"
-                  class="form-control"
-                  name="password2"
-                  placeholder="Ulangi Kata Sandi"
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="text"
+                  ref={addressField}
+                  placeholder="Masukkan Alamat"
                 />
-              </div>
-              <input type="hidden" name="next" value="" />
-              <button type="submit" class="btn btn-sm btn-block btn-primary">
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="text"
+                  ref={phoneField}
+                  placeholder="Masukkan Nomor Telepon"
+                />
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="file"
+                  onChange={(e) => setPictureField(e.target.files[0])}
+                />
+              </Form.Group>
+
+              {errorResponse.isError && (
+                <Alert variant="danger">{errorResponse.message}</Alert>
+              )}
+              <Button className="w-100" type="submit">
                 Daftar Akun
-              </button>
-            </form>
+              </Button>
+            </Form>
             <div class="text-muted text-center small py-2">atau</div>
             <a href="" class="btn-google btn btn-sm btn-block">
               <i class="fa fa-google"></i>
@@ -83,7 +141,7 @@ function Registration() {
               <br />
               Sudah punya akun?
               <p>
-                <a href=""> Masuk</a> disini
+                <a href="/login"> Masuk</a> disini
               </p>
             </div>
           </div>
@@ -91,7 +149,7 @@ function Registration() {
       </div>
 
       <Footer />
-      </>
+    </>
   );
 }
 

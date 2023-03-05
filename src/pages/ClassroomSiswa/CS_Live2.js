@@ -17,7 +17,7 @@ const CS_Live2 = () => {
                                 <input type="hidden" name="csrfmiddlewaretoken" value="UZCmiuIyatVQqoLgdbLp4zvYm44ezFbZOHwPSBzrXrwgjSeTX4O4cBBXjKucJ376"></input>
                                 
                                     
-                                    <Link to="/live3" class="btn btn-danger btn-block btn-lg" fdprocessedid="ntqaw"><span className='text-white'>Open Class</span></Link>
+                                    <Link to="/live3_siswa" class="btn btn-danger btn-block btn-lg" fdprocessedid="ntqaw"><span className='text-white'>Open Class</span></Link>
                             </form>
                             <h4 className='mt-3'>New in Class Programming</h4>
                             <Image src={profil} className="rounded-circle"
