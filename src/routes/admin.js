@@ -1,7 +1,6 @@
 import React from "react";
 
-import Login from "../components/common/Login";
-import Registration from "../components/common/Registration";
+
 import Dashboard from "../pages/AdminPage/dashboard";
 import Products from "../pages/AdminPage/products";
 import Customers from "../pages/AdminPage/customers";
@@ -15,14 +14,6 @@ import Admin from "../pages/AdminPage/admin";
 import Performance from "../pages/AdminPage/performance";
 
 const AdminRoutes = [
-    {
-        path: "/login",
-        element: <Login />
-    },
-    {
-        path: "/register",
-        element: <Registration />
-    },
     {
         name: "Dashboard Admin",
         path: "/admin",

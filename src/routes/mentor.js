@@ -77,7 +77,7 @@ const MentorRoutes = [
                     ]
                 },
                 {
-                    path: "live-streaming",
+                    path: "/live-streaming",
                     children: [
                         {
                             path: "",
@@ -97,7 +97,7 @@ const MentorRoutes = [
                             element: <CM_Siswa />,
                         },
                         {
-                            paht: "evaluation",
+                            paht: "/evaluation",
                             element: <CM_Penilaian />
                         }
                     ]

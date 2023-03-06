@@ -8,11 +8,15 @@ import {useRef, useState} from 'react';
 import {Form, Container, Alert} from 'react-bootstrap';
 import axios from 'axios';
 import {Link, useNavigate} from 'react-router-dom';
+import { login } from "../../store/slices/authSlice";
+import { useDispatch } from "react-redux";
 // import {GoogleOAuthProvider} from '@react-oauth/google';
 // import {GoogleLogin} from '@react-oauth/google';;
 
-function Login({setIsLoggedIn}) {
+function Login({}) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
 
     const emailField = useRef("");
     const passwordField = useRef("");
@@ -35,12 +39,21 @@ function Login({setIsLoggedIn}) {
 
             const loginResponse = loginRequest.data;
 
-            if(loginResponse.status) {
-                localStorage.setItem("token_key", loginResponse.data.token);
-
-                setIsLoggedIn(true); 
+            if (loginResponse.status) {
+              localStorage.setItem("token_key", loginResponse.data.token);
+              
+              dispatch(login({
+                isLoggedIn: true,
+                user: loginResponse.data,
+              }));
+              
+              if (loginResponse.data.role === "mentor") {
+                navigate("/mentor/dashboard");
+              } else if (loginResponse.data.role === "admin") {
+                navigate("/admin/dashboard");
+              } else {
                 navigate("/");
-                
+              }
             }
         } catch (err) {
             console.log(err);

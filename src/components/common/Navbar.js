@@ -6,6 +6,8 @@ import Registration from "./Registration";
 import Login from "./Login";
 import { Navigate } from "react-router-dom";
 import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
+import { logout } from "../../store/slices/authSlice";
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Course } from "../../pages/Kursus/Course";
 import { Home } from "../../pages/Home/Home";
@@ -14,6 +16,14 @@ import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const navigate = useNavigate();
+  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  // const user = useSelector((state) => state.auth.user);
+  // const dispatch = useDispatch();
+
+  // const handleLogout = () => {
+  //   dispatch(logout());
+  //   navigate("/login");
+  // };
 
   return (
     <div className="App">
@@ -61,6 +71,35 @@ function Navbar() {
                   <span>Daftar Mentor</span>
                 </Link>
               </li>
+
+              {/* {isLoggedIn ? (
+                <>
+                <li>
+                  {user.name} as ({user.role})
+                </li> 
+                <li>
+                <button onClick={handleLogout}>Logout</button>
+                </li>
+                </>
+              ) : (
+                <>
+                <li class="nav-item">
+                <Link class="btn btn-sm btn-primary btn-navbar" to="/login">
+                  Masuk
+                </Link>
+              </li>
+              <li>
+                <Link
+                  class="btn btn-sm btn-outline-primary btn-navbar"
+                  to="/register"
+                >
+                  {" "}
+                  Daftar{" "}
+                </Link>
+                </li>
+                </>
+              )} */}
+
               <li class="nav-item">
                 <Link class="btn btn-sm btn-primary btn-navbar" to="/login">
                   Masuk
