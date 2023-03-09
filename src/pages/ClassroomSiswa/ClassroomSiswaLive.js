@@ -2,11 +2,11 @@ import React from "react";
 import Pik1 from "../../assets/image/Pikt1.jpg";
 import Pik2 from "../../assets/image/Pikt2.jpg";
 import { Link } from "react-router-dom";
-import CS_Sidebar2 from "./CS_Sidebar2";
+import SidebarClassroomSiswa from "./SidebarClassroomSiswa";
 
-const CS_Live = () => {
+const ClassroomSiswaLive = () => {
   return (
-    <CS_Sidebar2>
+    <SidebarClassroomSiswa>
       <div className="container-fluid mb-5 mt-3">
         <div className="row">
           <div className="col-12 col-lg-10 mb-3">
@@ -65,7 +65,7 @@ const CS_Live = () => {
                           </td>
                           <td>
                             <Link
-                              to="/live2_siswa"
+                              to="/classroom/user/live-streaming-siswa/live-streaming-id"
                               class="btn btn-primary d-flex align-items-center justify-content-center p-1 form-control"
                             >
                               <i class="las la-angle-right" title="Detail"></i>
@@ -153,8 +153,8 @@ const CS_Live = () => {
           </div>
         </div>
       </div>
-    </CS_Sidebar2>
+    </SidebarClassroomSiswa>
   );
 };
 
-export default CS_Live;
+export default ClassroomSiswaLive;

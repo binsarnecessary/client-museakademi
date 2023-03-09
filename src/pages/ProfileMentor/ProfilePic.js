@@ -1,10 +1,10 @@
 import Footer from "../../components/common/Footer";
-import NavbarCompUser from "../../components/profileMentor/NavbarCompUser";
+import Navbar from "../../components/common/Navbar";
 import React, { useState } from "react";
-import CompProfileUser from "../../components/profileMentor/CompProfileUser";
+import CompProfile from "../../components/profileMentor/CompProfile";
 import "react-phone-input-2/lib/style.css";
 
-const Profile_PicUser = () => {
+const ProfilePic = () => {
   const [image, setImage] = useState(null);
 
   const handleImageChange = (event) => {
@@ -28,14 +28,14 @@ const Profile_PicUser = () => {
 
   return (
     <>
-      <NavbarCompUser />
+      <Navbar />
       <div class="container mt-5"></div>
       <div class="container mb-5">
         <div class="row mt-lg-5">
           <div class="col-12 col-lg-3">
-            <CompProfileUser />
+            <CompProfile />
           </div>
-          <div class="col-12 col-lg-9">
+          <div class="col-12 col-lg-9 mt-5">
             <h5>Ganti Foto Profil</h5>
             <p class="small text-muted">
               Gunakan foto dengan wajah dekat dengan format JPG maksimal 500 KB
@@ -120,4 +120,4 @@ const Profile_PicUser = () => {
   );
 };
 
-export default Profile_PicUser;
+export default ProfilePic;

@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import CS_Sidebar3 from "./CS_Sidebar3";
+import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
-const CM_Tugas = () => {
+const ClassroomMentorTugas = () => {
   return (
     <>
-      <CS_Sidebar3>
+      <SidebarClassroomMentor>
         <div className="container-fluid">
           <div className="row mt-lg-3">
             <div className="col-12 mb-5">
@@ -63,7 +63,10 @@ const CM_Tugas = () => {
                         <td>29 Desember 2022</td>
                         <td>29 Desember 2022</td>
                         <td>
-                          <Link to="/tugasedit_mentor" className="btn btn-success">
+                          <Link
+                            to="/mentor/classroom/tugas-mentor/mentor-edit-tugas"
+                            className="btn btn-success"
+                          >
                             <FaEdit />
                           </Link>
                         </td>
@@ -110,9 +113,9 @@ const CM_Tugas = () => {
             </div>
           </div>
         </div>
-      </CS_Sidebar3>
+      </SidebarClassroomMentor>
     </>
   );
 };
 
-export default CM_Tugas;
+export default ClassroomMentorTugas;

@@ -1,4 +1,4 @@
-import profil from '../../assets/image/Profil.jpg'
+import profil from '../../assets/image/Profil.png'
 
 const DetailData = [
     {

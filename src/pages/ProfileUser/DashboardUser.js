@@ -1,20 +1,16 @@
 import React from "react";
+
+import Navbar from "../../components/common/Navbar";
 import Footer from "../../components/common/Footer";
-import KategoriCourse1 from "../../assets/image/KategoriCourse1.png";
-import Dashboard from "../../assets/css/dashboard.css";
-import { Navbar, Nav } from "react-bootstrap";
-import NavbarCompUser from "../../components/profileMentor/NavbarCompUser";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/js/bootstrap.js";
-import "../../assets/css/styleProfileMentor.css";
-import "../../assets/css/ProfileStyling.css";
+import LogoKategori1 from "../../assets/image/KategoriCourse1.png";
+import "./DashboardUser.css";
 
 function DashboardUser() {
   return (
     <>
-      <NavbarCompUser />
-      <div class="container mb-5 mt-5">
-        <div class="row mt-lg-4 ">
+      <Navbar />
+      <div class="container mb-5">
+        <div class="row mt-lg-4">
           <div id="header-dashboard" class="col-12 my-5">
             <h5>Dashboard</h5>
             <p>
@@ -32,7 +28,7 @@ function DashboardUser() {
               <div class="statistic-col card">
                 <div class="statistic-item">
                   <i class="las la-briefcase text-primary"> </i>
-                  <img class="mr-3" src={KategoriCourse1} />
+                  <img class="mr-3" src={LogoKategori1} />
                   <div>
                     <h4>2</h4>
                     <span class="text-muted">Kursus Aktif</span>
@@ -42,111 +38,34 @@ function DashboardUser() {
               <div class="statistic-col card">
                 <div class="statistic-item">
                   <i class="las la-briefcase text-primary"></i>
-                  <img class="mr-3" src={KategoriCourse1} />
+                  <img class="mr-3" src={LogoKategori1} />
                   <div>
                     <h4>2</h4>
                     <span class="text-muted">Total Kursus</span>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="statistic-row my-2">
               <div class="statistic-col card">
                 <div class="statistic-item">
-                  <i class="las la-briefcase text-primary"> </i>
-                  <img class="mr-3" src={KategoriCourse1} />
+                  <i class="las la-briefcase text-primary"></i>
+                  <img class="mr-3" src={LogoKategori1} />
                   <div>
-                    <h4>2</h4>
+                    <h4>0</h4>
                     <span class="text-muted">Kursus Selesai</span>
                   </div>
                 </div>
               </div>
-              <div class="statistic-col card">
-                <div class="statistic-item">
-                  <i class="las la-briefcase text-primary"></i>
-                  <img class="mr-3" src={KategoriCourse1} />
-                  <div>
-                    <h4>2</h4>
-                    <span class="text-muted">Total Siswa</span>
-                  </div>
-                </div>
-              </div>
             </div>
-
             <div class="row mt-2">
               <div class="col-12 mb-3">
                 <div class="card">
                   <div class="card-body">
-                    <div id="card">
-                      <a>
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <div style={{ flex: 1 }}>
-                            Kursus yang telah selesai
-                          </div>
-                          <div>
-                            <button className="btn-dashboard">
-                              Buat Jadwal
-                            </button>
-                          </div>
-                        </div>
-                      </a>
-                      <div class="mt-4">
-                        <table class="table custom-table">
-                          <thead class="thead-light">
-                            <tr>
-                              <th
-                                scope="col"
-                                class="text-left font-weight-normal"
-                              >
-                                Nama Kursus
-                              </th>
-                              <th
-                                scope="col"
-                                class="text-center font-weight-normal"
-                              >
-                                Tanggal Mulai
-                              </th>
-                              <th
-                                scope="col"
-                                class="text-right font-weight-normal"
-                              >
-                                Tanggal Berakhir
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td class="text-left font-">
-                                Sistem Informasi - UI/UX Design Applications
-                              </td>
-                              <td class="text-center">2022-03-01</td>
-                              <td class="text-right">2022-03-31</td>
-                            </tr>
-                            <tr>
-                              <td class="text-left">
-                                Sistem Informasi - UI/UX Design Applications
-                              </td>
-                              <td class="text-center">2022-04-01</td>
-                              <td class="text-right">2022-04-30</td>
-                            </tr>
-                            <tr>
-                              <td class="text-left">
-                                Sistem Informasi - UI/UX Design Applications
-                              </td>
-                              <td class="text-center">2022-05-01</td>
-                              <td class="text-right">2022-05-31</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
+                    <div id="chart"></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
           <div class="col-12 col-lg-5">
             <span class="text-muted small">Jadwal Kursus</span>
             <div id="comingsoon_sessions" class="row pt-2">
@@ -154,10 +73,10 @@ function DashboardUser() {
                 <div class="card">
                   <div class="schedule-course-item">
                     <i class="las la-calendar-day text-primary"></i>
-                    <img class="mr-3" src={KategoriCourse1} />
+                    <img class="mr-3" src={LogoKategori1} />
                     <div>
                       <span>
-                        <a href="" class="schedule-course-title">
+                        <a href="/classroom/user" class="schedule-course-title">
                           Multimedia
                         </a>{" "}
                         <br />
@@ -180,10 +99,10 @@ function DashboardUser() {
                 <div class="card">
                   <div class="schedule-course-item">
                     <i class="las la-calendar-day text-primary"></i>
-                    <img class="mr-3" src={KategoriCourse1} />
+                    <img class="mr-3" src={LogoKategori1} />
                     <div>
                       <span>
-                        <a href="" class="schedule-course-title">
+                        <a href="/classroom/user" class="schedule-course-title">
                           Multimedia
                         </a>{" "}
                         <br />
@@ -206,10 +125,10 @@ function DashboardUser() {
                 <div class="card">
                   <div class="schedule-course-item">
                     <i class="las la-calendar-day text-primary"></i>
-                    <img class="mr-3" src={KategoriCourse1} />
+                    <img class="mr-3" src={LogoKategori1} />
                     <div>
                       <span>
-                        <a href="" class="schedule-course-title">
+                        <a href="/classroom/user" class="schedule-course-title">
                           Multimedia
                         </a>{" "}
                         <br />
@@ -232,10 +151,10 @@ function DashboardUser() {
                 <div class="card">
                   <div class="schedule-course-item">
                     <i class="las la-calendar-day text-primary"></i>
-                    <img class="mr-3" src={KategoriCourse1} />
+                    <img class="mr-3" src={LogoKategori1} />
                     <div>
                       <span>
-                        <a href="" class="schedule-course-title">
+                        <a href="/classroom/user" class="schedule-course-title">
                           Multimedia
                         </a>{" "}
                         <br />
@@ -258,10 +177,10 @@ function DashboardUser() {
                 <div class="card">
                   <div class="schedule-course-item">
                     <i class="las la-calendar-day text-primary"></i>
-                    <img class="mr-3" src={KategoriCourse1} />
+                    <img class="mr-3" src={LogoKategori1} />
                     <div>
                       <span>
-                        <a href="" class="schedule-course-title">
+                        <a href="/classroom/user" class="schedule-course-title">
                           Multimedia
                         </a>{" "}
                         <br />
@@ -285,7 +204,6 @@ function DashboardUser() {
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   );

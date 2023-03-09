@@ -1,3 +1,4 @@
+import React from 'react'
 import "bootstrap/dist/css/bootstrap.css";
 
 import { Home } from "../pages/Home/Home";
@@ -10,19 +11,18 @@ import { Livestreaming } from "../pages/Livestreaming/Livestreaming";
 import { DetailLivestream } from "../pages/Detail/DetailLivestream";
 import { BukaJadwal } from "../pages/Livestreaming/BukaJadwal";
 
-import Dashboard_classroom from "../pages/ClassroomSiswa/Dashboard_classroom";
-import CS_Sesi1 from "../pages/ClassroomSiswa/CS_Sesi1";
-import CS_Tugas from "../pages/ClassroomSiswa/CS_Tugas";
-import CS_Live from "../pages/ClassroomSiswa/CS_Live";
-import CS_Live2 from "../pages/ClassroomSiswa/CS_Live2";
-import CS_Live3 from "../pages/ClassroomSiswa/CS_Live3";
-
+import ClassroomSiswaDashboard from "../pages/ClassroomSiswa/ClassroomSiswaDashboard";
+import ClassroomSiswaLive from "../pages/ClassroomSiswa/ClassroomSiswaLive";
 import ChangePasswordUser from "../pages/ProfileUser/ChangePasswordUser";
 import DaftarMentorUser from "../pages/ProfileUser/DaftarMentorUser";
 import DashboardUser from "../pages/ProfileUser/DashboardUser";
 import KursusUser from "../pages/ProfileUser/KursusUser";
-import Profile_PicUser from "../pages/ProfileUser/Profile_PicUser";
+import ProfilePicUser from "../pages/ProfileUser/ProfilePicUser";
 import ProfileUser from "../pages/ProfileUser/ProfileUser";
+import ClassroomSiswaPengenalan from "../pages/ClassroomSiswa/ClassroomSiswaPengenalan";
+import ClassroomSiswaTugas from "../pages/ClassroomSiswa/ClassroomSiswaTugas";
+import LiveStreamingDetailBiId from "../pages/ClassroomSiswa/LiveStreamingDetailById";
+import LiveStreamingLinkZoom from "../pages/ClassroomSiswa/LiveStreamingLinkZoom";
 
 const UserRoutes = [
   {
@@ -76,33 +76,33 @@ const UserRoutes = [
     children: [
       {
         path: "",
-        element: <Dashboard_classroom />,
+        element: <ClassroomSiswaDashboard />,
       },
       {
-        path: "/class-user",
-        element: <CS_Sesi1 />,
+        path: "/pengenalan_siswa",
+        element: <ClassroomSiswaPengenalan />,
       },
       {
-        path: "/exam-user",
-        element: <CS_Tugas />,
+        path: "/tugas_siswa",
+        element: <ClassroomSiswaTugas />,
       },
       {
-        path: "/live-streaming",
+        path: "/live-streaming-siswa",
         children: [
           {
             path: "",
-            element: <CS_Live />,
+            element: <ClassroomSiswaLive />,
           },
           {
             path: "/live-streaming-id",
             children: [
               {
                 path: "",
-                element: <CS_Live2 />,
+                element: <LiveStreamingDetailBiId />,
               },
               {
                 path: "/link-zoom",
-                element: <CS_Live3 />,
+                element: <LiveStreamingLinkZoom />,
               },
             ],
           },
@@ -128,10 +128,15 @@ const UserRoutes = [
       },
       {
         path: "/fotoprofile",
-        element: <Profile_PicUser />,
+        element: <ProfilePicUser />,
       },
     ],
   },
+  {
+    name: "Profile Dashboard",
+    path: "/user",
+    element: <DashboardUser />
+  }
 ];
 
 export default UserRoutes;

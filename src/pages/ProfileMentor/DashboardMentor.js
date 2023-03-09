@@ -1,9 +1,7 @@
 import React from "react";
 import Footer from "../../components/common/Footer";
 import KategoriCourse1 from "../../assets/image/KategoriCourse1.png";
-import Dashboard from "../../assets/css/dashboard.css";
-import { Navbar, Nav } from "react-bootstrap";
-import NavbarComp from "../../components/profileMentor/NavbarComp";
+import Navbar from "../../components/common/Navbar";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "../../assets/css/styleProfileMentor.css";
@@ -12,7 +10,7 @@ import "../../assets/css/ProfileStyling.css";
 function DashboardMentor() {
   return (
     <>
-      <NavbarComp />
+      <Navbar />
       <div class="container mb-5 mt-5">
         <div class="row mt-lg-4 ">
           <div id="header-dashboard" class="col-12 my-5">

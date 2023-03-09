@@ -3,13 +3,19 @@ import Footer from "../../components/common/Footer";
 import Navbar from "../../components/common/Navbar";
 import { Button, Card } from "react-bootstrap";
 import gambar from "../../assets/image/course-img1.jpg";
+import LiveData from "../Home/live/LiveData";
+import { useParams } from "react-router-dom";
 
 export const DetailLivestream = () => {
+  const { itemId } = useParams();
+  const detailProduct = LiveData.find((item) => item.id === parseInt(itemId));
+  const { id, name, chanel, image, eventStart, eventEnd } = detailProduct;
+
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <section id="detailcourse">
-        <div className="container mt-5 mb-5">
+        <div key={id} className="container mt-5 mb-5">
           <h4>Live Streaming</h4>
           <p>Temukan chanel yang sesuai dengan anda</p>
           <div class="row mt-3">
@@ -25,12 +31,10 @@ export const DetailLivestream = () => {
               {/*here the content*/}
               <Card>
                 <Card.Body>
-                  <h4>Memudahkan Belajar Animasi </h4>
+                  <h4>{name}</h4>
                   <Card className="mb-4">
                     <Card.Body>
-                      <Card.Title className="text-muted">
-                        nurohman chanel
-                      </Card.Title>
+                      <Card.Title className="text-muted">{chanel}</Card.Title>
                       <Card.Text className="">10 Januari 2023</Card.Text>
                       <Card.Text>10.00 - 12.00 WIB</Card.Text>
                       <div className="row">

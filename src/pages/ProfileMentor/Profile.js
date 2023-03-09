@@ -1,5 +1,6 @@
 import Footer from "../../components/common/Footer";
 import NavbarComp from "../../components/profileMentor/NavbarComp";
+import Navbar from "../../components/common/Navbar";
 import CompProfile from "../../components/profileMentor/CompProfile";
 import { useNavigate } from "react-router-dom";
 import React, {useState} from 'react';
@@ -19,7 +20,7 @@ const Profile = () => {
 
     return(
         <>
-        <NavbarComp />
+        <Navbar />
         <div class="container mt-5">
     </div>
     <div class="container mb-5 ">

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "../../assets/css/style.css";
 import "../../assets/css/bootstrap.css";
 import LogoNavbar from "../../assets/image/logo-navbar.png";
@@ -7,7 +7,10 @@ import Login from "./Login";
 import { Navigate } from "react-router-dom";
 import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
 import { logout } from "../../store/slices/authSlice";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
+import { NavDropdown } from "react-bootstrap";
+import axios from "axios";
+import { addUser } from "../../store/slices/authSlice";
 
 import { Course } from "../../pages/Kursus/Course";
 import { Home } from "../../pages/Home/Home";
@@ -15,15 +18,69 @@ import { Error } from "./Error";
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  // const user = useSelector((state) => state.auth.user);
-  // const dispatch = useDispatch();
+  const [isLoggedin, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
 
-  // const handleLogout = () => {
-  //   dispatch(logout());
-  //   navigate("/login");
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Get Token From Local Storage
+        const token = localStorage.getItem("token_key");
+
+        if (!token) {
+          setIsLoggedIn(false);
+          return;
+        }
+
+        //Check Valid Token From API
+        const currentUserRequest = await axios.get(
+          "http://localhost:7000/auth/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const currentUserResponse = currentUserRequest.data;
+
+        if (currentUserResponse.status) {
+          // set to redux
+          dispatch(
+            addUser({
+              user: currentUserResponse.data.user,
+              token: token,
+            })
+          );
+
+          setUser(currentUserResponse.data.user);
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+      } catch (err) {
+        setIsLoggedIn(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // const logout = () => {
+  //   localStorage.removeItem('token_key');
+
+  //   setIsLoggedIn(false);
+  //   setUser({});
   // };
+  const handleLogout = () => {
+    localStorage.removeItem("token_key");
+
+    setIsLoggedIn(false);
+    setUser({});
+    navigate("/login");
+  };
 
   return (
     <div className="App">
@@ -59,61 +116,121 @@ function Navbar() {
                   <span>Beranda</span>
                 </Link>
               </li>
-              <li class="nav-item d-none d-sm-inline-block">
-                <Link class="nav-link" to="/course">
-                  <i class="las la-chalkboard-teacher d-lg-none"></i>
-                  <span>Kursus</span>
-                </Link>
-              </li>
-              <li class="nav-item d-none d-sm-inline-block">
-                <Link class="nav-link" to="/register">
-                  <i class="las la-handshake d-lg-none"></i>
-                  <span>Daftar Mentor</span>
-                </Link>
-              </li>
 
-              {/* {isLoggedIn ? (
+              {isLoggedin ? (
                 <>
-                <li>
-                  {user.name} as ({user.role})
-                </li> 
-                <li>
-                <button onClick={handleLogout}>Logout</button>
-                </li>
+                  {user.role === "mentor" ? (
+                    // Render mentor-specific content
+                    <>
+                      <li class="nav-item d-none d-sm-inline-block">
+                        <Link class="nav-link" to="/mentor/dashboard">
+                          <i class="las la-chalkboard-teacher d-lg-none"></i>
+                          <span>Kursus</span>
+                        </Link>
+                      </li>
+                      <li class="nav-item d-none d-sm-inline-block">
+                        <Link
+                          class="nav-link"
+                          to="/mentor/profile/daftar-mentor"
+                        >
+                          <i class="las la-handshake d-lg-none"></i>
+                          <span>Daftar Mentor</span>
+                        </Link>
+                      </li>
+                      <li class="nav-item">
+                        <a>
+                          <NavDropdown
+                            title={user.name}
+                            id="navbarScrollingDropdown"
+                          >
+                            <NavDropdown.Item
+                              onClick={() => navigate("/mentor/profile")}
+                            >
+                              Profile
+                            </NavDropdown.Item>
+                            <NavDropdown.Item
+                              onClick={() => navigate("/mentor/classroom")}
+                            >
+                              My Class
+                            </NavDropdown.Item>
+                            <NavDropdown.Item onClick={handleLogout}>
+                              Logout
+                            </NavDropdown.Item>
+                          </NavDropdown>
+                        </a>
+                      </li>
+                    </>
+                  ) : (
+                    // Render regular user content
+                    <>
+                      <li class="nav-item d-none d-sm-inline-block">
+                        <Link class="nav-link" to="/user">
+                          <i class="las la-chalkboard-teacher d-lg-none"></i>
+                          <span>Kursus</span>
+                        </Link>
+                      </li>
+                      <li class="nav-item d-none d-sm-inline-block">
+                        <Link class="nav-link" to="/profile-user/daftar-mentor">
+                          <i class="las la-handshake d-lg-none"></i>
+                          <span>Daftar Mentor</span>
+                        </Link>
+                      </li>
+                      <li class="nav-item">
+                        <a>
+                          <NavDropdown
+                            title={user.name}
+                            id="navbarScrollingDropdown"
+                          >
+                            <NavDropdown.Item
+                              onClick={() => navigate("/profile-user")}
+                            >
+                              Profile
+                            </NavDropdown.Item>
+                            <NavDropdown.Item
+                              onClick={() => navigate("/classroom/user")}
+                            >
+                              My Class
+                            </NavDropdown.Item>
+                            <NavDropdown.Item onClick={handleLogout}>
+                              Logout
+                            </NavDropdown.Item>
+                          </NavDropdown>
+                        </a>
+                      </li>
+                    </>
+                  )}
                 </>
               ) : (
+                // Render login/register buttons
                 <>
-                <li class="nav-item">
-                <Link class="btn btn-sm btn-primary btn-navbar" to="/login">
-                  Masuk
-                </Link>
-              </li>
-              <li>
-                <Link
-                  class="btn btn-sm btn-outline-primary btn-navbar"
-                  to="/register"
-                >
-                  {" "}
-                  Daftar{" "}
-                </Link>
-                </li>
+                  <li class="nav-item d-none d-sm-inline-block">
+                    <Link class="nav-link" to="/course">
+                      <i class="las la-chalkboard-teacher d-lg-none"></i>
+                      <span>Kursus</span>
+                    </Link>
+                  </li>
+                  <li class="nav-item d-none d-sm-inline-block">
+                    <Link class="nav-link" to="/register">
+                      <i class="las la-handshake d-lg-none"></i>
+                      <span>Daftar Mentor</span>
+                    </Link>
+                  </li>
+                  <li class="nav-item">
+                    <Link class="btn btn-sm btn-primary btn-navbar" to="/login">
+                      Masuk
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      class="btn btn-sm btn-outline-primary btn-navbar"
+                      to="/register"
+                    >
+                      {" "}
+                      Daftar{" "}
+                    </Link>
+                  </li>
                 </>
-              )} */}
-
-              <li class="nav-item">
-                <Link class="btn btn-sm btn-primary btn-navbar" to="/login">
-                  Masuk
-                </Link>
-              </li>
-              <li>
-                <Link
-                  class="btn btn-sm btn-outline-primary btn-navbar"
-                  to="/register"
-                >
-                  {" "}
-                  Daftar{" "}
-                </Link>
-              </li>
+              )}
             </ul>
           </div>
         </div>

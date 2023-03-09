@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import DetailData from "../../pages/Mentor/DetailData";
-import pic from "../../assets/image/Profil.jpg";
+import pic from "../../assets/image/Profil.png";
 
 export const MentorProfile = () => {
   return (

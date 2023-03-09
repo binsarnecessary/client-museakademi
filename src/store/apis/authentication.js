@@ -29,22 +29,22 @@ const authApi = createApi({
 			}),
 			invalidatesTags: ['Auth'],
 		}),
-		forgotPassword: build.mutation({
-			query: (body) => ({
-				url: `api/forget-password/send`,
-				method: 'POST',
-				body: body,
-			}),
-			invalidatesTags: ['Auth'],
-		}),
-		changePassword: build.mutation({
-			query: (body) => ({
-				url: `api/forget-password/change-password`,
-				method: 'POST',
-				body: body,
-			}),
-			invalidatesTags: ['Auth'],
-		}),
+		// forgotPassword: build.mutation({
+		// 	query: (body) => ({
+		// 		url: `api/forget-password/send`,
+		// 		method: 'POST',
+		// 		body: body,
+		// 	}),
+		// 	invalidatesTags: ['Auth'],
+		// }),
+		// changePassword: build.mutation({
+		// 	query: (body) => ({
+		// 		url: `api/forget-password/change-password`,
+		// 		method: 'POST',
+		// 		body: body,
+		// 	}),
+		// 	invalidatesTags: ['Auth'],
+		// }),
 		logout: build.mutation({
 			query: (token) => ({
 				url: `api/logout`,
@@ -60,12 +60,17 @@ const authApi = createApi({
 })
 
 export const {
-	useRegisterMutation,
-	useResendOtpMutation,
 	useLoginMutation,
-	useForgotPasswordMutation,
-	useChangePasswordMutation,
 	useLogoutMutation
 } = authApi
+
+// export const {
+// 	useRegisterMutation,
+// 	useResendOtpMutation,
+// 	useLoginMutation,
+// 	useForgotPasswordMutation,
+// 	useChangePasswordMutation,
+// 	useLogoutMutation
+// } = authApi
 
 export default authApi

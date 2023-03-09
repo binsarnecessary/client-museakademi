@@ -1947,6 +1947,11 @@
   dependencies:
     "@swc/helpers" "^0.4.14"
 
+"@react-oauth/google@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@react-oauth/google/-/google-0.8.0.tgz#e95c9e2ef28f0da6d5de223e48c391a12eb4f821"
+  integrity sha512-xmIhYvvaBSblOzo3Fqv762lqub92SOFR8eRR7QpPyFPZEXZcOymaMuEkRSUKUrbu+9wfB8qtOaGMRJzrN7U2PA==
+
 "@react-spring/animated@~9.4.5":
   version "9.4.5"
   resolved "https://registry.yarnpkg.com/@react-spring/animated/-/animated-9.4.5.tgz#dd9921c716a4f4a3ed29491e0c0c9f8ca0eb1a54"

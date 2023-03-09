@@ -1,6 +1,6 @@
 import React from "react";
 import LogoNavbar from "../../assets/image/logo-navbar.png";
-import ProfilPhoto from "../../assets/image/Profil.jpg";
+import ProfilPhoto from "../../assets/image/Profil.png";
 
 function NavbarC() {
   return (

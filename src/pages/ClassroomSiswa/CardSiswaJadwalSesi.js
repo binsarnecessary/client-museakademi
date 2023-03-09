@@ -2,7 +2,7 @@ import React from "react";
 import "../../assets/css/bootstrap.css";
 import "../../assets/css/style.css";
 
-const CS_card1 = () => {
+const CardSiswaJadwalSesi = () => {
   return (
     <div className="card mt-3">
       <div className="card-body">
@@ -57,4 +57,4 @@ const CS_card1 = () => {
   );
 };
 
-export default CS_card1;
+export default CardSiswaJadwalSesi;

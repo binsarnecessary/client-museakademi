@@ -1,20 +1,21 @@
+import React from 'react'
 import "bootstrap/dist/css/bootstrap.css";
 
 import Profile from "../pages/ProfileMentor/Profile";
 import ChangePassword from "../pages/ProfileMentor/ChangePassword";
 import DaftarMentor from "../pages/ProfileMentor/DaftarMentor";
-import Profile_Pic from "../pages/ProfileMentor/Profile_Pic";
+import ProfilePic from "../pages/ProfileMentor/ProfilePic";
 import DashboardMentor from "../pages/ProfileMentor/DashboardMentor";
 import KursusMentor from "../pages/ProfileMentor/KursusMentor";
 
-import CM_Dashboard from "../pages/ClassroomMentor/CM_Dashboard";
-import CM_Sesi1 from "../pages/ClassroomMentor/CM_Sesi1";
-import CM_Tugas from "../pages/ClassroomMentor/CM_Tugas";
-import CM_Live from "../pages/ClassroomMentor/CM_Live";
-import CM_Live3 from "../pages/ClassroomMentor/CM_Live3";
-import CM_Siswa from "../pages/ClassroomMentor/CM_Siswa";
-import CM_Penilaian from "../pages/ClassroomMentor/CM_Penilaian";
-import CM_TugasEdit from "../pages/ClassroomMentor/CM_TugasEdit";
+import ClassroomMentorDashboard from "../pages/ClassroomMentor/CLassroomMentorDashboard";
+import ClassroomMentorClass from "../pages/ClassroomMentor/ClassroomMentorClass";
+import ClassroomMentorTugas from "../pages/ClassroomMentor/ClassroomMentorTugas";
+import ClassroomMentorLive from "../pages/ClassroomMentor/ClassroomMentorLive";
+import ClassroomMentorSiswa from "../pages/ClassroomMentor/ClassroomMentorSiswa";
+import ClassroomMentorEditTugas from "../pages/ClassroomMentor/ClassroomMentorEditTugas";
+import LiveStreamingDetailById from '../pages/ClassroomMentor/LiveStreamingDetailById';
+import ClassroomMentorSiswaPenilaian from '../pages/ClassroomMentor/ClassroomMentorSiswaPenilaian';
 
 
 const MentorRoutes = [
@@ -39,14 +40,14 @@ const MentorRoutes = [
                 },
                 {
                     path: "/picture",
-                    element: <Profile_Pic />
+                    element: <ProfilePic />
                 },
                 {
                     path: "/daftar-mentor",
                     element: <DaftarMentor />,
                 },
                 {
-                    path: "change-password",
+                    path: "/change-password",
                     element: <ChangePassword />
                 },
             ],
@@ -57,48 +58,48 @@ const MentorRoutes = [
             children: [
                 {
                     path: "",
-                    element: <CM_Dashboard />,
+                    element: <ClassroomMentorDashboard />,
                 },
                 {
                     path: "/class-mentor",
-                    element: <CM_Sesi1 />
+                    element: <ClassroomMentorClass />
                 },
                 {
-                    path: "/exam-mentor",
+                    path: "/tugas-mentor",
                     children: [
                         {
                             path: "",
-                            element: <CM_Tugas />,
+                            element: <ClassroomMentorTugas />,
                         },
                         {
-                            path: "/edit-exam-id",
-                            element: <CM_TugasEdit />
+                            path: "/mentor-edit-tugas",
+                            element: <ClassroomMentorEditTugas />
                         }
                     ]
                 },
                 {
-                    path: "/live-streaming",
+                    path: "/live-mentor",
                     children: [
                         {
                             path: "",
-                            element: <CM_Live />,
+                            element: <ClassroomMentorLive />,
                         },
                         {
-                            path: "/detail-live-streaming-id",
-                            element: <CM_Live3 />,
+                            path: "/live-detail-id",
+                            element: <LiveStreamingDetailById />,
                         },
                     ],
                 },
                 {
-                    path: "/list-user",
+                    path: "/siswa-mentor",
                     children: [
                         {
                             path: "",
-                            element: <CM_Siswa />,
+                            element: <ClassroomMentorSiswa />,
                         },
                         {
-                            paht: "/evaluation",
-                            element: <CM_Penilaian />
+                            path: "/penilaian",
+                            element: <ClassroomMentorSiswaPenilaian />
                         }
                     ]
                 },

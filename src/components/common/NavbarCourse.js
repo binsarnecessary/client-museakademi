@@ -3,7 +3,7 @@ import "../../assets/css/style.css";
 import "../../assets/css/bootstrap.css";
 import "../../assets/css/classroom.css";
 import LogoNavbar from "../../assets/image/logo-navbar.png";
-import ProfilPhoto from "../../assets/image/Profil.jpg";
+import ProfilPhoto from "../../assets/image/Profil.png";
 
 function NavbarCourse() {
   return (

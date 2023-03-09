@@ -4,10 +4,11 @@ import "../../assets/css/style.css";
 import "../../assets/css/bootstrap.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import {useRef, useState} from 'react';
-import {Form, Container, Alert} from 'react-bootstrap';
-import axios from 'axios';
-import {Link, useNavigate} from 'react-router-dom';
+import Swal from "sweetalert2";
+import { useRef, useState } from "react";
+import { Form } from "react-bootstrap";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../store/slices/authSlice";
 import { useDispatch } from "react-redux";
 // import {GoogleOAuthProvider} from '@react-oauth/google';
@@ -17,77 +18,91 @@ function Login({}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const emailField = useRef("");
+  const passwordField = useRef("");
 
-    const emailField = useRef("");
-    const passwordField = useRef("");
+  const [errorResponse, setErrorResponse] = useState({
+    isError: false,
+    message: "",
+  });
 
-    const [errorResponse, setErrorResponse] = useState({
-        isError: false,
-        message: "",
-    });
+  const onLogin = async (e) => {
+    e.preventDefault();
 
-    const onLogin = async (e) => {
-        e.preventDefault();
+    try {
+      const userToLoginPayload = {
+        email: emailField.current.value,
+        password: passwordField.current.value,
+      };
 
-        try {
-            const userToLoginPayload = {
-                email: emailField.current.value,
-                password: passwordField.current.value,
-            };
+      const loginRequest = await axios.post(
+        "http://localhost:7000/auth/login",
+        userToLoginPayload
+      );
 
-            const loginRequest = await axios.post('http://localhost:7000/auth/login', userToLoginPayload);
+      const loginResponse = loginRequest.data;
 
-            const loginResponse = loginRequest.data;
+      if (loginResponse.status) {
+        localStorage.setItem("token_key", loginResponse.data.token);
 
-            if (loginResponse.status) {
-              localStorage.setItem("token_key", loginResponse.data.token);
-              
-              dispatch(login({
-                isLoggedIn: true,
-                user: loginResponse.data,
-              }));
-              
-              if (loginResponse.data.role === "mentor") {
-                navigate("/mentor/dashboard");
-              } else if (loginResponse.data.role === "admin") {
-                navigate("/admin/dashboard");
-              } else {
-                navigate("/");
-              }
-            }
-        } catch (err) {
-            console.log(err);
-            const response = err.response.data;
+        dispatch(
+          login({
+            isLoggedIn: true,
+            user: loginResponse.data,
+          })
+        );
 
-            setErrorResponse({
-                isError: true,
-                message: response.message,
-            });
+        if (loginResponse.data.role === "mentor") {
+          navigate("/mentor/dashboard");
+        } else if (loginResponse.data.role === "admin") {
+          navigate("/admin/dashboard");
+        } else {
+          navigate("/");
         }
-    };
+      }
+    } catch (err) {
+      console.log(err);
+      const response = err.response.data;
 
-    // const onLoginGoogleSuccess = async (credentialsResponse) => {
-    //     try {
-    //         const userToLoginPayload = {
-    //             google_credentials: credentialsResponse.credential,
-    //         };
+      setErrorResponse({
+        isError: true,
+        message: response.message,
+      });
 
-    //         const loginGoogleRequest = await axios.post("http://localhost:8000/auth/login-google", userToLoginPayload);
+      Swal.fire({
+        title: "Error!",
+        text: errorResponse.message,
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+  };
 
-    //         const loginGoogleResponse = loginGoogleRequest.data;
+  const onLoginGoogleSuccess = async (credentialsResponse) => {
+    try {
+      const userToLoginPayload = {
+        google_credentials: credentialsResponse.credential,
+      };
 
-    //         if(loginGoogleResponse.status) {
-    //             localStorage.setItem("token_key", loginGoogleResponse.data.token);
+      const loginGoogleRequest = await axios.post(
+        "http://localhost:7000/auth/login-google",
+        userToLoginPayload
+      );
 
-    //             navigate("/");
-    //         }
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // };
+      const loginGoogleResponse = loginGoogleRequest.data;
+
+      if (loginGoogleResponse.status) {
+        localStorage.setItem("token_key", loginGoogleResponse.data.token);
+
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div class="container my-5">
         <div class="row justify-content-center align-items-center h-75">
           <div class="col-12 col-lg-4">
@@ -99,14 +114,21 @@ function Login({}) {
               </p>
             </div>
             <Form onSubmit={(e) => onLogin(e)}>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="text"
+                  ref={emailField}
+                  placeholder="Masukkan Email"
+                />
+              </Form.Group>
 
-            <Form.Group className='mb-3'>
-                    <Form.Control type='text' ref={emailField} placeholder='Masukkan Email'/>
-                </Form.Group>
-
-                <Form.Group className='mb-3'>
-                    <Form.Control type='password' ref={passwordField} placeholder='Masukkan Password'/>
-                </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Control
+                  type="password"
+                  ref={passwordField}
+                  placeholder="Masukkan Password"
+                />
+              </Form.Group>
 
               <input type="hidden" name="next" value="" />
               <button type="submit" class="btn btn-sm btn-block btn-primary">

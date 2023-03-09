@@ -2,23 +2,71 @@ import Footer from "../../components/common/Footer";
 import Navbar from "../../components/common/Navbar";
 
 import * as Icon from "react-bootstrap-icons";
-import { Form } from "react-bootstrap";
+import { Form, InputGroup } from "react-bootstrap";
 import { Incoming } from "../Home/Incoming/Incoming";
 import productData from "./CardData";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import ReactPaginate from "react-paginate";
+import "./Course.css";
 
 export const Course = () => {
+  {
+    /*filter kategori */
+  }
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [minPrice, setMinPrice] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(12);
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
   };
-  const filteredProducts = selectedCategory
-    ? productData.filter(
-        (productData) => productData.category === selectedCategory
-      )
-    : productData;
+
+  const handleMinPriceChange = (event) => {
+    setMinPrice(event.target.value);
+  };
+
+  const handleMaxPriceChange = (event) => {
+    setMaxPrice(event.target.value);
+  };
+
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const filteredProducts = useMemo(() => {
+    let filteredProducts = productData;
+
+    if (selectedCategory) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.category === selectedCategory
+      );
+    }
+
+    if (minPrice) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.price >= Number(minPrice)
+      );
+    }
+
+    if (maxPrice) {
+      filteredProducts = filteredProducts.filter(
+        (product) => product.price <= Number(maxPrice)
+      );
+    }
+
+    return filteredProducts;
+  }, [selectedCategory, minPrice, maxPrice]);
+
+  const indexOfLastProduct = (currentPage + 1) * itemsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   return (
     <>
@@ -50,7 +98,7 @@ export const Course = () => {
                 </div>
               </div>
             </form>
-            <div className="text-muted small mb-2">Filter</div>
+            <div className="text-muted small mb-2">Kategori</div>
             <div className="ml-2">
               <Form>
                 <Form.Check
@@ -64,46 +112,69 @@ export const Course = () => {
                   type="radio"
                   label="Desain"
                   name="radioOption"
-                  value="option1"
+                  value="option2"
                   onChange={() => handleCategorySelect("Desain")}
                 />
                 <Form.Check
                   type="radio"
                   label="User Interface"
                   name="radioOption"
-                  value="option1"
+                  value="option3"
                   onChange={() => handleCategorySelect("User Interface")}
                 />
                 <Form.Check
                   type="radio"
                   label="Fashion"
                   name="radioOption"
-                  value="option1"
+                  value="option4"
                   onChange={() => handleCategorySelect("Fashion")}
                 />
                 <Form.Check
                   type="radio"
                   label="Semua"
                   name="radioOption"
-                  value="option1"
+                  value="option5"
                   onChange={() => handleCategorySelect(null)}
                 />
               </Form>
             </div>
-            <div class="text-muted small mt-2">Harga</div>
+
             <div>
               {/*Here last update  22 02 2023*/}
-              <Form.Range />
+              <Form.Group className="mt-2">
+                <Form.Label className="text-muted small">Harga</Form.Label>
+                <div>
+                  <InputGroup className="mb-2">
+                    <InputGroup.Text>Rp</InputGroup.Text>
+                    <Form.Control
+                      type="number"
+                      placeholder="Harga minimum"
+                      value={minPrice}
+                      onChange={handleMinPriceChange}
+                    />
+                  </InputGroup>
+
+                  <InputGroup>
+                    <InputGroup.Text>Rp</InputGroup.Text>
+
+                    <Form.Control
+                      type="number"
+                      placeholder="Harga maksimum"
+                      value={maxPrice}
+                      onChange={handleMaxPriceChange}
+                    />
+                  </InputGroup>
+                </div>
+              </Form.Group>
             </div>
           </div>
           <div className="col">
             <section className="row">
-              {filteredProducts.map((productData) => (
+              {currentProducts.map((productData) => (
                 <div
                   key={productData.id}
                   class="col-6 col-lg-4 mb-3 grid-template-columns-repeat"
                 >
-                  <Navbar />
                   <div
                     class="card h-100 position-relative"
                     data-toggle="tooltip"
@@ -115,12 +186,16 @@ export const Course = () => {
                         <span class="badge badge-pill badge-primary p-1 mr-2"></span>
                         <span>{productData.name}</span>
                       </h6>
-                      <div class="text-muted small ">{productData.date}</div>
+                      <div class="text-muted small ">{productData.mentor}</div>
                       <h6>
-                        <span class="text-truncate">{productData.price}</span>
-                        <span class="badge badge-success">
-                          {productData.gratis}
-                        </span>
+                        {productData.ispaid ? (
+                          <span class="text-truncate">
+                            {" "}
+                            Rp. {productData.price.toLocaleString("id-ID")}
+                          </span>
+                        ) : (
+                          <span class="badge badge-success"> Gratis</span>
+                        )}
                       </h6>
                       <h6>
                         <Link
@@ -136,6 +211,18 @@ export const Course = () => {
                 </div>
               ))}
             </section>
+            <ReactPaginate
+              previousLabel={"<"}
+              nextLabel={">"}
+              breakLabel={"..."}
+              pageCount={Math.ceil(filteredProducts.length / itemsPerPage)}
+              onPageChange={handlePageClick}
+              containerClassName={"pagination"}
+              activeClassName={"active"}
+              previousClassName={"previous"}
+              nextClassName={"next"}
+              disabledClassName={"disabled"}
+            />
           </div>
         </div>
       </div>

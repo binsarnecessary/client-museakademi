@@ -1,13 +1,13 @@
 import React from "react";
-import profil from "../../assets/image/Profil.jpg";
+import profil from "../../assets/image/Profil.png";
 import Image from "react-bootstrap/Image";
 import zoom from "../../assets/image/zoom.png";
-import CS_Sidebar3 from "./CS_Sidebar3";
+import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
-const CM_Live3 = () => {
+const LiveStreamingDetailById = () => {
   return (
     <>
-      <CS_Sidebar3>
+      <SidebarClassroomMentor>
         <div className="container-fluid  mt-3">
           <h3>Live Classes</h3>
           <h5>New In Class Programming</h5>
@@ -77,9 +77,9 @@ const CM_Live3 = () => {
             </div>
           </div>
         </div>
-      </CS_Sidebar3>
+      </SidebarClassroomMentor>
     </>
   );
 };
 
-export default CM_Live3;
+export default LiveStreamingDetailById;

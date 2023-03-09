@@ -2,12 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaTrashAlt } from "react-icons/fa";
 import { HiDotsHorizontal } from "react-icons/hi";
-import CS_Sidebar3 from "./CS_Sidebar3";
+import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
-const CM_Live = () => {
+const ClassroomMentorLive = () => {
   return (
     <>
-      <CS_Sidebar3>
+      <SidebarClassroomMentor>
         <div className="container-fluid mb-2">
           <div className="row mt-lg-3">
             <div className="col-12 col-lg-10 mb-3">
@@ -110,7 +110,10 @@ const CM_Live = () => {
                         </a>
                       </td>
                       <td>
-                        <Link to="/live3_mentor" className="btn btn-success">
+                        <Link
+                          to="/mentor/classroom/live-mentor/live-detail-id"
+                          className="btn btn-success"
+                        >
                           <HiDotsHorizontal />
                         </Link>
                       </td>
@@ -163,9 +166,9 @@ const CM_Live = () => {
             </div>
           </div>
         </div>
-      </CS_Sidebar3>
+      </SidebarClassroomMentor>
     </>
   );
 };
 
-export default CM_Live;
+export default ClassroomMentorLive;

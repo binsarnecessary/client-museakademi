@@ -1,18 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CS_Sidebar3 from "./CS_Sidebar3";
+import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
-const CM_Penilaian = () => {
+const ClassroomMentorSiswaPenilaian = () => {
   return (
     <>
-      <CS_Sidebar3>
+      <SidebarClassroomMentor>
         <div className="container-fluid mt-3">
           <div className="row">
             <div className="col-12 col-lg-10 mb-3">
               <h3>Penilaian</h3>
             </div>
             <div className="col-12 col-lg-2 d-none d-sm-block">
-              <Link to="/siswa_mentor" className="btn btn-primary btn-block">
+              <Link
+                to="/mentor/classroom/siswa-mentor"
+                className="btn btn-primary btn-block"
+              >
                 <i className="las la-reply mr-2"></i>
                 <span>Kembali</span>
               </Link>
@@ -127,9 +130,9 @@ const CM_Penilaian = () => {
             </div>
           </div>
         </div>
-      </CS_Sidebar3>
+      </SidebarClassroomMentor>
     </>
   );
 };
 
-export default CM_Penilaian;
+export default ClassroomMentorSiswaPenilaian;

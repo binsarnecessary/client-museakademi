@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "../../components/common/Footer";
-import NavbarComp from "../../components/profileMentor/NavbarComp";
+import Navbar from "../../components/common/Navbar";
 import "../../assets/css/bootstrapProfileMentor.css";
 import { Dropdown } from "react-bootstrap";
 import "../../assets/css/styleProfileMentor.css";
@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 function KursusMentor() {
   return (
     <>
-      <NavbarComp />
+      <Navbar />
       <body>
         <div id="user-courses" class="container mb-5 mt-5">
           <div class="row mt-lg-5">

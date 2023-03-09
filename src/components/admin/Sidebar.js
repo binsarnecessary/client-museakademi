@@ -34,6 +34,7 @@ import FlexBetween from "./FlexBetween";
 import profileImage from "../../assets/image/profile.jpeg";
 
 const navItems = [
+  
   {
     text: "Dashboard",
     icon: <HomeOutlined />,
@@ -71,7 +72,7 @@ const navItems = [
     icon: <TodayOutlined />,
   },
   {
-    text: "Live Streaming",
+    text: "LiveStreaming",
     icon: <CalendarMonthOutlined />,
   },
   {
@@ -107,6 +108,10 @@ const Sidebar = ({
   useEffect(() => {
     setActive(pathname.substring(1));
   }, [pathname]);
+
+  const handleNavigate = (path) => {
+    navigate(`/Admin/${path}`);
+  };
 
   return (
     <Box component="nav">
@@ -157,7 +162,7 @@ const Sidebar = ({
                   <ListItem key={text} disablePadding>
                     <ListItemButton
                       onClick={() => {
-                        navigate(`/${lcText}`);
+                        navigate(`/admin/${lcText}`);
                         setActive(lcText);
                       }}
                       sx={{

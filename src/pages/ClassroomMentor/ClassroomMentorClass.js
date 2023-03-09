@@ -1,10 +1,10 @@
 import React from "react";
-import CS_Sidebar3 from "./CS_Sidebar3";
+import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
-const CM_Sesi1 = () => {
+const ClassroomMentorClass = () => {
   return (
     <>
-      <CS_Sidebar3>
+      <SidebarClassroomMentor>
         <div class="container-fluid mb-5 mt-3">
           <div class="row">
             <div class="col-12 mb-3">
@@ -69,9 +69,9 @@ const CM_Sesi1 = () => {
             </div>
           </div>
         </div>
-      </CS_Sidebar3>
+      </SidebarClassroomMentor>
     </>
   );
 };
 
-export default CM_Sesi1;
+export default ClassroomMentorClass;

@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import CS_Sidebar3 from "./CS_Sidebar3";
+import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
-const CM_Siswa = () => {
+const ClassroomMentorSiswa = () => {
   return (
     <>
-      <CS_Sidebar3>
+      <SidebarClassroomMentor>
         <div className="container-fluid mt-3">
           <div className="row">
             <h4>Siswa</h4>
@@ -71,7 +71,7 @@ const CM_Siswa = () => {
                               <td>96</td>
                               <td>
                                 <Link
-                                  to="/penilaian_mentor"
+                                  to="/mentor/classroom/siswa-mentor/penilaian"
                                   class="small badge badge-pill badge-primary"
                                 >
                                   Nilai
@@ -136,9 +136,9 @@ const CM_Siswa = () => {
             </div>
           </div>
         </div>
-      </CS_Sidebar3>
+      </SidebarClassroomMentor>
     </>
   );
 };
 
-export default CM_Siswa;
+export default ClassroomMentorSiswa;

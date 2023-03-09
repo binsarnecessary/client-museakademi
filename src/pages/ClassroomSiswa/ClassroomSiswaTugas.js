@@ -1,22 +1,22 @@
 import React from "react";
-import CS_CardTugas from "./CS_CardTugas";
-import CS_Sidebar2 from "./CS_Sidebar2";
+import CardSiswaTugas from "./CardSiswaTugas";
+import SidebarClassroomSiswa from "./SidebarClassroomSiswa";
 
-const CS_Tugas = () => {
+const ClassroomSiswaTugas = () => {
   return (
     <>
-      <CS_Sidebar2>
+      <SidebarClassroomSiswa>
         <div className="container-fluid mt-3">
           <div className="row">
             <div className="col-12 mb-3">
               <h3>Tugas & Evaluasi</h3>
             </div>
           </div>
-          <CS_CardTugas />
+          <CardSiswaTugas />
         </div>
-      </CS_Sidebar2>
+      </SidebarClassroomSiswa>
     </>
   );
 };
 
-export default CS_Tugas;
+export default ClassroomSiswaTugas;

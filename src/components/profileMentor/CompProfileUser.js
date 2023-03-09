@@ -32,7 +32,7 @@ function CompProfileUser() {
         </a>
         <a onClick={() => navigate('/profile-user')} className={`sidebar-link ${location.pathname === '/profile-user' ? 'active' : ''}`}>
             <i class="las la-user"></i>
-                <span style={{fontSize:'16px'}}>Profile Mentor</span>
+                <span style={{fontSize:'16px'}}>Profile Siswa</span>
         </a>
         <a onClick={() => navigate('/profile-user/daftar-mentor')} className={`sidebar-link ${location.pathname === '/profile-user/daftar-mentor' ? 'active' : ''}`}>
             <i class="las la-unlock"></i>

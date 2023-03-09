@@ -26,19 +26,19 @@ function CompProfile() {
             <span class="text-muted small">username</span>
     </div>
     <div class="mt-4">
-        <a onClick={() => navigate('/Profile_Pic')} className={`sidebar-link ${location.pathname === '/Profile_Pic' ? 'active' : ''}`}>
+        <a onClick={() => navigate('/mentor/profile/picture')} className={`sidebar-link ${location.pathname === '/Profile_Pic' ? 'active' : ''}`}>
             <i class="las la-camera"></i>
                 <span style={{fontSize:'16px'}}>Foto Profil</span>
         </a>
-        <a onClick={() => navigate('/Profile')} className={`sidebar-link ${location.pathname === '/Profile' ? 'active' : ''}`}>
+        <a onClick={() => navigate('/mentor/profile')} className={`sidebar-link ${location.pathname === '/Profile' ? 'active' : ''}`}>
             <i class="las la-user"></i>
                 <span style={{fontSize:'16px'}}>Profile Mentor</span>
         </a>
-        <a onClick={() => navigate('/DaftarMentor')} className={`sidebar-link ${location.pathname === '/DaftarMentor' ? 'active' : ''}`}>
+        <a onClick={() => navigate('/mentor/profile/daftar-mentor')} className={`sidebar-link ${location.pathname === '/DaftarMentor' ? 'active' : ''}`}>
             <i class="las la-unlock"></i>
                 <span style={{fontSize:'16px'}}>Mendaftar Mentor</span>
         </a>
-        <a onClick={() => navigate('/ChangePassword')} className={`sidebar-link ${location.pathname === '/ChangePassword' ? 'active' : ''}`} >
+        <a onClick={() => navigate('/mentor/profile/change-password')} className={`sidebar-link ${location.pathname === '/ChangePassword' ? 'active' : ''}`} >
             <i class="las la-clipboard-list"></i>
                 <span style={{fontSize:'16px'}}>Ganti Kata Sandi</span>
         </a>

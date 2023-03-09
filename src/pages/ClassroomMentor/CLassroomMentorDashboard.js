@@ -1,14 +1,14 @@
 import React from "react";
 import "../../assets/css/dashboard-classroom.css";
 import "../../assets/css/style.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import CM_Card1 from "./CM_Card1";
-import CS_Sidebar3 from "./CS_Sidebar3";
+import { Link } from "react-router-dom";
+import CardJadwalClassroomMentor from "./CardJadwalClassroomMentor";
+import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
-const CM_Dashboard = () => {
+const ClassroomMentorDashboard = () => {
   return (
     <>
-      <CS_Sidebar3>
+      <SidebarClassroomMentor>
         <div className="container-fluid mb-5 mt-3">
           <div className="row">
             <div className="col-12 mb-3">
@@ -71,13 +71,13 @@ const CM_Dashboard = () => {
                   </Link>
                 </li>
               </ul>
-              <CM_Card1 />
+              <CardJadwalClassroomMentor />
             </div>
           </div>
         </div>
-      </CS_Sidebar3>
+      </SidebarClassroomMentor>
     </>
   );
 };
 
-export default CM_Dashboard;
+export default ClassroomMentorDashboard;

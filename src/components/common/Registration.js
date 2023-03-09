@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Container, Button, Alert } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 function Registration() {
   const navigate = useNavigate();
@@ -50,7 +51,16 @@ function Registration() {
 
       const registerResponse = registerRequest.data;
 
-      if (registerResponse.status) navigate("/login");
+      if(registerResponse.status) {
+        Swal.fire({
+          title: 'Sukses!',
+          text: 'Anda berhasil mendaftar',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          navigate('/login');
+        });
+      }
     } catch (err) {
       console.log(err);
       const response = err.response.data;
@@ -59,6 +69,14 @@ function Registration() {
         isError: true,
         message: response.message,
       });
+
+      Swal.fire({
+        title: 'Gagal!',
+        text: "Periksa Kembali Data Isian Anda",
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
+
     }
   };
 
