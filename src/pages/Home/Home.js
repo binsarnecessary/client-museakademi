@@ -1,11 +1,10 @@
 import React from 'react'
-import { Card, Container, } from 'react-bootstrap'
 import banner from '../../assets/image/illustration-banner.png';
 import service1 from '../../assets/image/service1.png';
 import service2 from '../../assets/image/service2.png';
 import service3 from '../../assets/image/service3.png';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
-
 
 import logolg from '../../assets/image/logo-large.png'
 import digistar from '../../assets/image/logo-digistar.png'
@@ -33,7 +32,6 @@ import { Live } from './live/Live';
 
 
 export const Home = () => {
-
     
     return (
 

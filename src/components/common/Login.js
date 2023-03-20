@@ -44,6 +44,7 @@ function Login({}) {
 
       if (loginResponse.status) {
         localStorage.setItem("token_key", loginResponse.data.token);
+        localStorage.setItem("role", loginResponse.data.role);
 
         dispatch(
           login({
@@ -59,6 +60,14 @@ function Login({}) {
         } else {
           navigate("/");
         }
+
+        Swal.fire({
+          title: "Success!",
+          text: "You have successfully logged in",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+
       }
     } catch (err) {
       console.log(err);
@@ -70,36 +79,36 @@ function Login({}) {
       });
 
       Swal.fire({
-        title: "Error!",
-        text: errorResponse.message,
+        title: "Gagal",
+        text: "Periksa Kembali Email dan Password Anda",
         icon: "error",
         confirmButtonText: "OK",
       });
     }
   };
 
-  const onLoginGoogleSuccess = async (credentialsResponse) => {
-    try {
-      const userToLoginPayload = {
-        google_credentials: credentialsResponse.credential,
-      };
+  // const onLoginGoogleSuccess = async (credentialsResponse) => {
+  //   try {
+  //     const userToLoginPayload = {
+  //       google_credentials: credentialsResponse.credential,
+  //     };
 
-      const loginGoogleRequest = await axios.post(
-        "http://localhost:7000/auth/login-google",
-        userToLoginPayload
-      );
+  //     const loginGoogleRequest = await axios.post(
+  //       "http://localhost:7000/auth/login-google",
+  //       userToLoginPayload
+  //     );
 
-      const loginGoogleResponse = loginGoogleRequest.data;
+  //     const loginGoogleResponse = loginGoogleRequest.data;
 
-      if (loginGoogleResponse.status) {
-        localStorage.setItem("token_key", loginGoogleResponse.data.token);
+  //     if (loginGoogleResponse.status) {
+  //       localStorage.setItem("token_key", loginGoogleResponse.data.token);
 
-        navigate("/");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //       navigate("/");
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   return (
     <>
       <Navbar />

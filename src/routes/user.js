@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 
 import { Home } from "../pages/Home/Home";
@@ -16,7 +16,7 @@ import ClassroomSiswaLive from "../pages/ClassroomSiswa/ClassroomSiswaLive";
 import ChangePasswordUser from "../pages/ProfileUser/ChangePasswordUser";
 import DaftarMentorUser from "../pages/ProfileUser/DaftarMentorUser";
 import DashboardUser from "../pages/ProfileUser/DashboardUser";
-import KursusUser from "../pages/ProfileUser/KursusUser";
+// import KursusUser from "../pages/ProfileUser/KursusUser";
 import ProfilePicUser from "../pages/ProfileUser/ProfilePicUser";
 import ProfileUser from "../pages/ProfileUser/ProfileUser";
 import ClassroomSiswaPengenalan from "../pages/ClassroomSiswa/ClassroomSiswaPengenalan";
@@ -54,7 +54,7 @@ const UserRoutes = [
   },
   {
     name: "Live Streaming",
-    path: "/live-streaming",
+    path: "/livestreaming",
     children: [
       {
         path: "",
@@ -135,8 +135,8 @@ const UserRoutes = [
   {
     name: "Profile Dashboard",
     path: "/user",
-    element: <DashboardUser />
-  }
+    element: <DashboardUser />,
+  },
 ];
 
 export default UserRoutes;

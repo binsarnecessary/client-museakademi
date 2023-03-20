@@ -12,7 +12,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import Header from "../../../components/admin/Header";
-import { useGetProductsQuery } from "../../../store/apis/admin";
+import { useGetAllUserQuery } from "../../../store/apis/admin";
 
 const Product = ({
   _id,
@@ -82,54 +82,54 @@ const Product = ({
 };
 
 const Products = () => {
-  const { data, isLoading } = useGetProductsQuery();
+  // const { data, isLoading } = useGetProductsQuery();
   const isNonMobile = useMediaQuery("(min-width: 1000px)");
 
-  return (
-    <Box m="1.5rem 2.5rem">
-      <Header title="PRODUCTS" subtitle="See your list of products." />
-      {data || !isLoading ? (
-        <Box
-          mt="20px"
-          display="grid"
-          gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-          justifyContent="space-between"
-          rowGap="20px"
-          columnGap="1.33%"
-          sx={{
-            "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-          }}
-        >
-          {data.map(
-            ({
-              _id,
-              name,
-              description,
-              price,
-              rating,
-              category,
-              supply,
-              stat,
-            }) => (
-              <Product
-                key={_id}
-                _id={_id}
-                name={name} 
-                description={description}
-                price={price}
-                rating={rating}
-                category={category}
-                supply={supply}
-                stat={stat}
-              />
-            )
-          )}
-        </Box>
-      ) : (
-        <>Loading...</>
-      )}
-    </Box>
-  );
+  // return (
+  //   <Box m="1.5rem 2.5rem">
+  //     <Header title="PRODUCTS" subtitle="See your list of products." />
+  //     {data || !isLoading ? (
+  //       <Box
+  //         mt="20px"
+  //         display="grid"
+  //         gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+  //         justifyContent="space-between"
+  //         rowGap="20px"
+  //         columnGap="1.33%"
+  //         sx={{
+  //           "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+  //         }}
+  //       >
+  //         {data.map(
+  //           ({
+  //             _id,
+  //             name,
+  //             description,
+  //             price,
+  //             rating,
+  //             category,
+  //             supply,
+  //             stat,
+  //           }) => (
+  //             <Product
+  //               key={_id}
+  //               _id={_id}
+  //               name={name} 
+  //               description={description}
+  //               price={price}
+  //               rating={rating}
+  //               category={category}
+  //               supply={supply}
+  //               stat={stat}
+  //             />
+  //           )
+  //         )}
+  //       </Box>
+  //     ) : (
+  //       <>Loading...</>
+  //     )}
+  //   </Box>
+  // );
 };
 
 export default Products;

@@ -34,25 +34,24 @@ import FlexBetween from "./FlexBetween";
 import profileImage from "../../assets/image/profile.jpeg";
 
 const navItems = [
-  
   {
     text: "Dashboard",
     icon: <HomeOutlined />,
   },
   {
-    text: "Users",
+    text: "Pengguna",
     icon: null,
   },
+  // {
+  //   text: "Siswa",
+  //   icon: <ShoppingCartOutlined />,
+  // },
   {
-    text: "Users",
-    icon: <ShoppingCartOutlined />,
-  },
-  {
-    text: "Mentor",
+    text: "Mentors",
     icon: <Groups2Outlined />,
   },
   {
-    text: "Transactions",
+    text: "Payments",
     icon: <ReceiptLongOutlined />,
   },
   {
@@ -60,11 +59,11 @@ const navItems = [
     icon: <PublicOutlined />,
   },
   {
-    text: "Course",
+    text: "Modul",
     icon: null,
   },
   {
-    text: "Course",
+    text: "kursus",
     icon: <PointOfSaleOutlined />,
   },
   {
@@ -110,7 +109,7 @@ const Sidebar = ({
   }, [pathname]);
 
   const handleNavigate = (path) => {
-    navigate(`/Admin/${path}`);
+    navigate(`/admin/${path}`);
   };
 
   return (
@@ -136,9 +135,11 @@ const Sidebar = ({
             <Box m="1.5rem 2rem 2rem 3rem">
               <FlexBetween color={theme.palette.secondary.main}>
                 <Box display="flex" alignItems="center" gap="0.5rem">
-                  <Typography variant="h4" fontWeight="bold">
-                    MUSEAKADEMI
-                  </Typography>
+                  <a href="/" style={{ textDecoration: 'none', color: '#000' }}>
+                    <Typography variant="h4" fontWeight="bold">
+                      MUSEAKADEMI
+                    </Typography>
+                  </a>
                 </Box>
                 {!isNonMobile && (
                   <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>

@@ -10,6 +10,8 @@ import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
 import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+import ProtectedRoutesAdmin from "./routes/ProtectedRoutesAdmin";
+import ProtectedRoutesMentor from "./routes/ProtectedRoutesMentor";
 
 function App() {
   const routesDefine = (element, path = "") => {
@@ -33,9 +35,14 @@ function App() {
         <CssBaseline />
         <Routes>
           {routesDefine(UserRoutes)}
-          {routesDefine(MentorRoutes)}
-          <Route element={<Layout />}>{routesDefine(AdminRoutes)}</Route>
-          <Route path="/*"element={<Error />} />
+          {/* {routesDefine(MentorRoutes)} */}
+          <Route path="/" element={<ProtectedRoutesMentor />}>
+            <Route>{routesDefine(MentorRoutes)}</Route>
+          </Route>
+          <Route path="/" element={<ProtectedRoutesAdmin />}>
+            <Route element={<Layout />}>{routesDefine(AdminRoutes)}</Route>
+          </Route>
+          <Route path="/*" element={<Error />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

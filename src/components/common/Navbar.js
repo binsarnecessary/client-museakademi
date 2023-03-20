@@ -2,20 +2,16 @@ import React, { useState, useEffect } from "react";
 import "../../assets/css/style.css";
 import "../../assets/css/bootstrap.css";
 import LogoNavbar from "../../assets/image/logo-navbar.png";
-import Registration from "./Registration";
-import Login from "./Login";
-import { Navigate } from "react-router-dom";
 import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
-import { logout } from "../../store/slices/authSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { NavDropdown } from "react-bootstrap";
-import axios from "axios";
 import { addUser } from "../../store/slices/authSlice";
-
+import axios from "axios";
 import { Course } from "../../pages/Kursus/Course";
 import { Home } from "../../pages/Home/Home";
 import { Error } from "./Error";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -76,10 +72,18 @@ function Navbar() {
   // };
   const handleLogout = () => {
     localStorage.removeItem("token_key");
+    localStorage.removeItem("role");
 
     setIsLoggedIn(false);
     setUser({});
     navigate("/login");
+
+    Swal.fire({
+      title: "Success!",
+      text: "You have successfully Log Out",
+      icon: "success",
+      confirmButtonText: "OK",
+    });
   };
 
   return (

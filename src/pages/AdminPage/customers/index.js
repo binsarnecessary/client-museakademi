@@ -1,18 +1,25 @@
-import React from "react";
-import { Box, useTheme } from "@mui/material";
-import { usegetUsers } from "../../../store/apis/admin";
+import React, { useState } from "react";
+import { Box, useTheme, Button } from "@mui/material";
+import { useGetAllUserQuery } from "../../../store/apis/admin";
 import Header from "../../../components/admin/Header";
 import { DataGrid } from "@mui/x-data-grid";
+import AddUserModal from "./AddUserModal";
 
 const Customers = () => {
   const theme = useTheme();
-  const { data, isLoading } = usegetUsers();
+  const { data, isLoading } = useGetAllUserQuery();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const columns = [
     {
-      field: "_id",
+      field: "id",
       headerName: "ID",
-      flex: 1,
+      flex: 0.3,
+    },
+    {
+      field: "role",
+      headerName: "Role",
+      flex: 0.5,
     },
     {
       field: "name",
@@ -22,32 +29,54 @@ const Customers = () => {
     {
       field: "email",
       headerName: "Email",
-      flex: 1,
+      flex: 0.7,
     },
     {
-      field: "phoneNumber",
+      field: "phone",
       headerName: "Phone Number",
       flex: 0.5,
-      renderCell: (params) => {
-        return params.value ? params.value.replace(/^(\d{3})(\d{3})(\d{4})/, "($1)$2-$3") : "";
-      },      
     },
     {
-      field: "country",
-      headerName: "Country",
+      field: "address",
+      headerName: "Address",
       flex: 0.5,
     },
     {
-      field: "occupation",
-      headerName: "Occupation",
-      flex: 1,
+      field: "#",
+      headerName: "#",
+      flex: 0.8,
+      renderCell: (params) => {
+        const handleEditClick = () => {
+          // Code to handle edit button click
+        };
+  
+        const handleDeleteClick = () => {
+          // Code to handle delete button click
+        };
+  
+        return (
+          <Box display="flex" alignItems="center">
+            <Button variant="contained" color="primary" onClick={handleEditClick}>
+              Edit
+            </Button>
+            <Box mx={1} />
+            <Button variant="contained" color="error" onClick={handleDeleteClick}>
+              Delete
+            </Button>
+          </Box>
+        );
+      },
     },
-    {
-      field: "role",
-      headerName: "Role",
-      flex: 1,
-    },
+
   ];
+
+  const handleAddUserClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <Box
@@ -81,11 +110,31 @@ const Customers = () => {
       <Box mt="40px" height="75vh">
         <DataGrid
           loading={isLoading || !data}
-          getRowId={(row) => row._id}
+          getRowId={(row) => row.id}
           rows={data || []}
           columns={columns}
+          components={{
+            Toolbar: () => (
+              <Box
+                display="flex"
+                alignItems="justify"
+                justifyContent="space-between"
+                width="100%"
+                className="mb-4"
+              >
+                <Button
+                  variant="contained"
+                  className="primary"
+                  onClick={handleAddUserClick}
+                >
+                  Add User
+                </Button>
+              </Box>
+            ),
+          }}
         />
       </Box>
+      <AddUserModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </Box>
   );
 };

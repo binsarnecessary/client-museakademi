@@ -23,15 +23,15 @@ const AdminRoutes = [
                 element: <Dashboard />,
             },
             {
-                path: "/users",
+                path: "/siswa",
                 element: <Products />,
             },
             {
-                path: "/mentor",
+                path: "/mentors",
                 element: <Customers />,
             },
             {
-                path: "/transactions",
+                path: "/payments",
                 element: <Transactions />,
             },
             {
@@ -39,7 +39,7 @@ const AdminRoutes = [
                 element: <Geography />,
             },
             {
-                path: "/course",
+                path: "/kursus",
                 element: <Overview />,
             },
             {
@@ -55,7 +55,7 @@ const AdminRoutes = [
                 element: <Breakdown />,
             },
             {
-                path: "/list-admin",
+                path: "/admin",
                 element: <Admin />,
             },
             {

@@ -4,11 +4,12 @@ import Navbar from "../../components/common/Navbar";
 import * as Icon from "react-bootstrap-icons";
 import { Form, InputGroup } from "react-bootstrap";
 import { Incoming } from "../Home/Incoming/Incoming";
-import productData from "./CardData";
+// import productData from "./CardData";
 import { Link } from "react-router-dom";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import "./Course.css";
+import axios from "axios";
 
 export const Course = () => {
   {
@@ -17,9 +18,37 @@ export const Course = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [course, setCourse] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(12);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Check Valid Token From API
+        const currentCourseRequest = await axios.get(
+          'http://localhost:7000/api/course'
+        );
+
+        const currentCourseResponse = currentCourseRequest.data;
+        // console.log("🚀 ~ file: HelloDetail.js:28 ~ fetchData ~ currentCourseResponse:", currentCourseResponse)
+
+        if (currentCourseResponse.status) {
+          // console.log("🚀 ~ file: HelloDetail.js:31 ~ fetchData ~ currentCourseResponse.status:", currentCourseResponse.status)
+          // set to redux
+          // console.log(currentCourseResponse.data.course)
+
+          setCourse(currentCourseResponse.data.course);
+        }
+      } catch (err) {
+        setCourse(false);
+      }
+    };
+
+    fetchData();
+  }, []); 
+
+  // console.log(course[0]);
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
@@ -37,36 +66,38 @@ export const Course = () => {
     setCurrentPage(selected);
   };
 
-  const filteredProducts = useMemo(() => {
-    let filteredProducts = productData;
+  const currentProducts = course;
 
-    if (selectedCategory) {
-      filteredProducts = filteredProducts.filter(
-        (product) => product.category === selectedCategory
-      );
-    }
+  // const filteredProducts = useMemo(() => {
+  //   let filteredProducts = Object.values(course);
 
-    if (minPrice) {
-      filteredProducts = filteredProducts.filter(
-        (product) => product.price >= Number(minPrice)
-      );
-    }
+  //   if (selectedCategory) {
+  //     filteredProducts = filteredProducts.filter(
+  //       (course) => course.courseCategory === selectedCategory
+  //     );
+  //   }
 
-    if (maxPrice) {
-      filteredProducts = filteredProducts.filter(
-        (product) => product.price <= Number(maxPrice)
-      );
-    }
+  //   if (minPrice) {
+  //     filteredProducts = filteredProducts.filter(
+  //       (course) => course.coursePrice >= Number(minPrice)
+  //     );
+  //   }
 
-    return filteredProducts;
-  }, [selectedCategory, minPrice, maxPrice]);
+  //   if (maxPrice) {
+  //     filteredProducts = filteredProducts.filter(
+  //       (course) => course.coursePrice <= Number(maxPrice)
+  //     );
+  //   }
 
-  const indexOfLastProduct = (currentPage + 1) * itemsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = filteredProducts.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  );
+  //   return filteredProducts;
+  // }, [selectedCategory, minPrice, maxPrice]);
+
+  // const indexOfLastProduct = (currentPage + 1) * itemsPerPage;
+  // const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+  // const currentProducts = filteredProducts.slice(
+  //   indexOfFirstProduct,
+  //   indexOfLastProduct
+  // );
 
   return (
     <>
@@ -169,53 +200,57 @@ export const Course = () => {
             </div>
           </div>
           <div className="col">
-            <section className="row">
-              {currentProducts.map((productData) => (
-                <div
-                  key={productData.id}
-                  class="col-6 col-lg-4 mb-3 grid-template-columns-repeat"
-                >
-                  <div
-                    class="card h-100 position-relative"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                  >
-                    <img class="card-img-top " src={productData.image}></img>
-                    <div class="card-body p-3 d-flex flex-column justify-content-between">
-                      <h6 class="d-flex align-items-center">
-                        <span class="badge badge-pill badge-primary p-1 mr-2"></span>
-                        <span>{productData.name}</span>
-                      </h6>
-                      <div class="text-muted small ">{productData.mentor}</div>
-                      <h6>
-                        {productData.ispaid ? (
-                          <span class="text-truncate">
-                            {" "}
-                            Rp. {productData.price.toLocaleString("id-ID")}
-                          </span>
-                        ) : (
-                          <span class="badge badge-success"> Gratis</span>
-                        )}
-                      </h6>
-                      <h6>
-                        <Link
-                          to={"/course/" + productData.id}
-                          target="_top"
-                          class="btn btn-danger btn-sm btn-block text-center"
-                        >
-                          Ikuti Kursus
-                        </Link>
-                      </h6>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </section>
+          <section className="row">
+  {currentProducts.map((course, index) => (
+    <div
+      key={course.id}
+      className="col-6 col-lg-4 mb-3 grid-template-columns-repeat"
+    >
+      <div
+        className="card h-100 position-relative"
+        data-toggle="tooltip"
+        data-placement="top"
+      >
+        <img className="card-img-top " src={course.coursePhoto}></img>
+        <div
+          key={index}
+          className="card-body p-3 d-flex flex-column justify-content-between"
+        >
+          <h6 className="d-flex align-items-center">
+            <span className="badge badge-pill badge-primary p-1 mr-2"></span>
+            <span>{course.courseTitle}</span>
+          </h6>
+          <div className="text-muted small ">{course.namaMentor}</div>
+          <h6>
+            {course.isCoursePaid ? (
+              <span className="text-truncate">
+                {" "}
+                Rp. {course.coursePrice.toLocaleString("id-ID")}
+              </span>
+            ) : (
+              <span className="badge badge-success"> Gratis</span>
+            )}
+          </h6>
+          <h6>
+            <Link
+              to={"/course/" + course.id}
+              target="_top"
+              className="btn btn-danger btn-sm btn-block text-center"
+            >
+              Ikuti Kursus
+            </Link>
+          </h6>
+        </div>
+      </div>
+    </div>
+  ))}
+</section>
+
             <ReactPaginate
               previousLabel={"<"}
               nextLabel={">"}
               breakLabel={"..."}
-              pageCount={Math.ceil(filteredProducts.length / itemsPerPage)}
+              // pageCount={Math.ceil(filteredProducts.length / itemsPerPage)}
               onPageChange={handlePageClick}
               containerClassName={"pagination"}
               activeClassName={"active"}
