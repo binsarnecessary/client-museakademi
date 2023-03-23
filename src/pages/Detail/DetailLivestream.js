@@ -4,14 +4,15 @@ import Navbar from "../../components/common/Navbar";
 import { Card } from "react-bootstrap";
 import LiveData from "../Home/live/LiveData";
 import { useParams } from "react-router-dom";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
 export const DetailLivestream = () => {
   const [isButtonActive, setIsButtonActive] = useState(false);
 
   const { itemId } = useParams();
-  const detailProduct = LiveData.find(item => item.id === parseInt(itemId));
-  const { id,name,chanel,image,eventStart,eventEnd,deskripsi,url} = detailProduct;
+  const detailProduct = LiveData.find((item) => item.id === parseInt(itemId));
+  const { id, name, chanel, image, eventStart, eventEnd, deskripsi, url } =
+    detailProduct;
 
   useEffect(() => {
     const now = new Date();
@@ -19,42 +20,42 @@ export const DetailLivestream = () => {
     const eventSelesai = new Date(eventEnd);
 
     if (now > eventMulai && now < eventSelesai) {
-        setIsButtonActive(true);
+      setIsButtonActive(true);
     } else {
-        setIsButtonActive(false);
+      setIsButtonActive(false);
     }
-}, [LiveData]);
+  }, [LiveData]);
 
-const handleClick = () => {
-  // Handler untuk event onClick pada button produk
-  if (isButtonActive) {
+  const handleClick = () => {
+    // Handler untuk event onClick pada button produk
+    if (isButtonActive) {
       // Aksi ketika button aktif di-klik
-      window.open(url, '_blank');
-  }
-};
+      window.open(url, "_blank");
+    }
+  };
 
-  const eventDate = new Date (eventStart);
+  const eventDate = new Date(eventStart);
   const date = eventDate.getDate();
-  const month = new Intl.DateTimeFormat('id', { month: 'long' }).format(eventDate);
+  const month = new Intl.DateTimeFormat("id", { month: "long" }).format(
+    eventDate
+  );
   const year = eventDate.getFullYear();
   const formattedDate = `${date} ${month} ${year}`;
 
-
-      //membuat time start
-      const eventTime = (eventStart);
-      const timePart = eventTime.split('T') [1];
-      const hours = timePart.split (':') [0];
-      const minutes = timePart.split(':')[1];
-      //membuat time end
-      const endEventTime = (eventEnd);
-      const endTime = endEventTime.split('T') [1];
-      const endHours = endTime.split(':') [0];
-      const endMinutes = endTime.split (':') [1];
-
+  //membuat time start
+  const eventTime = eventStart;
+  const timePart = eventTime.split("T")[1];
+  const hours = timePart.split(":")[0];
+  const minutes = timePart.split(":")[1];
+  //membuat time end
+  const endEventTime = eventEnd;
+  const endTime = endEventTime.split("T")[1];
+  const endHours = endTime.split(":")[0];
+  const endMinutes = endTime.split(":")[1];
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <section id="detailcourse">
         <div key={id} className="container mt-5 mb-5">
           <h4>Live Streaming</h4>
@@ -75,13 +76,23 @@ const handleClick = () => {
                   <h4>{name}</h4>
                   <Card className="mb-4">
                     <Card.Body>
-                      <Card.Title className="text-muted">
-                        {chanel}
-                      </Card.Title>
+                      <Card.Title className="text-muted">{chanel}</Card.Title>
                       <Card.Text className="">{formattedDate}</Card.Text>
-                      <Card.Text>{hours}.{minutes}-{endHours}.{endMinutes} WIB</Card.Text>
+                      <Card.Text>
+                        {hours}.{minutes}-{endHours}.{endMinutes} WIB
+                      </Card.Text>
                       <div className="row">
-                      <button onClick={handleClick} disabled={!isButtonActive} className={isButtonActive ? 'buy-button active' : 'buy-button disabled'}>{isButtonActive ? 'Join Live' : 'Live Tidak Tersedia'}</button>
+                        <button
+                          onClick={handleClick}
+                          disabled={!isButtonActive}
+                          className={
+                            isButtonActive
+                              ? "buy-button active"
+                              : "buy-button disabled"
+                          }
+                        >
+                          {isButtonActive ? "Join Live" : "Live Tidak Tersedia"}
+                        </button>
                       </div>
                     </Card.Body>
                   </Card>
@@ -90,9 +101,7 @@ const handleClick = () => {
                     Deskripsi
                   </Card.Subtitle>
                   <Card.Text>
-                    <p>
-                      {deskripsi}
-                    </p>
+                    <p>{deskripsi}</p>
                   </Card.Text>
                 </Card.Body>
               </Card>
