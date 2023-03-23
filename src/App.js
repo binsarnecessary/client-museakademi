@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import UserRoutes from "./routes/user";
 import MentorRoutes from "./routes/mentor";
 import AdminRoutes from "./routes/admin";
+import LabelRoutes from "./routes/whiteLabel"
 import Layout from "./pages/AdminPage/layout";
 import { Error } from "./components/common/Error";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -35,13 +36,13 @@ function App() {
         <CssBaseline />
         <Routes>
           {routesDefine(UserRoutes)}
-          {/* {routesDefine(MentorRoutes)} */}
           <Route path="/" element={<ProtectedRoutesMentor />}>
             <Route>{routesDefine(MentorRoutes)}</Route>
           </Route>
           <Route path="/" element={<ProtectedRoutesAdmin />}>
             <Route element={<Layout />}>{routesDefine(AdminRoutes)}</Route>
           </Route>
+          {routesDefine(LabelRoutes)}
           <Route path="/*" element={<Error />} />
         </Routes>
       </ThemeProvider>

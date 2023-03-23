@@ -25,7 +25,7 @@ export function useAuth() {
 
         //Check Valid Token From API
         const currentUserRequest = await axios.get(
-          "http://localhost:7000/auth/me",
+          "https://server-museakademi-production.up.railway.app/auth/me",
           {
             headers: {
               Authorization: `Bearer ${token}`,

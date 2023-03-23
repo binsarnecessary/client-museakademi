@@ -1,20 +1,23 @@
 
 .container-sidebar{
     display: flex;
+    position: relative;
+    margin-left: 12%;
+    margin-top: 65px;
 
 }
 
 main{
     width: 100%;
     padding: 0;
-    margin: 5px;
+    margin-top: 65px;
 }
 
 .sidebar{
     background: #3ABCD8;
     color: #fff;
     min-height: 200vh;
-    width: 300px;
+    width: 70px;
 }
 
 .top_section{

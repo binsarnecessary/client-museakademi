@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import SidebarClassroomMentor from "./SidebarClassroomMentor";
+import { DataTugas } from "../ClassroomSiswa/Data/DataTugas";
 
 const ClassroomMentorTugas = () => {
   return (
@@ -58,10 +59,11 @@ const ClassroomMentorTugas = () => {
                       </tr>
                     </thead>
                     <tbody height="150px">
+                      {DataTugas.map((item) => (
                       <tr>
-                        <td>Pendahuluan Teknik UI/UX</td>
-                        <td>29 Desember 2022</td>
-                        <td>29 Desember 2022</td>
+                        <td>{item.judul}</td>
+                        <td>{item.mulai} {item.waktuMulai}</td>
+                        <td>{item.selesai} {item.waktuSelesai} </td>
                         <td>
                           <Link
                             to="/mentor/classroom/tugas-mentor/mentor-edit-tugas"
@@ -76,36 +78,8 @@ const ClassroomMentorTugas = () => {
                           </a>
                         </td>
                       </tr>
-                      <tr>
-                        <td>Pengembangan Teknik UI/UX</td>
-                        <td>29 Desember 2022</td>
-                        <td>29 Desember 2022</td>
-                        <td>
-                          <a className="btn btn-success">
-                            <FaEdit />
-                          </a>
-                        </td>
-                        <td>
-                          <a className="btn btn-danger">
-                            <FaTrashAlt />
-                          </a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Praktek Teknik UI/UX</td>
-                        <td>29 Desember 2022</td>
-                        <td>29 Desember 2022</td>
-                        <td>
-                          <a className="btn btn-success">
-                            <FaEdit />
-                          </a>
-                        </td>
-                        <td>
-                          <a className="btn btn-danger">
-                            <FaTrashAlt />
-                          </a>
-                        </td>
-                      </tr>
+                      ))}
+                      
                     </tbody>
                   </div>
                 </div>

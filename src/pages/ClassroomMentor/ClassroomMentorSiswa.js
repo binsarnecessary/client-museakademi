@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import DataSiswa from "../ClassroomSiswa/Data/DataSiswa";
 import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
 const ClassroomMentorSiswa = () => {
@@ -63,12 +64,13 @@ const ClassroomMentorSiswa = () => {
                             </tr>
                           </thead>
                           <tbody height="200px">
-                            <tr className="small">
-                              <td>1</td>
-                              <td>Eris Dwi Septiawan Rizal</td>
-                              <td>0851-2345-3455</td>
-                              <td>Senin, 03 Januari 2023</td>
-                              <td>96</td>
+                            {DataSiswa.map((item) => (
+                            <tr className="">
+                              <td>{item.id}</td>
+                              <td>{item.name}</td>
+                              <td>{item.phone}</td>
+                              <td>{item.joinStart}</td>
+                              <td>{item.grade}</td>
                               <td>
                                 <Link
                                   to="/mentor/classroom/siswa-mentor/penilaian"
@@ -78,54 +80,7 @@ const ClassroomMentorSiswa = () => {
                                 </Link>
                               </td>
                             </tr>
-                            <tr className="small">
-                              <td>2</td>
-                              <td>Eris Dwi Septiawan Rizal</td>
-                              <td>0851-2345-3455</td>
-                              <td>Senin, 03 Januari 2023</td>
-                              <td>96</td>
-                              <td>
-                                <Link class="small badge badge-pill badge-primary">
-                                  Nilai
-                                </Link>
-                              </td>
-                            </tr>
-                            <tr className="small">
-                              <td>3</td>
-                              <td>Eris Dwi Septiawan Rizal</td>
-                              <td>0851-2345-3455</td>
-                              <td>Senin, 03 Januari 2023</td>
-                              <td>96</td>
-                              <td>
-                                <Link class="small badge badge-pill badge-primary">
-                                  Nilai
-                                </Link>
-                              </td>
-                            </tr>
-                            <tr className="small">
-                              <td>4</td>
-                              <td>Eris Dwi Septiawan Rizal</td>
-                              <td>0851-2345-3455</td>
-                              <td>Senin, 03 Januari 2023</td>
-                              <td>96</td>
-                              <td>
-                                <Link class="small badge badge-pill badge-primary">
-                                  Nilai
-                                </Link>
-                              </td>
-                            </tr>
-                            <tr className="small">
-                              <td>5</td>
-                              <td>Eris Dwi Septiawan Rizal</td>
-                              <td>0851-2345-3455</td>
-                              <td>Senin, 03 Januari 2023</td>
-                              <td>96</td>
-                              <td>
-                                <Link class="small badge badge-pill badge-primary">
-                                  Nilai
-                                </Link>
-                              </td>
-                            </tr>
+                            ))}
                           </tbody>
                         </div>
                       </div>

@@ -1,0 +1,31 @@
+export const DataHasilTugasEvaluasi = [{
+    id : "1",
+    mentor : "Eris Dwi Septiawan",
+    manajemen : "-",
+    kreativitas : "-",
+    analisa : "-",
+    komunikasi : "-",
+    desain : "-",
+    logika : "-",
+ },
+ {
+    id : "2",
+    mentor : "Rizal Ivan Reynaldi Putra",
+    manajemen : "-",
+    kreativitas : "-",
+    analisa : "-",
+    komunikasi : "-",
+    desain : "-",
+    logika : "-",
+ },
+ {
+    id : "3",
+    mentor : "M. Fandi Arfabuma",
+    manajemen : "95",
+    kreativitas : "95",
+    analisa : "95",
+    komunikasi : "90",
+    desain : "90",
+    logika : "90",
+ }
+ ]

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const adminApi = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:7000/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://server-museakademi-production.up.railway.app/api' }),
   reducerPath: "adminApi",
   tagTypes: [
     "User",
@@ -16,7 +16,7 @@ export const adminApi = createApi({
   ],
   endpoints: (build) => ({
     getUser: build.query({
-      query: (id) => `general/user/${id}`,
+      query: (id) => `/users`,
       providesTags: ["User"],
     }),
 

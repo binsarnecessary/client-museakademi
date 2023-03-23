@@ -1,14 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, useTheme, Button } from "@mui/material";
 import { useGetAllUserQuery } from "../../../store/apis/admin";
 import Header from "../../../components/admin/Header";
 import { DataGrid } from "@mui/x-data-grid";
 import AddUserModal from "./AddUserModal";
+import axios from "axios";
 
 const Customers = () => {
   const theme = useTheme();
-  const { data, isLoading } = useGetAllUserQuery();
+  // const { data, isLoading } = useGetAllUserQuery([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Check Valid Token From API
+        const dataReq = await axios.get(
+          "https://server-museakademi-production.up.railway.app/api/users"
+        );
+
+        const dataResp = dataReq.data;
+
+        if (dataResp.status) {
+          setData(dataResp.data.user);
+        }
+      } catch (err) {
+        setData(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const columns = [
     {
@@ -17,13 +41,13 @@ const Customers = () => {
       flex: 0.3,
     },
     {
-      field: "role",
-      headerName: "Role",
+      field: "name",
+      headerName: "Name",
       flex: 0.5,
     },
     {
-      field: "name",
-      headerName: "Name",
+      field: "role",
+      headerName: "Role",
       flex: 0.5,
     },
     {
@@ -49,25 +73,32 @@ const Customers = () => {
         const handleEditClick = () => {
           // Code to handle edit button click
         };
-  
+
         const handleDeleteClick = () => {
           // Code to handle delete button click
         };
-  
+
         return (
           <Box display="flex" alignItems="center">
-            <Button variant="contained" color="primary" onClick={handleEditClick}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleEditClick}
+            >
               Edit
             </Button>
             <Box mx={1} />
-            <Button variant="contained" color="error" onClick={handleDeleteClick}>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={handleDeleteClick}
+            >
               Delete
             </Button>
           </Box>
         );
       },
     },
-
   ];
 
   const handleAddUserClick = () => {
@@ -106,12 +137,12 @@ const Customers = () => {
         },
       }}
     >
-      <Header title="CUSTUMERS" subtitle="Here List Of Customers" />
+      <Header title="USERS" subtitle="Here List Of Users Museakademi" />
       <Box mt="40px" height="75vh">
         <DataGrid
-          loading={isLoading || !data}
+          loading="Loading ..."
           getRowId={(row) => row.id}
-          rows={data || []}
+          rows={data || []} // use empty array as a fallback
           columns={columns}
           components={{
             Toolbar: () => (

@@ -1,8 +1,10 @@
 import React from "react";
 import "../../assets/css/bootstrap.css";
 import "../../assets/css/style.css";
+import { DataJadwalSesi } from "./Data/DataJadwalSesi"; 
 
 const CardSiswaJadwalSesi = () => {
+  console.log(DataJadwalSesi)
   return (
     <div className="card mt-3">
       <div className="card-body">
@@ -16,37 +18,23 @@ const CardSiswaJadwalSesi = () => {
             </tr>
           </thead>
           <tbody height="100px">
+            {DataJadwalSesi.map((item) => (
             <tr className="">
               <td>
-                Pengenalan UI/UX Design Aplication <br></br>
+                {item.sesi} <br></br>
                 <p className="small">
-                  Lorem ipsum dolor sit amet. Sit eligendi veritatis{" "}
+                  {item.deskripsi}
                 </p>
               </td>
-              <td>Jumat, 24 Juli 2020</td>
-              <td>14.00-16.00 WIB</td>
+              <td>{item.tanggal}</td>
+              <td>{item.timeStart} - {item.timeEnd}</td>
               <td>
-                <span class="badge badge-pill badge-success">
-                  <small>Selesai</small>
+                <span class={item.status ? "badge badge-pill badge-success" : "badge badge-pill badge-warning"}>
+                  {item.status ? "Selesai" : "Akan datang"}
                 </span>
               </td>
             </tr>
-
-            <tr className="">
-              <td>
-                Pengenalan UI/UX Design Aplication <br></br>
-                <p className="small">
-                  Lorem ipsum dolor sit amet. Sit eligendi veritatis{" "}
-                </p>
-              </td>
-              <td>Jumat, 24 Juli 2020</td>
-              <td>14.00-16.00 WIB</td>
-              <td>
-                <span class="badge badge-pill badge-warning">
-                  <small>Tidak hadir</small>
-                </span>
-              </td>
-            </tr>
+            ))}
           </tbody>
         </div>
         <div className="row justify-content-center">

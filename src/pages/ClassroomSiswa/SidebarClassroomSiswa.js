@@ -10,6 +10,7 @@ import { NavLink } from "react-router-dom";
 import LogoNavbar from "../../assets/image/logo-navbar.png";
 import NavbarClassroomSiswa from "./NavbarClassroomSiswa";
 
+
 const SidebarClassroomSiswa = ({ children }) => {
   const menuItem = [
     {
@@ -35,10 +36,10 @@ const SidebarClassroomSiswa = ({ children }) => {
   ];
   return (
     <>
-      <NavbarClassroomSiswa />
+      <NavbarClassroomSiswa/>
       <div className="container">
         <div className="container-sidebar">
-          <div className="sidebar">
+          <div className="sidebar fixed-top">
             <div className="sidebar-header">
               <a href="/" class="d-none d-lg-block">
                 <img
@@ -62,7 +63,7 @@ const SidebarClassroomSiswa = ({ children }) => {
               </NavLink>
             ))}
           </div>
-          <main>{children}</main>
+          <div className="main">{children}</div>
         </div>
       </div>
     </>

@@ -1,24 +1,33 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { DataVideoPembelajaran } from "./Data/DataVideoPembelajaran";
 
 const CardSiswaPengenalan = () => {
+  console.log(DataVideoPembelajaran)
   return (
+    <>
+    <div>
+    {DataVideoPembelajaran.map((item) => (
     <div class="card mt-4">
       <div class="card-header d-flex align-items-center justify-content-between">
-        <span>Video Pembelajaran 1</span>
+        <span>{item.judul}</span>
       </div>
       <div class="card-body">
         <div class="row">
           <div class="col-12 col-lg-10">
-            <card class="">https://www.youtube.com/watch?v=R1GEe0TEe_k</card>
+            <card class="">{item.link}</card>
           </div>
           <div class="col-12 col-lg-2 d-none d-sm-block">
-            <a class="btn btn-primary btn-sm float-left text-color-primary">
+            <Link class="btn btn-primary btn-sm float-left text-color-primary">
               Open
-            </a>
+            </Link>
           </div>
         </div>
       </div>
     </div>
+    ))}
+    </div>
+    </>
   );
 };
 

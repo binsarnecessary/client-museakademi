@@ -1,40 +1,34 @@
 import React from "react";
 import SidebarClassroomSiswa from "./SidebarClassroomSiswa";
 import CardSiswaPengenalan from "./CardSiswaPengenalan";
+import { DataJadwalSesi } from "./Data/DataJadwalSesi";
 
 const ClassroomSiswaPengenalan = () => {
+  console.log(DataJadwalSesi)
   return (
-    <>
+    
       <SidebarClassroomSiswa>
         <div class="container-fluid mb-5 mt-3">
-          <div class="row">
+        {DataJadwalSesi.map((item) => (
+          <div key={item.id} class="row">
             <div class="col-12 mb-3">
-              <h3>Sesi 1: Pengenlan UI/UX</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum
-              </p>
+            
+              <h3>{item.sesi}</h3>
+              <p>{item.deskripsi}</p>
               <i className="las la-calendar text-muted"></i>
-              <span className="small text-muted ml-2">
-                Jumat, 24 Januari 2023
-              </span>
-
+              <span className="small text-muted ml-2">{item.tanggal}</span>
               <i className="las la-clock text-muted ml-5"></i>
-              <span className="small text-muted ml-2">14.00 - 16.00</span>
+              <span className="small text-muted ml-2">{item.timeStart} - {item.timeEnd}</span>
+              
             </div>
             <div class="col-12 mb-5">
               <CardSiswaPengenalan />
-              <CardSiswaPengenalan />
-            </div>
+            </div>  
           </div>
+          ))}
         </div>
       </SidebarClassroomSiswa>
-    </>
+   
   );
 };
 

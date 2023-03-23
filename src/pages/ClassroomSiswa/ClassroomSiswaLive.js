@@ -1,8 +1,7 @@
-import React from "react";
-import Pik1 from "../../assets/image/Pikt1.jpg";
-import Pik2 from "../../assets/image/Pikt2.jpg";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import SidebarClassroomSiswa from "./SidebarClassroomSiswa";
+import  DataLiveSiswa  from "./Data/DataLiveSiswa";
 
 const ClassroomSiswaLive = () => {
   return (
@@ -46,104 +45,34 @@ const ClassroomSiswaLive = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                      {DataLiveSiswa.map((item) => (
+                        <tr key={item.id}>
                           <td>
                             <img
-                              src={Pik1}
+                              src={item.image}
                               class="card-img mb-3 mt-3 px-3"
                               alt="cover"
                             ></img>
                           </td>
-                          <td>New Learning Page</td>
-                          <td>09 - 00</td>
-                          <td>11 - 30</td>
-                          <td>15 Desember 2022</td>
+                          <td>{item.tema}</td>
+                          <td>{item.timeStart}</td>
+                          <td>{item.timeEnd}</td>
+                          <td>{item.eventStart}</td>
                           <td>
                             <span class="small badge badge-pill badge-success">
-                              Selesai
+                              {item.status}
                             </span>
                           </td>
                           <td>
                             <Link
-                              to="/classroom/user/live-streaming-siswa/live-streaming-id"
+                              to={`/classroom/user/live-streaming-siswa/live-streaming-id/${item.id}`}
                               class="btn btn-primary d-flex align-items-center justify-content-center p-1 form-control"
                             >
                               <i class="las la-angle-right" title="Detail"></i>
                             </Link>
                           </td>
                         </tr>
-
-                        <tr>
-                          <td>
-                            <img
-                              src={Pik2}
-                              class="card-img mb-3 mt-3 px-3"
-                              alt="cover"
-                            ></img>
-                          </td>
-                          <td>E-Learning Class </td>
-                          <td>09 - 00</td>
-                          <td>11 - 30</td>
-                          <td>15 Desember 2022</td>
-                          <td>
-                            <span class="small badge badge-pill badge-warning">
-                              Akan datang
-                            </span>
-                          </td>
-                          <td>
-                            <a class="btn btn-primary d-flex align-items-center justify-content-center p-1">
-                              <i class="las la-angle-right" title="Detail"></i>
-                            </a>
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <img
-                              src={Pik1}
-                              class="card-img mb-3 mt-3 px-3"
-                              alt="cover"
-                            ></img>
-                          </td>
-                          <td>New Learning Page</td>
-                          <td>09 - 00</td>
-                          <td>11 - 30</td>
-                          <td>15 Desember 2022</td>
-                          <td>
-                            <span class="small badge badge-pill badge-success">
-                              Selesai
-                            </span>
-                          </td>
-                          <td>
-                            <a class="btn btn-primary d-flex align-items-center justify-content-center p-1">
-                              <i class="las la-angle-right" title="Detail"></i>
-                            </a>
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <td>
-                            <img
-                              src={Pik2}
-                              class="card-img mb-3 mt-3 px-3"
-                              alt="cover"
-                            ></img>
-                          </td>
-                          <td>E-Learning Class</td>
-                          <td>09 - 00</td>
-                          <td>11 - 30</td>
-                          <td>15 Desember 2022</td>
-                          <td>
-                            <span class="small badge badge-pill badge-warning">
-                              Akan datang
-                            </span>
-                          </td>
-                          <td>
-                            <a class="btn btn-primary d-flex align-items-center justify-content-center p-1">
-                              <i class="las la-angle-right" title="Detail"></i>
-                            </a>
-                          </td>
-                        </tr>
+                        ))}
                       </tbody>
                     </div>
                   </div>

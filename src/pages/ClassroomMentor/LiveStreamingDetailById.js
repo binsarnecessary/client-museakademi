@@ -1,23 +1,27 @@
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 import profil from "../../assets/image/Profil.png";
 import Image from "react-bootstrap/Image";
 import zoom from "../../assets/image/zoom.png";
 import SidebarClassroomMentor from "./SidebarClassroomMentor";
+import items from "../ClassroomSiswa/Data/DataLiveSiswa";
 
 const LiveStreamingDetailById = () => {
+  const { id } = useParams();
+  const item = items.find(p => p.id === +id);
   return (
     <>
       <SidebarClassroomMentor>
         <div className="container-fluid  mt-3">
           <h3>Live Classes</h3>
-          <h5>New In Class Programming</h5>
+          <h5>{item.tema}</h5>
           <Image
-            src={profil}
+            src={item.imageMentor}
             className="rounded-circle"
             height="50"
             alt="Avatar"
           ></Image>
-          <span className="ml-3">Dhani Prasetyo Raharjo</span>
+          <span className="ml-3">{item.nameMentor}</span>
           <div className="container-fluid col-3 mt-3">
             <Image src={zoom}></Image>
             <div

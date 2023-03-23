@@ -23,7 +23,7 @@ const AdminRoutes = [
                 element: <Dashboard />,
             },
             {
-                path: "/siswa",
+                path: "/course",
                 element: <Products />,
             },
             {

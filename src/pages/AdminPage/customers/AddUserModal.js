@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
 import {
   Box,
   Button,
@@ -13,12 +15,16 @@ import {
   MenuItem,
 } from "@mui/material";
 
+
 const AddUserModal = ({ isOpen, onClose }) => {
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [role, setRole] = useState("user");
+  const [profilePicture, setProfilePicture] = useState(null);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -26,6 +32,10 @@ const AddUserModal = ({ isOpen, onClose }) => {
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
   };
 
   const handlePhoneChange = (event) => {
@@ -40,9 +50,35 @@ const AddUserModal = ({ isOpen, onClose }) => {
     setRole(event.target.value);
   };
 
+  const handleProfilePictureChange = (event) => {
+    setProfilePicture(event.target.files[0]);
+  };
+
   const handleAddUser = () => {
-    // Code to add user to database
-    onClose();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("phone", phone);
+    formData.append("address", address);
+    formData.append("role", role);
+    formData.append("profile_picture", profilePicture);
+
+    axios
+      .post("https://server-museakademi-production.up.railway.app/auth/register", formData)
+      .then((response) => {
+        Swal.fire({
+          title: 'Sukses!',
+          text: 'Berhasil Menambahkan User',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        })
+        onClose();
+        window.location.reload()
+      })
+      .catch((error) => {
+        console.log("Error adding user:", error);
+      });
   };
 
   return (
@@ -70,9 +106,18 @@ const AddUserModal = ({ isOpen, onClose }) => {
         />
         <TextField
           margin="dense"
+          id="password"
+          label="Password"
+          type="password"
+          fullWidth
+          value={password}
+          onChange={handlePasswordChange}
+        />
+        <TextField
+          margin="dense"
           id="phone"
           label="Phone Number"
-          type="tel"
+          type="number"
           fullWidth
           value={phone}
           onChange={handlePhoneChange}
@@ -99,10 +144,26 @@ const AddUserModal = ({ isOpen, onClose }) => {
             <MenuItem value="admin">Admin</MenuItem>
           </Select>
         </FormControl>
+        <Box margin="dense">
+          <InputLabel htmlFor="profile-picture-input">
+            Profile Picture
+          </InputLabel>
+          <input
+            accept="image/*"
+            id="profile-picture-input"
+            multiple
+            type="file"
+            onChange={handleProfilePictureChange}
+          />
+        </Box>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="secondary">Cancel</Button>
-        <Button onClick={handleAddUser} color="secondary">Add</Button>
+        <Button onClick={onClose} color="secondary">
+          Cancel
+        </Button>
+        <Button onClick={handleAddUser} color="secondary">
+          Add
+        </Button>
       </DialogActions>
     </Dialog>
   );

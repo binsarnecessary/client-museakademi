@@ -1,8 +1,10 @@
 import React from "react";
+import { DataTugas } from "./Data/DataTugas";
 
 const CardSiswaTugas = () => {
   return (
     <div className="row">
+      {DataTugas.map((item) => (
       <div className="col-12 mb-5">
         <div className="card">
           <div className="card-header d-flex align-items-center justify-content-between">
@@ -14,18 +16,18 @@ const CardSiswaTugas = () => {
                 <div className="table-responsive mb-3">
                   <thead>
                     <tr className="small text-muted">
-                      <td width="50%">Judul</td>
-                      <td width="20%">Mulai</td>
-                      <td width="20%">Selesai</td>
+                      <td width="60%">Judul</td>
+                      <td width="25%">Mulai</td>
+                      <td width="25%">Selesai</td>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
                       <td>
-                        <b>Pengembangan Teknik UI/UX</b>
+                        <b>{item.judul}</b>
                       </td>
-                      <td>29 Desember 2022</td>
-                      <td>29 Desember 2022</td>
+                      <td>{item.mulai}<p>{item.waktuMulai}</p></td>
+                      <td>{item.selesai}<p>{item.waktuMulai}</p></td>
                     </tr>
                   </tbody>
                 </div>
@@ -50,6 +52,7 @@ const CardSiswaTugas = () => {
           </div>
         </div>
       </div>
+      ))}
     </div>
   );
 };

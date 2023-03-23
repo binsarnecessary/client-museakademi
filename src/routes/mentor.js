@@ -7,8 +7,8 @@ import DaftarMentor from "../pages/ProfileMentor/DaftarMentor";
 import ProfilePic from "../pages/ProfileMentor/ProfilePic";
 import DashboardMentor from "../pages/ProfileMentor/DashboardMentor";
 import KursusMentor from "../pages/ProfileMentor/KursusMentor";
-// import BukaJadwal from '../pages/Livestreaming/BukaJadwal';
-// import StreamingMentor from '../pages/LiveMentor/StreamingMentor';
+import {AlurStreaming} from "../pages/LiveMentor/AlurStreaming";
+import {StreamingMentor} from "../pages/LiveMentor/StreamingMentor"
 
 import ClassroomMentorDashboard from "../pages/ClassroomMentor/CLassroomMentorDashboard";
 import ClassroomMentorClass from "../pages/ClassroomMentor/ClassroomMentorClass";
@@ -87,7 +87,7 @@ const MentorRoutes = [
                             element: <ClassroomMentorLive />,
                         },
                         {
-                            path: "/live-detail-id",
+                            path: "/:id",
                             element: <LiveStreamingDetailById />,
                         },
                     ],
@@ -107,19 +107,19 @@ const MentorRoutes = [
                 },
             ]
         },
-        // {
-        //     path: "/livestreaming",
-        //     children: [
-        //         {
-        //             path: "",
-        //             element: <StreamingMentor />,
-        //         },
-        //         {
-        //             path: "/bukajadwal",
-        //             element: <BukaJadwal />
-        //         }
-        //     ]
-        // }
+        {
+            path: "/livestreaming",
+            children: [
+                {
+                    path: "",
+                    element: <StreamingMentor />,
+                },
+                {
+                    path: "/bukajadwal",
+                    element: <AlurStreaming />
+                }
+            ]
+        }
     ]
   },
 

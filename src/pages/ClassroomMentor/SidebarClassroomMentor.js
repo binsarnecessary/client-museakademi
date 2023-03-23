@@ -45,7 +45,7 @@ const SidebarClassroomMentor = ({ children }) => {
       <Navbar23 />
       <div className="container">
         <div className="container-sidebar">
-          <div className="sidebar">
+          <div className="sidebar fixed-top">
             <div class="sidebar-header">
               <a href="/" class="d-none d-lg-block">
                 <img
@@ -69,7 +69,7 @@ const SidebarClassroomMentor = ({ children }) => {
               </NavLink>
             ))}
           </div>
-          <main>{children}</main>
+          <div className="main">{children}</div>
         </div>
       </div>
     </>

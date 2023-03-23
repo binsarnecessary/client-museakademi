@@ -29,9 +29,12 @@ import {
   PieChartOutlined,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
+import Swal from "sweetalert2";
 import profileImage from "../../assets/image/profile.jpeg";
+import axios from "axios";
 
 const navItems = [
   {
@@ -42,13 +45,13 @@ const navItems = [
     text: "Pengguna",
     icon: null,
   },
-  // {
-  //   text: "Siswa",
-  //   icon: <ShoppingCartOutlined />,
-  // },
   {
     text: "Mentors",
     icon: <Groups2Outlined />,
+  },
+  {
+    text: "Course",
+    icon: <ShoppingCartOutlined />,
   },
   {
     text: "Payments",
@@ -110,6 +113,63 @@ const Sidebar = ({
 
   const handleNavigate = (path) => {
     navigate(`/admin/${path}`);
+  };
+
+  const dispatch = useDispatch();
+  const [isLoggedin, setIsLoggedIn] = useState(false);
+  const [admin, setAdmin] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Get Token From Local Storage
+        const token = localStorage.getItem("token_key");
+
+        if (!token) {
+          setIsLoggedIn(false);
+          return;
+        }
+
+        //Check Valid Token From API
+        const currentUserRequest = await axios.get(
+          "https://server-museakademi-production.up.railway.app/auth/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const currentUserResponse = currentUserRequest.data;
+
+        if (currentUserResponse.status) {
+          setAdmin(currentUserResponse.data.user);
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+      } catch (err) {
+        setIsLoggedIn(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token_key");
+    localStorage.removeItem("role");
+
+    setIsLoggedIn(false);
+    setAdmin({});
+    navigate("/login");
+
+    Swal.fire({
+      title: "Success!",
+      text: "You have successfully Log Out",
+      icon: "success",
+      confirmButtonText: "OK",
+    });
   };
 
   return (
@@ -205,7 +265,7 @@ const Sidebar = ({
               <Box
                 component="img"
                 alt="profile"
-                src={profileImage}
+                src={admin.profile_pictures}
                 height="40px"
                 width="40px"
                 borderRadius="50%"
@@ -217,13 +277,13 @@ const Sidebar = ({
                   fontSize="0.9rem"
                   sx={{ color: theme.palette.secondary[100] }}
                 >
-                  {user.name}
+                  {admin.name}
                 </Typography>
                 <Typography
                   fontSize="0.8rem"
                   sx={{ color: theme.palette.secondary[200] }}
                 >
-                  {user.occupation}
+                  {admin.role}
                 </Typography>
               </Box>
               <SettingsOutlined

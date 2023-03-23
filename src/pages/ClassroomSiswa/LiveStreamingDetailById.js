@@ -1,26 +1,33 @@
-import React from "react";
-import Kover2 from "../../assets/image/Pikt2.jpg";
-import profil from "../../assets/image/Profil.png";
+import React, {useState, useEffect} from "react";
 import Image from "react-bootstrap/Image";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SidebarClassroomSiswa from "./SidebarClassroomSiswa";
+import items from "./Data/DataLiveSiswa";
 
-const LiveStreamingDetailBiId = () => {
+
+const LiveStreamingDetailById = () => {
+  const { id } = useParams();
+  const item = items.find(p => p.id === +id);
+
   return (
     <SidebarClassroomSiswa>
       <div className="container-fluid">
+      
         <h3 className="mt-3">Live Classes</h3>
+
         <div className="row mt-lg-3">
-          <div className="mb-3 card col-12 col-lg-4 order-lg-2">
+        
+          <div key={item.id} className="mb-3 card col-12 col-lg-4 order-lg-2">
+          
             <div className="right-side mt-3 mb-3">
               <img
                 id="imgcover"
-                src={Kover2}
+                src={item.image}
                 width="100%"
                 alt=""
                 className="mb-3"
               ></img>
-              <form className="mt-3">
+              <form>
                 <input
                   type="hidden"
                   name="csrfmiddlewaretoken"
@@ -28,38 +35,40 @@ const LiveStreamingDetailBiId = () => {
                 ></input>
 
                 <Link
-                  to="/classroom/user/live-streaming-siswa/live-streaming-id/link-zoom"
+                  to={`/classroom/user/live-streaming-siswa/live-streaming-id/${item.id}/${item.id}`}
                   class="btn btn-danger btn-block btn-lg"
                   fdprocessedid="ntqaw"
                 >
                   <span className="text-white">Open Class</span>
                 </Link>
               </form>
-              <h4 className="mt-3">New in Class Programming</h4>
+              <h4 className="mt-3">{item.tema}</h4>
               <Image
-                src={profil}
+                src={item.imageMentor}
                 className="rounded-circle"
                 height="50"
                 alt="Avatar"
               ></Image>
-              <span className="ml-3">Dhani Prasetyo Raharjo</span>
+              <span className="ml-3">{item.nameMentor}</span>
             </div>
             <a>
               <b>Live Class Specification</b>
             </a>
-            <div className="table-responsive">
+            <div className="table-responsive mb-3">
               <tbody>
                 <tr>
                   <td width="50%">Date</td>
-                  <td>10 Desember 2022</td>
+                  <td>{item.eventStart}</td>
                 </tr>
                 <tr>
                   <td width="50%">Duration</td>
-                  <td>13.00 - 16.30</td>
+                  <td>{item.timeStart} - {item.timeEnd}</td>
                 </tr>
               </tbody>
             </div>
+           
           </div>
+          
           <div className="col-12 col-lg-8 order-lg-1">
             <button
               className="btn btn-primary btn-block btn-lg"
@@ -115,10 +124,12 @@ const LiveStreamingDetailBiId = () => {
               </div>
             </div>
           </div>
+          
         </div>
+  
       </div>
     </SidebarClassroomSiswa>
   );
 };
 
-export default LiveStreamingDetailBiId;
+export default LiveStreamingDetailById;

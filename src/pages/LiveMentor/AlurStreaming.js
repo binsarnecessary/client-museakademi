@@ -4,7 +4,7 @@ import { Card, Table } from 'react-bootstrap'
 
 import { useState } from 'react'
 import * as Icon from 'react-bootstrap-icons';
-import pic from '../../assets/image/pana.svg'
+import pic from '../../assets/image/pana.png'
 import { Link } from 'react-router-dom';
 import LiveData from '../Home/live/LiveData';
 import ReactPaginate from 'react-paginate';

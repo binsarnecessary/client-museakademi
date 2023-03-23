@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import "bootstrap/dist/css/bootstrap.css";
 
 import { Home } from "../pages/Home/Home";
@@ -16,13 +16,15 @@ import ClassroomSiswaLive from "../pages/ClassroomSiswa/ClassroomSiswaLive";
 import ChangePasswordUser from "../pages/ProfileUser/ChangePasswordUser";
 import DaftarMentorUser from "../pages/ProfileUser/DaftarMentorUser";
 import DashboardUser from "../pages/ProfileUser/DashboardUser";
-// import KursusUser from "../pages/ProfileUser/KursusUser";
+import KursusUser from "../pages/ProfileUser/KursusUser";
 import ProfilePicUser from "../pages/ProfileUser/ProfilePicUser";
 import ProfileUser from "../pages/ProfileUser/ProfileUser";
 import ClassroomSiswaPengenalan from "../pages/ClassroomSiswa/ClassroomSiswaPengenalan";
 import ClassroomSiswaTugas from "../pages/ClassroomSiswa/ClassroomSiswaTugas";
-import LiveStreamingDetailBiId from "../pages/ClassroomSiswa/LiveStreamingDetailById";
+import LiveStreamingDetailById from "../pages/ClassroomSiswa/LiveStreamingDetailById";
 import LiveStreamingLinkZoom from "../pages/ClassroomSiswa/LiveStreamingLinkZoom";
+import CardSiswaJadwalSesi from '../pages/ClassroomSiswa/CardSiswaJadwalSesi';
+import CardSiswaHasilTugasEvaluasi from '../pages/ClassroomSiswa/CardSiswaHasilTugasEvaluasi';
 
 const UserRoutes = [
   {
@@ -54,7 +56,7 @@ const UserRoutes = [
   },
   {
     name: "Live Streaming",
-    path: "/livestreaming",
+    path: "/live-streaming",
     children: [
       {
         path: "",
@@ -67,8 +69,7 @@ const UserRoutes = [
     ],
   },
   {
-    path: "/buka-jadwal",
-    element: <BukaJadwal />,
+    path: "/"
   },
   {
     name: "Dashboard User",
@@ -76,7 +77,20 @@ const UserRoutes = [
     children: [
       {
         path: "",
-        element: <ClassroomSiswaDashboard />,
+        children: [
+          {
+            path: "",
+            element: <ClassroomSiswaDashboard/>,
+          },
+          {
+            path: "/jadwalsesi",
+            element: <CardSiswaJadwalSesi/>,
+          },
+          {
+            path: "/hasiltugas",
+            element: <CardSiswaHasilTugasEvaluasi/>
+          },
+        ],
       },
       {
         path: "/pengenalan_siswa",
@@ -97,13 +111,21 @@ const UserRoutes = [
             path: "/live-streaming-id",
             children: [
               {
-                path: "",
-                element: <LiveStreamingDetailBiId />,
+                path: "/:id",
+                children: [
+                  {
+                    path: "",
+                    element: <LiveStreamingDetailById/>,
+                  },
+                  {
+                    path: "/:id",
+                    element: <LiveStreamingLinkZoom/>
+                  }
+                ]
+
+                
               },
-              {
-                path: "/link-zoom",
-                element: <LiveStreamingLinkZoom />,
-              },
+             
             ],
           },
         ],
@@ -135,8 +157,8 @@ const UserRoutes = [
   {
     name: "Profile Dashboard",
     path: "/user",
-    element: <DashboardUser />,
-  },
+    element: <DashboardUser />
+  }
 ];
 
 export default UserRoutes;

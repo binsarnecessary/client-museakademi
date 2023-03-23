@@ -1,23 +1,27 @@
 import React from "react";
-import profil from "../../assets/image/Profil.png";
 import Image from "react-bootstrap/Image";
 import zoom from "../../assets/image/zoom.png";
 import SidebarClassroomSiswa from "./SidebarClassroomSiswa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import items from "./Data/DataLiveSiswa";
 
 const LiveStreamingLinkZoom = () => {
+  const { id } = useParams();
+  const item = items.find(p => p.id === +id);
   return (
     <SidebarClassroomSiswa>
-      <div className="container-fluid  mt-3">
+      <div key={item.id} className="container-fluid  mt-3">
+      
         <h3>Live Classes</h3>
-        <h5>New In Class Programming</h5>
+        
+        <h5>{item.tema}</h5>
         <Image
-          src={profil}
+          src={item.imageMentor}
           className="rounded-circle"
           height="50"
           alt="Avatar"
         ></Image>
-        <span className="ml-3">Dhani Prasetyo Raharjo</span>
+        <span className="ml-3">{item.nameMentor}</span>
         <div className="container-fluid col-3 mt-3">
           <Image src={zoom}></Image>
           <Link class="btn btn-danger btn-block btn-lg" fdprocessedid="ntqaw">
@@ -34,11 +38,11 @@ const LiveStreamingLinkZoom = () => {
                 <tbody>
                   <tr>
                     <td width="50%">Date</td>
-                    <td>10 Desember 2022</td>
+                    <td>{item.eventStart}</td>
                   </tr>
                   <tr>
                     <td width="50%">Duration</td>
-                    <td>13.00 - 16.30</td>
+                    <td>{item.timeStart} - {item.timeEnd}</td>
                   </tr>
                 </tbody>
               </div>
@@ -70,7 +74,9 @@ const LiveStreamingLinkZoom = () => {
               </div>
             </div>
           </div>
+          
         </div>
+        
       </div>
     </SidebarClassroomSiswa>
   );

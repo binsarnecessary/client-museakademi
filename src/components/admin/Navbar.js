@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   LightModeOutlined,
   DarkModeOutlined,
@@ -9,8 +9,11 @@ import {
 } from "@mui/icons-material";
 import FlexBetween from "./FlexBetween";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { setMode } from "../../store/slices/AdminSlice";
 import profileImage from "../../assets/image/profile.jpeg";
+import axios from "axios";
 import {
   AppBar,
   Button,
@@ -32,6 +35,64 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   const isOpen = Boolean(anchorEl);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
+
+  const navigate = useNavigate();
+  const [isLoggedin, setIsLoggedIn] = useState(false);
+  const [admin, setAdmin] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Get Token From Local Storage
+        const token = localStorage.getItem("token_key");
+
+        if (!token) {
+          setIsLoggedIn(false);
+          return;
+        }
+
+        //Check Valid Token From API
+        const currentUserRequest = await axios.get(
+          "https://server-museakademi-production.up.railway.app/auth/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const currentUserResponse = currentUserRequest.data;
+
+        if (currentUserResponse.status) {
+
+          setAdmin(currentUserResponse.data.user);
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+      } catch (err) {
+        setIsLoggedIn(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token_key");
+    localStorage.removeItem("role");
+
+    setIsLoggedIn(false);
+    setAdmin({});
+    navigate("/login");
+
+    Swal.fire({
+      title: "Success!",
+      text: "You have successfully Log Out",
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+  };
 
   return (
     <AppBar
@@ -87,7 +148,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               <Box
                 component="img"
                 alt="profile"
-                src={profileImage}
+                src={admin.profile_pictures}
                 height="32px"
                 width="32px"
                 borderRadius="50%"
@@ -99,13 +160,13 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
                   fontSize="0.85rem"
                   sx={{ color: theme.palette.secondary[100] }}
                 >
-                  {user.name}
+                  {admin.name}
                 </Typography>
                 <Typography
                   fontSize="0.75rem"
                   sx={{ color: theme.palette.secondary[200] }}
                 >
-                  {user.occupation}
+                  {admin.role}
                 </Typography>
               </Box>
               <ArrowDropDownOutlined
@@ -118,7 +179,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               onClose={handleClose}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             >
-              <MenuItem onClick={handleClose}>Log Out</MenuItem>
+              <MenuItem onClick={handleLogout}>Log Out</MenuItem>
             </Menu>
           </FlexBetween>
         </FlexBetween>

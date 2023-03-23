@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const adminApi = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:7000/api' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://server-museakademi-production.up.railway.app/api' }),
   reducerPath: "courseApi",
   tagTypes: [
     "Course",

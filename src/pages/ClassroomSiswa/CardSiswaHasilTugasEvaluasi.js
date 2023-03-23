@@ -1,6 +1,8 @@
 import React from "react";
+import { DataHasilTugasEvaluasi } from "./Data/DataHasilTugasEvaluasi";
 
 const CardSiswaHasilTugasEvaluasi = () => {
+  console.log(DataHasilTugasEvaluasi)
   return (
     <div className="card mt-3">
       <div className="card-header d-flex align-items-center justify-content-between">
@@ -21,33 +23,17 @@ const CardSiswaHasilTugasEvaluasi = () => {
               </tr>
             </thead>
             <tbody>
+            {DataHasilTugasEvaluasi.map((item) => (
               <tr>
-                <td>Eris Dwi Septiawan Rizal</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                <td>{item.mentor}</td>
+                <td>{item.manajemen}</td>
+                <td>{item.kreativitas}</td>
+                <td>{item.analisa}</td>
+                <td>{item.komunikasi}</td>
+                <td>{item.desain}</td>
+                <td>{item.logika}</td>
               </tr>
-              <tr>
-                <td>Ivan Reynaldi Putra</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <td>M. Fandi Arfabuma</td>
-                <td>95</td>
-                <td>95</td>
-                <td>95</td>
-                <td>90</td>
-                <td>90</td>
-                <td>90</td>
-              </tr>
+              ))}
             </tbody>
           </div>
         </div>

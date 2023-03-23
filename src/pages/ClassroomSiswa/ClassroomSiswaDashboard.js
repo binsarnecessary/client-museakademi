@@ -61,7 +61,7 @@ const Dashboard_classroom = () => {
               <ul className="nav nav-pills" id="tabDashboard" role="tablist">
                 <li className="nav-item" role="presentation">
                   <Link
-                    to="/jadwalsesi"
+                    to="/classroom/user/jadwalsesi"
                     className="nav-link active"
                     id="session-tab"
                     data-toggle="tab"
@@ -72,16 +72,9 @@ const Dashboard_classroom = () => {
                     Jadwal Sesi
                   </Link>
                 </li>
-              </ul>
-              <CardSiswaJadwalSesi />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12">
-              <ul className="nav nav-pills" id="tabDashboard" role="tablist">
-                <li className="nav-item" role="presentation">
+                <li className="nav-item ml-3" role="presentation">
                   <Link
-                    to="/jadwalsesi"
+                    to="/classroom/user/hasiltugas"
                     className="nav-link active"
                     id="session-tab"
                     data-toggle="tab"
@@ -93,9 +86,17 @@ const Dashboard_classroom = () => {
                   </Link>
                 </li>
               </ul>
+            </div>
+          </div>
+       {/*  <div className="row">
+            <div className="col-12">
+              <ul className="nav nav-pills" id="tabDashboard" role="tablist">
+                
+              </ul>
               <CardSiswaHasilTugasEvaluasi />
             </div>
           </div>
+  */}
         </div>
       </SidebarClassroomSiswa>
     </>
