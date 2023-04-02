@@ -191,7 +191,7 @@ function Navbar() {
                               Profile
                             </NavDropdown.Item>
                             <NavDropdown.Item
-                              onClick={() => navigate("/classroom/user")}
+                              onClick={() => navigate("/user")}
                             >
                               My Class
                             </NavDropdown.Item>
