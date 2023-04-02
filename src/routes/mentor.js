@@ -13,11 +13,16 @@ import {StreamingMentor} from "../pages/LiveMentor/StreamingMentor"
 import ClassroomMentorDashboard from "../pages/ClassroomMentor/CLassroomMentorDashboard";
 import ClassroomMentorClass from "../pages/ClassroomMentor/ClassroomMentorClass";
 import ClassroomMentorTugas from "../pages/ClassroomMentor/ClassroomMentorTugas";
-import ClassroomMentorLive from "../pages/ClassroomMentor/ClassroomMentorLive";
+
 import ClassroomMentorSiswa from "../pages/ClassroomMentor/ClassroomMentorSiswa";
 import ClassroomMentorEditTugas from "../pages/ClassroomMentor/ClassroomMentorEditTugas";
-import LiveStreamingDetailById from '../pages/ClassroomMentor/LiveStreamingDetailById';
-import ClassroomMentorSiswaPenilaian from '../pages/ClassroomMentor/ClassroomMentorSiswaPenilaian';
+
+import ClassroomMentorInputNilai from '../pages/ClassroomMentor/ClassroomMentorInputNilai';
+import ClassroomMentorUpdateNilai from '../pages/ClassroomMentor/ClassroomMentorUpdateNilai';
+import ClassroomMentorSesiKursus from '../pages/ClassroomMentor/ClassroomMentorSesiKursus'
+import ClassroomMentorSesiKursusDetailById from '../pages/ClassroomMentor/ClassroomMentorSesiKursusDetailById';
+import LiveStreamingLinkZoom from '../pages/ClassroomMentor/LiveStreamingLinkZoom';
+import AturJadwalMentor from '../pages/ProfileMentor/AturJadwalMentor';
 
 
 const MentorRoutes = [
@@ -28,6 +33,10 @@ const MentorRoutes = [
         {
             path: "/dashboard",
             element: <DashboardMentor />,
+        },
+        {
+            path: "/atur-jadwal",
+            element: <AturJadwalMentor/>
         },
         {
             path: "/course",
@@ -63,8 +72,34 @@ const MentorRoutes = [
                     element: <ClassroomMentorDashboard />,
                 },
                 {
-                    path: "/class-mentor",
-                    element: <ClassroomMentorClass />
+                    path: "/sesi-kursus",
+                    children: [
+                        {
+                            path: "",
+                            element: <ClassroomMentorSesiKursus/>, 
+                        },
+                        {
+                            path: "/sesi-kursus-id",
+                            children: [
+                                {
+                                    path: "/:id",
+                                    children: [
+                                        {
+                                            path: "",
+                                            element: <ClassroomMentorSesiKursusDetailById/>,
+                                        },
+                                        {
+                                            path: "/:id",
+                                            element: <LiveStreamingLinkZoom/>
+                                        }
+                                    ]
+                                    
+                                }
+                            ]
+                            
+                        }
+                    ]
+                    
                 },
                 {
                     path: "/tugas-mentor",
@@ -80,19 +115,6 @@ const MentorRoutes = [
                     ]
                 },
                 {
-                    path: "/live-mentor",
-                    children: [
-                        {
-                            path: "",
-                            element: <ClassroomMentorLive />,
-                        },
-                        {
-                            path: "/:id",
-                            element: <LiveStreamingDetailById />,
-                        },
-                    ],
-                },
-                {
                     path: "/siswa-mentor",
                     children: [
                         {
@@ -101,7 +123,19 @@ const MentorRoutes = [
                         },
                         {
                             path: "/penilaian",
-                            element: <ClassroomMentorSiswaPenilaian />
+                            children: [
+                                {
+                                    path: "/:id",
+                                    children: [
+                                        {
+                                            path: "",
+                                            element: <ClassroomMentorInputNilai />,
+                                        }
+                                    ]
+                       
+                                },
+                            ],
+                            
                         }
                     ]
                 },

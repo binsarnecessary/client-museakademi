@@ -14,10 +14,10 @@ const Profile = () => {
       <div class="container mt-5"></div>
       <div class="container mb-5">
         <div class="row mt-lg-5 ">
-          <div class="col-12 col-lg-3 mt-5">
+          <div class="col-12 col-lg-3 mt-3">
             <CompProfile />
           </div>
-          <div class="col-12 col-lg-9 mt-5">
+          <div class="col-12 col-lg-9 mt-3">
             <h5>Mendaftar Mentor</h5>
             <p class="small text-muted">
               Halaman ini memuat tentang informasi mentor

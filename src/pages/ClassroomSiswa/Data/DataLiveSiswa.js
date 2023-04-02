@@ -1,4 +1,4 @@
-import course1 from "../../../assets/image/course-img1.jpg";
+import course1 from "../../../assets/image/course-1.png";
 import course2 from "../../../assets/image/course-img2.jpg";
 import course3 from "../../../assets/image/course-img3.jpg";
 import course4 from "../../../assets/image/course-img4.jpg";
@@ -7,12 +7,28 @@ import profil from "../../../assets/image/Profil.png";
 const DataLiveSiswa = [{
     
    id: 1,
-   tema: "Membuat 3D Modelling Menggunakan Blender",
+   tema: "Pemrograman Dengan Flutter",
    image: course1,
-   eventStart: "2023 Februari 28",
-   timeStart: "08.00 WIB",
-   timeEnd: "10.00 WiB",
-   status: "Selesai",
+   live: 
+    {
+      id: 1,
+      sesi: "Pengenalan Flutter",
+      eventStart: "2023 Februari 28",
+      timeStart: "08.00 WIB",
+      timeEnd: "10.00 WiB",
+      status: "Selesai",
+      url: "https://us04web.zoom.us/j/71075496212?pwd=IeapycoK0XHy8J7ou7uuqyMeTtG7oB.1",
+
+      id: 2,
+      sesi: "Pengenalan Flutter",
+      eventStart: "2023 Februari 28",
+      timeStart: "08.00 WIB",
+      timeEnd: "10.00 WiB",
+      status: "Selesai",
+      url: "https://us04web.zoom.us/j/71075496212?pwd=IeapycoK0XHy8J7ou7uuqyMeTtG7oB.1",
+    },
+    
+   
    imageMentor : profil,
    nameMentor : "Dimas Ramadhan",
  },

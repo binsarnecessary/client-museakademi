@@ -42,7 +42,7 @@ const LiveStreamingDetailById = () => {
                   <span className="text-white">Open Class</span>
                 </Link>
               </form>
-              <h4 className="mt-3">{item.tema}</h4>
+              <h4 className="mt-3">{item.live.sesi}</h4>
               <Image
                 src={item.imageMentor}
                 className="rounded-circle"
@@ -58,11 +58,11 @@ const LiveStreamingDetailById = () => {
               <tbody>
                 <tr>
                   <td width="50%">Date</td>
-                  <td>{item.eventStart}</td>
+                  <td>{item.live.eventStart}</td>
                 </tr>
                 <tr>
                   <td width="50%">Duration</td>
-                  <td>{item.timeStart} - {item.timeEnd}</td>
+                  <td>{item.live.timeStart} - {item.live.timeEnd}</td>
                 </tr>
               </tbody>
             </div>
@@ -124,9 +124,7 @@ const LiveStreamingDetailById = () => {
               </div>
             </div>
           </div>
-          
         </div>
-  
       </div>
     </SidebarClassroomSiswa>
   );

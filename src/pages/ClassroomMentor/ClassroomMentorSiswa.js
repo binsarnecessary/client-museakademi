@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import DataSiswa from "../ClassroomSiswa/Data/DataSiswa";
 import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
 const ClassroomMentorSiswa = () => {
+const [search, setSearch] = useState('')
+
   return (
     <>
       <SidebarClassroomMentor>
         <div className="container-fluid mt-3">
           <div className="row">
             <h4>Siswa</h4>
-            <div className="col-12 mb-5">
+            <div className="col-12 mb-5 mt-3">
               <div className="card">
                 <div className="card-header d-flex align-items-center justify-content-between">
                   <span className="text-muted">Daftar Siswa</span>
@@ -25,6 +27,7 @@ const ClassroomMentorSiswa = () => {
                               <div class="input-group">
                                 <input
                                   class="form-control"
+                                  onChange={(e) => setSearch(e.target.value)}
                                   type="search"
                                   aria-label="search-input"
                                   placeholder="Pencarian"
@@ -32,48 +35,35 @@ const ClassroomMentorSiswa = () => {
                               </div>
                             </div>
                           </div>
-                          <div class="col-4 col-lg-2 pr-4">
-                            <div class="form-group">
-                              <select
-                                name="tampilkan"
-                                class="form-control text-muted"
-                              >
-                                <option value="status">Semua</option>
-                                <option value="1">10</option>
-                                <option value="2">25</option>
-                                <option value="3">50</option>
-                                <option value="4">100</option>
-                              </select>
-                            </div>
-                          </div>
+                          
                         </div>
                       </form>
                     </div>
 
                     <div className="card col-12">
                       <div className="card-header">
-                        <div className="table-responsive">
-                          <thead>
+                        <div className="table table-responsive">
+                          <thead className="thead-light">
                             <tr className="small text-muted">
-                              <td width="10%">No</td>
-                              <td width="25%">Nama Siswa</td>
-                              <td width="25%">Telepon</td>
-                              <td width="20%">Bergabung Pada</td>
-                              <td width="20%">Nilai Keseluruhan</td>
-                              <td width="10%">Opsi</td>
+                              <th width="10%">No</th>
+                              <th width="25%">Nama Siswa</th>
+                              <th width="25%">Telepon</th>
+                              <th width="20%">Bergabung Pada</th>
+                              <th width="10%">Opsi</th>
                             </tr>
                           </thead>
-                          <tbody height="200px">
-                            {DataSiswa.map((item) => (
-                            <tr className="">
+                          <tbody height="300px">
+                            {DataSiswa.filter((item) => {
+                              return search.toLowerCase() === '' ? item : item.name.toLowerCase().includes(search);
+                            }).map((item) => (
+                            <tr key={item.id}>
                               <td>{item.id}</td>
                               <td>{item.name}</td>
                               <td>{item.phone}</td>
                               <td>{item.joinStart}</td>
-                              <td>{item.grade}</td>
                               <td>
                                 <Link
-                                  to="/mentor/classroom/siswa-mentor/penilaian"
+                                  to={`/mentor/classroom/siswa-mentor/penilaian/${item.id}`}
                                   class="small badge badge-pill badge-primary"
                                 >
                                   Nilai

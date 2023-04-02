@@ -1,13 +1,12 @@
+
 import React from "react";
 import "./sidebarclassroommentor.css";
 import "../../assets/css/classroom.css";
 import {
   FaTachometerAlt,
-  FaVideo,
-  FaRegCalendarAlt,
-  FaDiceThree,
+  FaServer,
 } from "react-icons/fa";
-import { BsPersonFill } from "react-icons/bs";
+import { BsCalendar3, BsPersonFill } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import LogoNavbar from "../../assets/image/logo-navbar.png";
 import Navbar23 from "./ClassroomMentorNavbar";
@@ -20,19 +19,14 @@ const SidebarClassroomMentor = ({ children }) => {
       icon: <FaTachometerAlt />,
     },
     {
-      path: "/mentor/classroom/class-mentor",
-      name: "Pengenalan UI/UX",
-      icon: <FaRegCalendarAlt />,
+      path: "/mentor/classroom/sesi-kursus",
+      name: "Sesi",
+      icon: <BsCalendar3 />,
     },
     {
       path: "/mentor/classroom/tugas-mentor",
       name: "Tugas & Evaluasi",
-      icon: <FaDiceThree />,
-    },
-    {
-      path: "/mentor/classroom/live-mentor",
-      name: "Live Class",
-      icon: <FaVideo />,
+      icon: <FaServer />,
     },
     {
       path: "/mentor/classroom/siswa-mentor",
@@ -77,3 +71,4 @@ const SidebarClassroomMentor = ({ children }) => {
 };
 
 export default SidebarClassroomMentor;
+

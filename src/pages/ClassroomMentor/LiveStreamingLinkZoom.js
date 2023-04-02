@@ -1,19 +1,17 @@
 import React from "react";
 import Image from "react-bootstrap/Image";
 import zoom from "../../assets/image/zoom.png";
-import SidebarClassroomSiswa from "./SidebarClassroomSiswa";
 import { Link, useParams } from "react-router-dom";
-import items from "./Data/DataSesi";
+import items from "../ClassroomSiswa/Data/DataSesi";
+import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
 const LiveStreamingLinkZoom = () => {
   const { id } = useParams();
   const item = items.find(p => p.id === +id);
   return (
-    <SidebarClassroomSiswa>
+    <SidebarClassroomMentor>
       <div key={item.id} className="container-fluid  mt-3">
-      
         <h3>Live Classes</h3>
-        
         <h5>{item.sesi}</h5>
         <Image
           src={item.imageMentor}
@@ -38,7 +36,7 @@ const LiveStreamingLinkZoom = () => {
                 <tbody>
                   <tr>
                     <td width="50%">Date</td>
-                    <td>{item.eventStart}</td>
+                    <td>{item.tanggal}</td>
                   </tr>
                   <tr>
                     <td width="50%">Duration</td>
@@ -74,11 +72,9 @@ const LiveStreamingLinkZoom = () => {
               </div>
             </div>
           </div>
-          
         </div>
-        
       </div>
-    </SidebarClassroomSiswa>
+    </SidebarClassroomMentor>
   );
 };
 

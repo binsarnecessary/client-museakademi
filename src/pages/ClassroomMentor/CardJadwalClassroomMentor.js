@@ -2,37 +2,33 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "../../assets/css/bootstrap.css";
 import "../../assets/css/style.css";
-import { DataJadwalSesi } from "../ClassroomSiswa/Data/DataJadwalSesi";
+import { default as DataJadwalSesi } from "../ClassroomSiswa/Data/DataSesi";
+import { FaCalendarAlt } from "react-icons/fa";
+import { BsCalendar3 } from "react-icons/bs";
 
 const CardJadwalClassroomMentor = () => {
   return (
     <div className="card mt-3">
       <div className="card-body">
-        <div className="table-responsive">
-          <thead>
-            <tr className="small text-muted">
-              <td width="30%">Sesi</td>
-              <td width="15%">Tanggal</td>
-              <td width="15%">Pukul</td>
-              <td width="5%">Status</td>
+        <div className="table table-responsive">
+          <thead className="thead-light">
+            <tr className="text-muted">
+              <th></th>
+              <th>Sesi Kursus</th>
+
             </tr>
           </thead>
           <tbody height="100px">
             {DataJadwalSesi.map((item) => (
             <tr className="">
+              <td className="text-primary la-2x"><BsCalendar3/></td>
               <td>
                   {item.sesi}<br></br>
-                <p className="small">
+                <p className="small text-primary">
                   {item.deskripsi}
                 </p>
               </td>
-              <td>{item.tanggal}</td>
-              <td>{item.timeStart} - {item.timeEnd}</td>
-              <td>
-                <span class="badge badge-pill badge-success">
-                  <small>{item.status}</small>
-                </span>
-              </td>
+          
             </tr>
             ))}
           </tbody>

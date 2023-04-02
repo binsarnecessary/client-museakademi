@@ -19,12 +19,11 @@ import DashboardUser from "../pages/ProfileUser/DashboardUser";
 import KursusUser from "../pages/ProfileUser/KursusUser";
 import ProfilePicUser from "../pages/ProfileUser/ProfilePicUser";
 import ProfileUser from "../pages/ProfileUser/ProfileUser";
-import ClassroomSiswaPengenalan from "../pages/ClassroomSiswa/ClassroomSiswaPengenalan";
 import ClassroomSiswaTugas from "../pages/ClassroomSiswa/ClassroomSiswaTugas";
-import LiveStreamingDetailById from "../pages/ClassroomSiswa/LiveStreamingDetailById";
 import LiveStreamingLinkZoom from "../pages/ClassroomSiswa/LiveStreamingLinkZoom";
-import CardSiswaJadwalSesi from '../pages/ClassroomSiswa/CardSiswaJadwalSesi';
-import CardSiswaHasilTugasEvaluasi from '../pages/ClassroomSiswa/CardSiswaHasilTugasEvaluasi';
+import ClassroomSiswaNilai from '../pages/ClassroomSiswa/ClassroomSiswaNilai';
+import ClassroomSiswaSesiKursus from '../pages/ClassroomSiswa/ClassroomSiswaSesiKursus';
+import ClassroomSiswaSesiKursusDetailById from '../pages/ClassroomSiswa/ClassroomSiswaSesiKursusDetailById';
 
 const UserRoutes = [
   {
@@ -77,24 +76,35 @@ const UserRoutes = [
     children: [
       {
         path: "",
+        element: <ClassroomSiswaDashboard/>,
+      },
+      {
+        path: "/sesi-kursus",
         children: [
           {
             path: "",
-            element: <ClassroomSiswaDashboard/>,
+            element: <ClassroomSiswaSesiKursus/>,
           },
           {
-            path: "/jadwalsesi",
-            element: <CardSiswaJadwalSesi/>,
-          },
-          {
-            path: "/hasiltugas",
-            element: <CardSiswaHasilTugasEvaluasi/>
-          },
-        ],
-      },
-      {
-        path: "/pengenalan_siswa",
-        element: <ClassroomSiswaPengenalan />,
+            path: "/sesi-kursus-id",
+            children: [
+              {
+                path: "/:id",
+                children: [
+                  {
+                    path: "",
+                    element: <ClassroomSiswaSesiKursusDetailById/>,
+                  },
+                  {
+                    path: "/:id",
+                    element: <LiveStreamingLinkZoom/>
+                  }
+                ]
+                
+              }
+            ]
+          }
+        ]
       },
       {
         path: "/tugas_siswa",
@@ -114,10 +124,6 @@ const UserRoutes = [
                 path: "/:id",
                 children: [
                   {
-                    path: "",
-                    element: <LiveStreamingDetailById/>,
-                  },
-                  {
                     path: "/:id",
                     element: <LiveStreamingLinkZoom/>
                   }
@@ -130,6 +136,10 @@ const UserRoutes = [
           },
         ],
       },
+      {
+        path: "/nilai-siswa",
+        element: <ClassroomSiswaNilai/>,
+      }
     ],
   },
   {

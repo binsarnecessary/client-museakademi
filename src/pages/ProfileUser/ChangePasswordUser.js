@@ -21,9 +21,9 @@ const ChangePasswordUser = () => {
   return (
     <>
       <NavbarCompUser />
-      <div class="container mt-5"></div>
+      <div class="container"></div>
       <div class="container mb-5">
-        <div class="row mt-lg-5">
+        <div class="row">
           <div class="col-12 col-lg-3">
             <CompProfileUser />
           </div>

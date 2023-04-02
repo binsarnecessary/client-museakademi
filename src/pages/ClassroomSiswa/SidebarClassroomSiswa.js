@@ -1,46 +1,22 @@
 import React from "react";
 import "./sidebarclassroomsiswa.css";
-import {
-  FaRegCalendarAlt,
-  FaTachometerAlt,
-  FaVideo,
-  FaDiceThree,
-} from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import LogoNavbar from "../../assets/image/logo-navbar.png";
 import NavbarClassroomSiswa from "./NavbarClassroomSiswa";
+import menuItem from "./Data/SidebarMenu";
+
 
 
 const SidebarClassroomSiswa = ({ children }) => {
-  const menuItem = [
-    {
-      path: "/classroom/user/",
-      name: "Dashboard",
-      icon: <FaTachometerAlt />,
-    },
-    {
-      path: "/classroom/user/pengenalan_siswa",
-      name: "Pengenalan UI/UX",
-      icon: <FaRegCalendarAlt />,
-    },
-    {
-      path: "/classroom/user/tugas_siswa",
-      name: "Tugas & Evaluasi",
-      icon: <FaDiceThree />,
-    },
-    {
-      path: "/classroom/user/live-streaming-siswa",
-      name: "Live Class",
-      icon: <FaVideo />,
-    },
-  ];
+
   return (
     <>
       <NavbarClassroomSiswa/>
       <div className="container">
         <div className="container-sidebar">
           <div className="sidebar fixed-top">
-            <div className="sidebar-header">
+            <div  className="sidebar-header">
+              <div className="top_section">
               <a href="/" class="d-none d-lg-block">
                 <img
                   src={LogoNavbar}
@@ -49,6 +25,7 @@ const SidebarClassroomSiswa = ({ children }) => {
                   height="30"
                 />
               </a>
+              </div>
             </div>
 
             {menuItem.map((item, index) => (
@@ -63,7 +40,7 @@ const SidebarClassroomSiswa = ({ children }) => {
               </NavLink>
             ))}
           </div>
-          <div className="main">{children}</div>
+          <div className="main-sidebar">{children}</div>
         </div>
       </div>
     </>

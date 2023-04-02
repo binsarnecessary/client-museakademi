@@ -1,5 +1,5 @@
 import React from "react";
-import { DataJadwalSesi } from "../ClassroomSiswa/Data/DataJadwalSesi";
+import { default as DataSesi } from "../ClassroomSiswa/Data/DataSesi";
 import CardMentorVideoPembelajaran from "./CardMentorVideoPembelajaran";
 import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
@@ -8,7 +8,7 @@ const ClassroomMentorClass = () => {
     <>
       <SidebarClassroomMentor>
         <div class="container-fluid mb-5 mt-3">
-          {DataJadwalSesi.map((item) => (
+          {DataSesi.map((item) => (
           <div class="row">
             <div class="col-12 mb-3">
               <h3>{item.sesi}</h3>

@@ -28,7 +28,7 @@ const Profile = () => {
             <div class="col-12 col-lg-3">
                 <CompProfile/>
             </div>
-            <div class="col-12 col-lg-9 mt-5">
+            <div class="col-12 col-lg-9 mt-3">
                 <h5>Informasi Umum</h5>
                     <p class="small text-muted">
                         Halaman ini memuat tentang informasi pribadi Anda

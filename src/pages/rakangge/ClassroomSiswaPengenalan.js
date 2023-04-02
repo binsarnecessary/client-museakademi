@@ -1,15 +1,15 @@
 import React from "react";
 import SidebarClassroomSiswa from "./SidebarClassroomSiswa";
 import CardSiswaPengenalan from "./CardSiswaPengenalan";
-import { DataJadwalSesi } from "./Data/DataJadwalSesi";
+import { default as DataSesi } from "./Data/DataSesi";
 
 const ClassroomSiswaPengenalan = () => {
-  console.log(DataJadwalSesi)
+  console.log(DataSesi)
   return (
     
       <SidebarClassroomSiswa>
         <div class="container-fluid mb-5 mt-3">
-        {DataJadwalSesi.map((item) => (
+        {DataSesi.map((item) => (
           <div key={item.id} class="row">
             <div class="col-12 mb-3">
             

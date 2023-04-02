@@ -87,7 +87,7 @@ const NavbarClassroomSiswa = () => {
           <Image
             src={profil}
             className="rounded-circle"
-            height="50"
+            height="45"
             alt="Avatar"
           ></Image>
           <li className="nav-item">

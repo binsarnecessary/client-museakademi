@@ -1,10 +1,11 @@
 import React from 'react'
+import { Card, Container, } from 'react-bootstrap'
 import banner from '../../assets/image/illustration-banner.png';
 import service1 from '../../assets/image/service1.png';
 import service2 from '../../assets/image/service2.png';
 import service3 from '../../assets/image/service3.png';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+
 
 import logolg from '../../assets/image/logo-large.png'
 import digistar from '../../assets/image/logo-digistar.png'
@@ -28,10 +29,12 @@ import * as Icon from 'react-bootstrap-icons'
 import { Incoming } from './Incoming/Incoming';
 import { Free } from './Free/Free';
 import { Live } from './live/Live';
+import Mitra from './Mitra/Mitra';
 
 
 
 export const Home = () => {
+
     
     return (
 
@@ -119,7 +122,7 @@ export const Home = () => {
                 </section>
 
                 <div class="py-2">
-                    <Live/>
+                    <Live />
                     <Incoming /> 
                     <Free/>
                 </div>
@@ -130,7 +133,7 @@ export const Home = () => {
                             <div class="col justify-content-sm-center justify-content-lg-start">
                                 <div class="section-header">
                                     <h5 class="text-white section-title">
-                                        Kategori Kursus
+                                        Mitra Kursus Kami
                                     </h5>
                                     <p class="text-white section-description">
                                         Paling banyak dicari oleh siswa di Indonesia
@@ -138,127 +141,7 @@ export const Home = () => {
                                 </div>
                             </div>
                         </div>
-                        <div id="list-categories" class="row">
-                            <div class="mb-3 col-lg-3 col-6">
-                                <Link to={'/course'} target='_top'>
-                                    <div class="category-items">
-                                        <div class="media d-flex align-items-center">
-                                            <img class="mr-3" src={LogoKategori1} />
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-0 text-small">
-                                                    <small>Desain Aplikasi</small>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </Link>
-                            </div>
-
-                            <div class="mb-3 col-lg-3 col-6">
-                                <Link to={'/course'} target='_top'>
-                                    <div class="category-items">
-                                        <div class="media d-flex align-items-center">
-                                            <img class="mr-3" src={LogoKategori2} />
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-0 text-small">
-                                                    <small>Game & Animasi</small>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </Link>
-                            </div>
-
-                            <div class="mb-3 col-lg-3 col-6">
-                                <Link to={'/course'} target='_top'>
-                                    <div class="category-items">
-                                        <div class="media d-flex align-items-center">
-                                            <img class="mr-3" src={LogoKategori3} />
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-0 text-small">
-                                                    <small>Sensor & Robotik</small>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </Link>
-                            </div>
-
-                            <div class="mb-3 col-lg-3 col-6">
-                                <Link to={'/course'} target='_top'>
-                                    <div class="category-items">
-                                        <div class="media d-flex align-items-center">
-                                            <img class="mr-3" src={LogoKategori4} />
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-0 text-small">
-                                                    <small>Art & Craft</small>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </div>
-
-                            <div class="mb-3 col-lg-3 col-6">
-                                <Link to={'/course'} target='_top'>
-                                    <div class="category-items">
-                                        <div class="media d-flex align-items-center">
-                                            <img class="mr-3" src={LogoKategori5} />
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-0 text-small">
-                                                    <small>Desain Komunikasi Visual</small>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </div>
-
-                            <div class="mb-3 col-lg-3 col-6">
-                                <Link to={'/course'} target='_top'>
-                                    <div class="category-items">
-                                        <div class="media d-flex align-items-center">
-                                            <img class="mr-3" src={LogoKategori6} />
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-0 text-small">
-                                                    <small>3D Modeling</small>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </div>
-
-                            <div class="mb-3 col-lg-3 col-6">
-                                <Link to={'/course'} target='_top'>
-                                    <div class="category-items">
-                                        <div class="media d-flex align-items-center">
-                                            <img class="mr-3" src={LogoKategori7} />
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-0 text-small">
-                                                    <small>Food Stylist</small>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </div>
-
-                            <div class="mb-3 col-lg-3 col-6">
-                                <Link to={'/course'} target='_top'>
-                                    <div class="category-items">
-                                        <div class="media d-flex align-items-center">
-                                            <img class="mr-3" src={LogoKategori8} />
-                                            <div class="media-body">
-                                                <h6 class="mt-0 mb-0 text-small">
-                                                    <small>Media Rekam</small>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </Link>
-                            </div>
-                        </div>
+                        <Mitra/>
                     </div>
                 </section>
 

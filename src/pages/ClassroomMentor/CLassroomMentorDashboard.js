@@ -39,16 +39,16 @@ const ClassroomMentorDashboard = () => {
                 <i className="las la-clipboard-list text-primary"></i>
                 <div>
                   <h4>3</h4>
-                  <span className="text-muted">Tugas Selesai</span>
+                  <span className="text-muted">Tugas Diberikan</span>
                 </div>
               </div>
             </div>
             <div className="statistic-col card shadow-sm">
               <div className="statistic-item">
-                <i className="las la-clipboard-check text-primary"></i>
+              <i class="las la-user text-primary"></i>
                 <div>
-                  <h4>98</h4>
-                  <span className="text-muted">Nilai Akhir</span>
+                  <h4>10</h4>
+                  <span className="text-muted">Siswa</span>
                 </div>
               </div>
             </div>
@@ -67,7 +67,7 @@ const ClassroomMentorDashboard = () => {
                     aria-selected="true"
                     to=""
                   >
-                    Jadwal
+                    Sesi Kursus
                   </Link>
                 </li>
               </ul>

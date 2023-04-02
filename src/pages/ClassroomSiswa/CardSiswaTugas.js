@@ -46,7 +46,7 @@ const CardSiswaTugas = () => {
                     </tr>
                   </tbody>
                 </div>
-                <a class="btn btn-danger btn-sm float-left mt-3">Open</a>
+                <a href={item.url} class="btn btn-danger btn-sm float-left mt-3">Open</a>
               </div>
             </div>
           </div>

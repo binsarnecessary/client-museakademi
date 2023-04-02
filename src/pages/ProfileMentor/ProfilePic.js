@@ -35,7 +35,7 @@ const ProfilePic = () => {
           <div class="col-12 col-lg-3">
             <CompProfile />
           </div>
-          <div class="col-12 col-lg-9 mt-5">
+          <div class="col-12 col-lg-9 mt-3">
             <h5>Ganti Foto Profil</h5>
             <p class="small text-muted">
               Gunakan foto dengan wajah dekat dengan format JPG maksimal 500 KB

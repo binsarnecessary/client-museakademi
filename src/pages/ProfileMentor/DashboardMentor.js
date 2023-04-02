@@ -6,15 +6,19 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import "../../assets/css/styleProfileMentor.css";
 import "../../assets/css/ProfileStyling.css";
+import { Link, useParams } from "react-router-dom";
+import dataKursus from "../ClassroomSiswa/Data/DataKursus"
+import SideDashboardJadwalKursusMentor from "./SideDashboardJadwalKursusMentor";
+
 
 function DashboardMentor() {
   return (
     <>
       <Navbar />
-      <div class="container mb-5 mt-5">
+      <div class="container mb-5">
         <div class="row mt-lg-4 ">
-          <div id="header-dashboard" class="col-12 my-5">
-            <h5>Dashboard</h5>
+          <div id="header-dashboard" class="col-12 mt-5">
+            <h3>Dashboard Mentor</h3>
             <p>
               Hai, Sambo! <span v-html="selectedSmiley"></span>
             </p>
@@ -26,11 +30,11 @@ function DashboardMentor() {
             <span class="text-muted">
               <small>Statistik Kursus</small>
             </span>
+            
             <div class="statistic-row my-2">
               <div class="statistic-col card">
                 <div class="statistic-item">
                   <i class="las la-briefcase text-primary"> </i>
-                  <img class="mr-3" src={KategoriCourse1} />
                   <div>
                     <h4>2</h4>
                     <span class="text-muted">Kursus Aktif</span>
@@ -40,7 +44,6 @@ function DashboardMentor() {
               <div class="statistic-col card">
                 <div class="statistic-item">
                   <i class="las la-briefcase text-primary"></i>
-                  <img class="mr-3" src={KategoriCourse1} />
                   <div>
                     <h4>2</h4>
                     <span class="text-muted">Total Kursus</span>
@@ -53,7 +56,6 @@ function DashboardMentor() {
               <div class="statistic-col card">
                 <div class="statistic-item">
                   <i class="las la-briefcase text-primary"> </i>
-                  <img class="mr-3" src={KategoriCourse1} />
                   <div>
                     <h4>2</h4>
                     <span class="text-muted">Kursus Selesai</span>
@@ -62,8 +64,7 @@ function DashboardMentor() {
               </div>
               <div class="statistic-col card">
                 <div class="statistic-item">
-                  <i class="las la-briefcase text-primary"></i>
-                  <img class="mr-3" src={KategoriCourse1} />
+                  <i class="las la-graduation-cap text-primary"></i>
                   <div>
                     <h4>2</h4>
                     <span class="text-muted">Total Siswa</span>
@@ -72,7 +73,7 @@ function DashboardMentor() {
               </div>
             </div>
 
-            <div class="row mt-2">
+            <div class="row mt-3">
               <div class="col-12 mb-3">
                 <div class="card">
                   <div class="card-body">
@@ -83,12 +84,13 @@ function DashboardMentor() {
                             Kursus yang telah selesai
                           </div>
                           <div>
-                            <button className="btn-dashboard">
+                            <Link to={"/mentor/atur-jadwal"} className="btn btn-danger btn-sm">
                               Buat Jadwal
-                            </button>
+                            </Link>
                           </div>
                         </div>
                       </a>
+                      
                       <div class="mt-4">
                         <table class="table custom-table">
                           <thead class="thead-light">
@@ -113,173 +115,31 @@ function DashboardMentor() {
                               </th>
                             </tr>
                           </thead>
+                          {dataKursus.map((item)=>(
                           <tbody>
                             <tr>
                               <td class="text-left font-">
-                                Sistem Informasi - UI/UX Design Applications
+                                {item.kursus}
                               </td>
-                              <td class="text-center">2022-03-01</td>
-                              <td class="text-right">2022-03-31</td>
-                            </tr>
-                            <tr>
-                              <td class="text-left">
-                                Sistem Informasi - UI/UX Design Applications
-                              </td>
-                              <td class="text-center">2022-04-01</td>
-                              <td class="text-right">2022-04-30</td>
-                            </tr>
-                            <tr>
-                              <td class="text-left">
-                                Sistem Informasi - UI/UX Design Applications
-                              </td>
-                              <td class="text-center">2022-05-01</td>
-                              <td class="text-right">2022-05-31</td>
+                              <td class="text-center">{item.kursusStart}</td>
+                              <td class="text-right">{item.kursusEnd}</td>
                             </tr>
                           </tbody>
+                          ))}
                         </table>
                       </div>
+                       
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+           
           </div>
 
           <div class="col-12 col-lg-5">
             <span class="text-muted small">Jadwal Kursus</span>
-            <div id="comingsoon_sessions" class="row pt-2">
-              <div class="col-12 mb-3">
-                <div class="card">
-                  <div class="schedule-course-item">
-                    <i class="las la-calendar-day text-primary"></i>
-                    <img class="mr-3" src={KategoriCourse1} />
-                    <div>
-                      <span>
-                        <a href="" class="schedule-course-title">
-                          Multimedia
-                        </a>{" "}
-                        <br />
-                        <span class="small">Senin, 3 Januari 2023</span>
-                      </span>
-                      <span class="text-muted schedule-course-detail">
-                        <span>14.00 - 16.00</span>
-                        <span>
-                          <i class="las la-user-tie"></i>Nurhadi
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div id="comingsoon_sessions" class="row pt-2">
-              <div class="col-12 mb-3">
-                <div class="card">
-                  <div class="schedule-course-item">
-                    <i class="las la-calendar-day text-primary"></i>
-                    <img class="mr-3" src={KategoriCourse1} />
-                    <div>
-                      <span>
-                        <a href="" class="schedule-course-title">
-                          Multimedia
-                        </a>{" "}
-                        <br />
-                        <span class="small">Senin, 3 Januari 2023</span>
-                      </span>
-                      <span class="text-muted schedule-course-detail">
-                        <span>14.00 - 16.00</span>
-                        <span>
-                          <i class="las la-user-tie"></i>Nurhadi
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div id="comingsoon_sessions" class="row pt-2">
-              <div class="col-12 mb-3">
-                <div class="card">
-                  <div class="schedule-course-item">
-                    <i class="las la-calendar-day text-primary"></i>
-                    <img class="mr-3" src={KategoriCourse1} />
-                    <div>
-                      <span>
-                        <a href="" class="schedule-course-title">
-                          Multimedia
-                        </a>{" "}
-                        <br />
-                        <span class="small">Senin, 3 Januari 2023</span>
-                      </span>
-                      <span class="text-muted schedule-course-detail">
-                        <span>14.00 - 16.00</span>
-                        <span>
-                          <i class="las la-user-tie"></i>Nurhadi
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div id="comingsoon_sessions" class="row pt-2">
-              <div class="col-12 mb-3">
-                <div class="card">
-                  <div class="schedule-course-item">
-                    <i class="las la-calendar-day text-primary"></i>
-                    <img class="mr-3" src={KategoriCourse1} />
-                    <div>
-                      <span>
-                        <a href="" class="schedule-course-title">
-                          Multimedia
-                        </a>{" "}
-                        <br />
-                        <span class="small">Senin, 3 Januari 2023</span>
-                      </span>
-                      <span class="text-muted schedule-course-detail">
-                        <span>14.00 - 16.00</span>
-                        <span>
-                          <i class="las la-user-tie"></i>Nurhadi
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div id="comingsoon_sessions" class="row pt-2">
-              <div class="col-12 mb-3">
-                <div class="card">
-                  <div class="schedule-course-item">
-                    <i class="las la-calendar-day text-primary"></i>
-                    <img class="mr-3" src={KategoriCourse1} />
-                    <div>
-                      <span>
-                        <a href="" class="schedule-course-title">
-                          Multimedia
-                        </a>{" "}
-                        <br />
-                        <span class="small">Senin, 3 Januari 2023</span>
-                      </span>
-                      <span class="text-muted schedule-course-detail">
-                        <span>14.00 - 16.00</span>
-                        <span>
-                          <i class="las la-user-tie"></i>Nurhadi
-                        </span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="text-center small py-3">
-              <a href="">Muat lebih banyak</a>
-            </div>
+            <SideDashboardJadwalKursusMentor/>
           </div>
         </div>
       </div>

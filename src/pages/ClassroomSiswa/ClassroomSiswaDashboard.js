@@ -4,7 +4,6 @@ import "../../assets/css/dashboard-classroom.css";
 import "../../assets/css/style.css";
 
 import CardSiswaJadwalSesi from "./CardSiswaJadwalSesi";
-import CardSiswaHasilTugasEvaluasi from "./CardSiswaHasilTugasEvaluasi";
 import SidebarClassroomSiswa from "./SidebarClassroomSiswa";
 import { Link } from "react-router-dom";
 
@@ -60,43 +59,12 @@ const Dashboard_classroom = () => {
             <div className="col-12 mb-3">
               <ul className="nav nav-pills" id="tabDashboard" role="tablist">
                 <li className="nav-item" role="presentation">
-                  <Link
-                    to="/classroom/user/jadwalsesi"
-                    className="nav-link active"
-                    id="session-tab"
-                    data-toggle="tab"
-                    role="tab"
-                    aria-controls="session"
-                    aria-selected="true"
-                  >
-                    Jadwal Sesi
-                  </Link>
-                </li>
-                <li className="nav-item ml-3" role="presentation">
-                  <Link
-                    to="/classroom/user/hasiltugas"
-                    className="nav-link active"
-                    id="session-tab"
-                    data-toggle="tab"
-                    role="tab"
-                    aria-controls="session"
-                    aria-selected="true"
-                  >
-                    Hasil Tugas & Evaluasi
-                  </Link>
+                  <a class="nav-link active" id="session-tab" data-toggle="tab" href="#session" role="tab" aria-controls="session" aria-selected="true">Sesi</a>
                 </li>
               </ul>
+              <CardSiswaJadwalSesi/>
             </div>
-          </div>
-       {/*  <div className="row">
-            <div className="col-12">
-              <ul className="nav nav-pills" id="tabDashboard" role="tablist">
-                
-              </ul>
-              <CardSiswaHasilTugasEvaluasi />
-            </div>
-          </div>
-  */}
+          </div>  
         </div>
       </SidebarClassroomSiswa>
     </>
