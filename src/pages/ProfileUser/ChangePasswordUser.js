@@ -1,5 +1,5 @@
 import CompProfileUser from "../../components/profileMentor/CompProfileUser";
-import NavbarCompUser from "../../components/profileMentor/NavbarCompUser";
+import Navbar from "../../components/common/Navbar";
 import React, { useState } from "react";
 import password from "../../assets/css/password.css";
 import style from "../../assets/css/styleProfileMentor.css";
@@ -20,7 +20,7 @@ const ChangePasswordUser = () => {
 
   return (
     <>
-      <NavbarCompUser />
+      <Navbar />
       <div class="container"></div>
       <div class="container mb-5">
         <div class="row">

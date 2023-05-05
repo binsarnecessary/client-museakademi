@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Footer from "../../components/common/Footer";
-import NavbarCompUser from "../../components/profileMentor/NavbarCompUser";
 import CompProfileUser from "../../components/profileMentor/CompProfileUser";
 import { useNavigate, Navigate } from "react-router-dom";
-import { selectUser } from "../../store/slices/authSlice";
-import axios from "axios";
-import { addUser } from "../../store/slices/authSlice";
-import { Alert } from "react-bootstrap";
+import Navbar from "../../components/common/Navbar";
 import "react-phone-input-2/lib/style.css";
 
 const ProfileUser = () => {
@@ -25,7 +21,7 @@ const ProfileUser = () => {
 
   return (
     <>
-      <NavbarCompUser />
+      <Navbar />
       <div class="container mt-5"></div>
       <div class="container mb-5 ">
         <div class="row mt-lg-5">

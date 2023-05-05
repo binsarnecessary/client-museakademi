@@ -1,5 +1,5 @@
 import Footer from "../../components/common/Footer";
-import NavbarCompUser from "../../components/profileMentor/NavbarCompUser";
+import Navbar from "../../components/common/Navbar";
 import React, { useState } from "react";
 import CompProfileUser from "../../components/profileMentor/CompProfileUser";
 import "react-phone-input-2/lib/style.css";
@@ -29,7 +29,7 @@ const ProfilePicUser = () => {
 
   return (
     <>
-      <NavbarCompUser />
+      <Navbar />
       <div class="container mt-5"></div>
       <div class="container mb-5">
         <div class="row mt-lg-5">

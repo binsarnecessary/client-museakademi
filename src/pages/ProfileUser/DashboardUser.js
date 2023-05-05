@@ -1,23 +1,48 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../../components/common/Navbar";
 import Footer from "../../components/common/Footer";
-import LogoKategori1 from "../../assets/image/KategoriCourse1.png";
 import "./DashboardUser.css";
-import { Link, useParams } from "react-router-dom";
-import dataKursus from "../ClassroomSiswa/Data/DataKursus"
+import dataKursus from "../ClassroomSiswa/Data/DataKursus";
 import SideDashboardJadwalKursusSiswa from "./SideDashboardJadwalKursusSiswa";
 
 function DashboardUser() {
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Get Token From Local Storage
+        const token = localStorage.getItem("token_key");
+        //Check Valid Token From API
+        const currentUserRequest = await axios.get(
+          "https://server-museakademi-production.up.railway.app/auth/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const currentUserResponse = currentUserRequest.data;
+
+        if (currentUserResponse.status) {
+          setUser(currentUserResponse.data.user);
+        }
+      } catch (err) {
+        setUser(false);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       <Navbar />
       <div class="container mb-5 mt-5">
         <div class="row mt-lg-4">
           <div id="header-dashboard" class="col-12 mt-3">
-            <h3>Dashboard Siswa</h3>
+            <h3>Dashboard {user.name}</h3>
             <p>
-              Hai, Sambo! <span v-html="selectedSmiley"></span>
+              Lihat statistik dan Kelas yang kamu ikutin disini 
             </p>
           </div>
         </div>
@@ -41,7 +66,7 @@ function DashboardUser() {
               <div class="statistic-col card">
                 <div class="statistic-item">
                   <i class="las la-briefcase text-primary"></i>
-  
+
                   <div>
                     <h4>2</h4>
                     <span class="text-muted">Total Kursus</span>
@@ -70,7 +95,7 @@ function DashboardUser() {
                           </div>
                         </div>
                       </a>
-                      
+
                       <div class="mt-4">
                         <table class="table table-responsive">
                           <thead class="thead-light">
@@ -96,24 +121,27 @@ function DashboardUser() {
                               <th
                                 scope="col"
                                 class="text-left font-weight-normal"
-                              >Sertifikat</th>
+                              >
+                                Sertifikat
+                              </th>
                             </tr>
                           </thead>
-                          {dataKursus.map((item)=>(
-                          <tbody>
-                            <tr>
-                              <td class="text-left">
-                                {item.kursus}
-                              </td>
-                              <td class="text-center">{item.kursusStart}</td>
-                              <td class="text-right">{item.kursusEnd}</td>
-                              <td class="text-center text-primary"><a href={item.sertifikat}><i class="las la-certificate la-2x"></i></a></td>
-                            </tr>
-                          </tbody>
+                          {dataKursus.map((item) => (
+                            <tbody>
+                              <tr>
+                                <td class="text-left">{item.kursus}</td>
+                                <td class="text-center">{item.kursusStart}</td>
+                                <td class="text-right">{item.kursusEnd}</td>
+                                <td class="text-center text-primary">
+                                  <a href={item.sertifikat}>
+                                    <i class="las la-certificate la-2x"></i>
+                                  </a>
+                                </td>
+                              </tr>
+                            </tbody>
                           ))}
                         </table>
                       </div>
-                       
                     </div>
                   </div>
                 </div>
@@ -122,8 +150,8 @@ function DashboardUser() {
           </div>
           <div class="col-12 col-lg-5">
             <span class="text-muted small">Jadwal Kursus</span>
-            
-              <SideDashboardJadwalKursusSiswa/>
+
+            <SideDashboardJadwalKursusSiswa />
           </div>
         </div>
       </div>

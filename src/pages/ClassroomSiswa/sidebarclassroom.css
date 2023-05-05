@@ -5,23 +5,21 @@
 }
 .container-sidebar{
     display: flex;
-    position: relative;
-    margin-left: 12%;
-    margin-top: 50px;
-
 }
 
 .main-sidebar{
     width: 100%;
     padding: 20px;
-    margin-top: 20px;
+    margin-left: 270px;
 }
 
-.sidebar{
+.sidebar2{
     background: #3ABCD8;
     color: #fff;
     min-height: 200vh;
-    width: 70px;
+    width: 270px;
+    position: fixed;
+    top: 0;
 }
 
 .top_section{
@@ -39,17 +37,18 @@
     margin-left: 50px;
 }
 
-.link{
+.link2{
     display: flex;
     color: #fff;
     padding: 13px 15px;
     gap: 1px;
     transition: all 0.5s;
+    text-decoration: none;
 
    
 }
 
-.link:hover{
+.link2:hover{
     background-color: #0000001A;
     color: #fff;
     transition: all 0.5s;
@@ -64,7 +63,8 @@
 .icon, .link_text{
     margin-left: 15px;
     font-family: "Open Sans", sans-serif;
-    font-size: 18px;
+    font-size: 1rem;
+    text-decoration: none;
 }
 
 .logo-nav {
@@ -73,6 +73,7 @@
     padding: auto;
     filter: brightness(0) invert(1);
 }
+
 
 
 

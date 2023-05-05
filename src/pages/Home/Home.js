@@ -6,18 +6,6 @@ import service2 from '../../assets/image/service2.png';
 import service3 from '../../assets/image/service3.png';
 import { Link } from 'react-router-dom';
 
-
-import logolg from '../../assets/image/logo-large.png'
-import digistar from '../../assets/image/logo-digistar.png'
-import coursePic1 from '../../assets/image/course-img1.jpg'
-import LogoKategori1 from '../../assets/image/KategoriCourse1.png'
-import LogoKategori2 from '../../assets/image/KategoriCourse2.png'
-import LogoKategori3 from '../../assets/image/KategoriCourse3.png'
-import LogoKategori4 from '../../assets/image/KategoriCourse4.png'
-import LogoKategori5 from '../../assets/image/KategoriCourse5.png'
-import LogoKategori6 from '../../assets/image/KategoriCourse6.png'
-import LogoKategori7 from '../../assets/image/KategoriCourse7.png'
-import LogoKategori8 from '../../assets/image/KategoriCourse8.png'
 import '../../assets/css/style.css'
 import '../../assets/css/bootstrap.css'
 import '../../assets/css/landingpage.css'

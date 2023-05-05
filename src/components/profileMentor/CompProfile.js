@@ -1,29 +1,66 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import pict from '../../assets/image/logo-navbar.png'
 import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 function CompProfile() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [isLoggedin, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
+  const [searchTerm, setSearchTerm] = useState("");
 
-    const navigate = useNavigate();
-    const location = useLocation();
-    const [searchTerm, setSearchTerm] = useState('');
-  
-      const handleSubmit = (event) => {
-        event.preventDefault();
-      
-  
-      console.log('Searching for "${searchTerm}"');
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    console.log('Searching for "${searchTerm}"');
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Get Token From Local Storage
+        const token = localStorage.getItem("token_key");
+
+        if (!token) {
+          setIsLoggedIn(false);
+          return;
+        }
+
+        //Check Valid Token From API
+        const currentUserRequest = await axios.get(
+          "https://server-museakademi-production.up.railway.app/auth/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const currentUserResponse = currentUserRequest.data;
+
+        if (currentUserResponse.status) {
+
+          setUser(currentUserResponse.data.user);
+          setIsLoggedIn(true);
+        } else {
+          setIsLoggedIn(false);
+        }
+      } catch (err) {
+        setIsLoggedIn(false);
       }
+    };
 
+    fetchData();
+  }, []);
     return(
 <>
 <div class="side-menu">
     <div class="side-menu-top ">
-        <img src={pict} alt=""/>
-            <span class="mt-3">Nama</span>
-            <span class="text-muted small">username</span>
+        <img src={user.profile_picture} alt=""/>
+            <span class="mt-3">{user.name}</span>
+            <span class="text-muted small">{user.email}</span>
     </div>
     <div class="mt-4">
         <a onClick={() => navigate('/mentor/profile/picture')} className={`sidebar-link ${location.pathname === '/Profile_Pic' ? 'active' : ''}`}>

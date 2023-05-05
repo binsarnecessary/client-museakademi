@@ -30,9 +30,7 @@ export const Free = () => {
     <>
       {course.some((c) => !c.isCoursePaid) ? (
         <ProductListFree currentProducts={course} />
-      ) : (
-        <h5>Apapun</h5>
-      )}
+      ) : null } 
     </>
   );
   

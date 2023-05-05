@@ -71,14 +71,7 @@ const NavbarClassroomSiswa = () => {
 
   return (
     <>
-      <Navbar
-        collapseOnSelect
-        expand="lg"
-        bg="white"
-        variant="light"
-        className="shadow-sm"
-        fixed="top"
-      >
+      <div className="navbar navbar-expand-lg navbar-light bg-white shadow-sm d-flex align-items-center">
         <div className="container">
         <Navbar.Collapse
           id="responsive-navbar-nav"
@@ -101,7 +94,7 @@ const NavbarClassroomSiswa = () => {
           </li>
         </Navbar.Collapse>
         </div>
-      </Navbar>
+      </div>
     </>
   );
 };

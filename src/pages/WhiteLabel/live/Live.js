@@ -39,7 +39,7 @@ export const Live = () => {
       <div class="container">
         <div class="row">
           <div class="mb-3 col-12 d-flex align-items-center justify-content-between">
-            <h5>Acara Livestreaming Gratis</h5>
+            <h5>Acara Livestreaming</h5>
             <Link
               to={"/livestreaming"}
               target="_top"

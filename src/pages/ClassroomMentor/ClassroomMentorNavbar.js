@@ -77,7 +77,6 @@ const NavbarClassroomSiswa = () => {
         bg="white"
         variant="light"
         className="shadow-sm"
-        fixed="top"
       >
         <div className="container">
         <Navbar.Collapse
@@ -87,7 +86,7 @@ const NavbarClassroomSiswa = () => {
           <Image
             src={profil}
             className="rounded-circle"
-            height="50"
+            height="45"
             alt="Avatar"
           ></Image>
           <NavDropdown title={user.name} id="collasible-nav-dropdown">

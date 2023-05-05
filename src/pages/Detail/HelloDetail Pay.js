@@ -57,7 +57,7 @@ export const HelloDetail = () => {
 
   // const HandlePayment = async () => {
 
-  //     const paymentResponse = await axios.post("http://localhost:7000/api/order");
+  //     const paymentResponse = await axios.post("https://server-museakademi-production.up.railway.app/api/order");
   //     const json = await paymentResponse.json();
   //     const paymentURL = json.transaction_url;
   //     console.log(json);

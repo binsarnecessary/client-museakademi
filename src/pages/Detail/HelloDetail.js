@@ -98,7 +98,9 @@ export const HelloDetail = () => {
     e.preventDefault();
     if (!token) {
       navigate("/login");
+      return;
     }
+    
     try {
       const userToSubmitPayment = new FormData();
 
@@ -305,8 +307,8 @@ export const HelloDetail = () => {
                         value={coursePrice}
                         style={{ display: "none" }}
                       />
-                      <button type="submit" class="btn btn-primary">
-                        Submit
+                      <button type="submit" class="btn btn-danger btn-block btn-lg">
+                        Beli Kursus
                       </button>
                     </Form>
                   </a>

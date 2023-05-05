@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "../../assets/css/style.css";
 import "../../assets/css/bootstrap.css";
-import LogoNavbar from "../../assets/image/logo-navbar.png";
-import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import LogoMitra from "../../assets/image/um.png";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { NavDropdown } from "react-bootstrap";
 import { addUser } from "../../store/slices/authSlice";
 import axios from "axios";
-import { Course } from "../../pages/Kursus/Course";
-import { Home } from "../../pages/Home/Home";
-import { Error } from "./Error";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Image from "react-bootstrap/Image";
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -93,8 +91,8 @@ function Navbar() {
         class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm"
       >
         <div class="container">
-          <Link class="navbar-brand" to="/">
-            <img src={LogoNavbar} alt height={30} />
+          <Link class="navbar-brand" to="/um-malang">
+            <img src={LogoMitra} alt height={30} />
           </Link>
           <form class="my-1 ml-lg-3" action="#" method="GET">
             <div class="input-group">
@@ -141,6 +139,12 @@ function Navbar() {
                           <span>Daftar Mentor</span>
                         </Link>
                       </li>
+                      <Image
+                        src={user.profile_picture}
+                        className="rounded-circle"
+                        height="40"
+                        alt="Avatar"
+                      ></Image>
                       <li class="nav-item">
                         <a>
                           <NavDropdown
@@ -179,7 +183,14 @@ function Navbar() {
                           <span>Daftar Mentor</span>
                         </Link>
                       </li>
+                      <Image
+                        src={user.profile_picture}
+                        className="rounded-circle"
+                        height="50"
+                        alt="Avatar"
+                      ></Image>
                       <li class="nav-item">
+                      
                         <a>
                           <NavDropdown
                             title={user.name}
@@ -191,7 +202,7 @@ function Navbar() {
                               Profile
                             </NavDropdown.Item>
                             <NavDropdown.Item
-                              onClick={() => navigate("/classroom/user")}
+                              onClick={() => navigate("/user")}
                             >
                               My Class
                             </NavDropdown.Item>

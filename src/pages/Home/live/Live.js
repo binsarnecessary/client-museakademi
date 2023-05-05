@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import productData from "../../Kursus/CardData";
-import LiveData from "./LiveData";
 import { Link } from "react-router-dom";
 import { LiveHome } from "./LiveHome";
 import axios from "axios";
@@ -39,7 +37,7 @@ export const Live = () => {
       <div class="container">
         <div class="row">
           <div class="mb-3 col-12 d-flex align-items-center justify-content-between">
-            <h5>Acara Livestreaming Gratis</h5>
+            <h5>Acara Livestreaming</h5>
             <Link
               to={"/live-streaming"}
               target="_top"

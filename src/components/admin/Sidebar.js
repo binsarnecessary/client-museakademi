@@ -33,7 +33,6 @@ import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexBetween from "./FlexBetween";
 import Swal from "sweetalert2";
-import profileImage from "../../assets/image/profile.jpeg";
 import axios from "axios";
 
 const navItems = [

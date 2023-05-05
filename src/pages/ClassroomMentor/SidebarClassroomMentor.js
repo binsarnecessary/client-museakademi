@@ -1,6 +1,6 @@
 
 import React from "react";
-import "./sidebarclassroommentor.css";
+import "../ClassroomSiswa/sidebarclassroom.css";
 import "../../assets/css/classroom.css";
 import {
   FaTachometerAlt,
@@ -37,10 +37,10 @@ const SidebarClassroomMentor = ({ children }) => {
   return (
     <>
       <Navbar23 />
-      <div className="container">
         <div className="container-sidebar">
-          <div className="sidebar fixed-top">
+          <div className="sidebar2">
             <div class="sidebar-header">
+              <div className="top_section">
               <a href="/" class="d-none d-lg-block">
                 <img
                   src={LogoNavbar}
@@ -49,23 +49,23 @@ const SidebarClassroomMentor = ({ children }) => {
                   height="30"
                 />
               </a>
+              </div>
             </div>
 
             {menuItem.map((item, index) => (
               <NavLink
                 to={item.path}
                 key={index}
-                className="link"
+                className="link2"
                 activeclassName="active"
               >
                 <div className="icon">{item.icon}</div>
-                <div className="link_text">{item.name}</div>
+                <div className="link_text d-sm-inline">{item.name}</div>
               </NavLink>
             ))}
           </div>
-          <div className="main">{children}</div>
+          <div className="main-sidebar">{children}</div>
         </div>
-      </div>
     </>
   );
 };
