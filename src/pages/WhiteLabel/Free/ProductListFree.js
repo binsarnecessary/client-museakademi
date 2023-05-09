@@ -10,7 +10,7 @@ export const ProductListFree = () => {
       try {
         //Check Valid Token From API
         const currentCourseRequest = await axios.get(
-          "https://server-museakademi-production.up.railway.app/api/course"
+          "https://server-museakademi-production.up.railway.app/api/course/paid/false"
         );
 
         const currentCourseResponse = currentCourseRequest.data;
@@ -75,22 +75,6 @@ export const ProductListFree = () => {
                         <div class="text-muted small ">
                           {currentProducts.namaMentor}
                         </div>
-
-                        <s>
-                          <span class="text-truncate">
-                            <strong>
-                              {currentProducts.isCoursePaid ? null : (
-                                <>
-                                  Rp.{" "}
-                                  {currentProducts.coursePrice.toLocaleString(
-                                    "id-ID"
-                                  )}
-                                </>
-                              )}
-                            </strong>
-                          </span>
-                        </s>
-
                         <h6>
                           <span class="badge badge-success">Gratis</span>
                         </h6>

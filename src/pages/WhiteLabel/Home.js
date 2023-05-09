@@ -1,5 +1,5 @@
 import React from "react";
-import banner from "../../assets/image/um-malang.jpeg";
+import banner from "../../assets/image/illustration-banner.png";
 import service1 from "../../assets/image/service1.png";
 import service2 from "../../assets/image/service2.png";
 import service3 from "../../assets/image/service3.png";
@@ -18,7 +18,7 @@ import { Incoming } from "./Incoming/Incoming";
 import { Free } from "./Free/Free";
 import { Live } from "./live/Live";
 
-export const Home = () => {
+const HomeLabel = () => {
   return (
     <>
       <Navbar />
@@ -118,6 +118,7 @@ export const Home = () => {
           <Incoming />
           <Free />
         </div>
+
         <section id="section-contact" class="py-4">
           <div class="container">
             <div class="row d-flex">
@@ -214,3 +215,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default HomeLabel;

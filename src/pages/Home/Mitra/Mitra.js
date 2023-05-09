@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+// import { default as mitra } from "./DataMitra"
+import { Link } from 'react-router-dom';
 
 const Mitra = () => {
   const [mitra, setMitra] = useState([]);
@@ -40,17 +42,17 @@ const textContainerStyle = {
   return (
     <div id="list-categories" class="d-flex" style={{ overflowX: "auto" }}>
       {mitra.map((mitra) => (
-        <div class="mb-3 col-lg-3 col-6" key={mitra.id} >
+        <div class="mb-3 col-lg-3 col-6">
           
             <div class="category-items" >
-              <div style={textContainerStyle}>
-              <a href={`/${mitra.slug}`}>
+              <div class="media" style={textContainerStyle}>
+                <Link to={`/${mitra.slug}`}>
                   <img height={'60px'} src={mitra.logoMitra} alt={mitra.nameMitra} />
-                </a>
+                </Link>
                 <div class="media-body">
-                  <h6 class="mt-1 mb-0 text-small">
-                    <small>{mitra.courseMitra}</small>
-                  </h6>
+                  <h6 class="mt-1 mb-0 text-small"><small><b>{mitra.courseMitra}</b></small></h6>
+                    <small>{mitra.nameMitra}</small>
+                 
                 </div>
               </div>
             </div>

@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export const LiveHome = (props) => {
-    console.log(props.LiveData)
-
     const [isButtonActive, setIsButtonActive] = useState(false);
     const eventDate = new Date(props.LiveData.liveStart);
     // Mengubah props.LiveData.time menjadi objek Date

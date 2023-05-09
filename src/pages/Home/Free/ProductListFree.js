@@ -75,22 +75,6 @@ export const ProductListFree = () => {
                         <div class="text-muted small ">
                           {currentProducts.namaMentor}
                         </div>
-
-                        <s>
-                          <span class="text-truncate">
-                            <strong>
-                              {currentProducts.isCoursePaid ? null : (
-                                <>
-                                  Rp.{" "}
-                                  {currentProducts.coursePrice.toLocaleString(
-                                    "id-ID"
-                                  )}
-                                </>
-                              )}
-                            </strong>
-                          </span>
-                        </s>
-
                         <h6>
                           <span class="badge badge-success">Gratis</span>
                         </h6>

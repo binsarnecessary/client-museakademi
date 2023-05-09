@@ -1,46 +1,25 @@
 import um from '../../../assets/image/um.png'
+import ub from '../../../assets/image/ub.png'
+import akatsuki from '../../../assets/image/akatsuki.png'
 const mitra = [
     {
         id : 1,
         name: 'Desain Aplikasi',
-        image: um,
+        nameMitra: 'UM',
+        logoMitra: um,
     },
     {
         id : 2,
         name: 'Proyek Perangkat Lunak',
-        image: um,
+        nameMitra: 'UB',
+        logoMitra: ub,
     },
     {
         id : 3,
         name: 'Desain Aplikasi',
-        image: um,
-    },
-    {
-        id : 4,
-        name: 'Desain Aplikasi',
-        image : um,
-    },
-    {
-        id : 5,
-        name: 'Desain Aplikasi',
-        image : um,
-    },
-    {
-        id : 6,
-        name: 'Desain Aplikasi',
-        image : um,
-    },
-    {
-        id : 7,
-        name: 'Desain Aplikasi',
-        image : um,
-    },
-    {
-        id : 8,
-        name: 'Desain Aplikasi',
-        image : um,
-    },
-    
+        nameMitra: 'Akatsuki',
+        logoMitra: akatsuki,
+    },   
 ];
 
 export default mitra;

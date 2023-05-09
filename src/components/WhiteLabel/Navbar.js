@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../assets/css/style.css";
 import "../../assets/css/bootstrap.css";
 import LogoMitra from "../../assets/image/um.png";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { NavDropdown } from "react-bootstrap";
 import { addUser } from "../../store/slices/authSlice";
@@ -10,6 +10,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Image from "react-bootstrap/Image";
+// import mitras from "../../pages/Home/Mitra/DataMitra";
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -62,12 +63,6 @@ function Navbar() {
     fetchData();
   }, []);
 
-  // const logout = () => {
-  //   localStorage.removeItem('token_key');
-
-  //   setIsLoggedIn(false);
-  //   setUser({});
-  // };
   const handleLogout = () => {
     localStorage.removeItem("token_key");
     localStorage.removeItem("role");
@@ -84,16 +79,42 @@ function Navbar() {
     });
   };
 
+  const [mitra, setMitra] = useState([]);
+  const { slug } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Check Valid Token From API
+        const currentMitraRequest = await axios.get(
+          `https://server-museakademi-production.up.railway.app/api/mitra/${slug}`
+        );
+
+        const currentMitraResponse = currentMitraRequest.data;
+
+        if (currentMitraResponse.status) {
+          setMitra(currentMitraResponse.data.Mitra);
+        }
+      } catch (err) {
+        setMitra(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
   return (
     <div className="App">
       <nav
         id="nav"
         class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm"
       >
-        <div class="container">
+        <div key={mitra.nameMitra} class="container">
           <Link class="navbar-brand" to="/um-malang">
-            <img src={LogoMitra} alt height={30} />
+            <img src={mitra.logoMitra} alt height={40} />
           </Link>
+          
           <form class="my-1 ml-lg-3" action="#" method="GET">
             <div class="input-group">
               <div class="input-group-prepend">
@@ -190,7 +211,6 @@ function Navbar() {
                         alt="Avatar"
                       ></Image>
                       <li class="nav-item">
-                      
                         <a>
                           <NavDropdown
                             title={user.name}
@@ -201,9 +221,7 @@ function Navbar() {
                             >
                               Profile
                             </NavDropdown.Item>
-                            <NavDropdown.Item
-                              onClick={() => navigate("/user")}
-                            >
+                            <NavDropdown.Item onClick={() => navigate("/user")}>
                               My Class
                             </NavDropdown.Item>
                             <NavDropdown.Item onClick={handleLogout}>

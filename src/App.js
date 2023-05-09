@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import UserRoutes from "./routes/user";
 import MentorRoutes from "./routes/mentor";
 import AdminRoutes from "./routes/admin";
-import LabelRoutes from "./routes/whiteLabel"
+// import LabelRoutes from "./routes/whiteLabel"
 import Layout from "./pages/AdminPage/layout";
 import { Error } from "./components/common/Error";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -42,7 +42,7 @@ function App() {
           <Route path="/" element={<ProtectedRoutesAdmin />}>
             <Route element={<Layout />}>{routesDefine(AdminRoutes)}</Route>
           </Route>
-          {routesDefine(LabelRoutes)}
+          {/* {routesDefine(LabelRoutes)} */}
           <Route path="/*" element={<Error />} />
         </Routes>
       </ThemeProvider>

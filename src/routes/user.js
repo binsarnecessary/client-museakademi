@@ -2,6 +2,7 @@ import React from 'react'
 import "bootstrap/dist/css/bootstrap.css";
 
 import { Home } from "../pages/Home/Home";
+import { default as HomeLabel} from "../pages/WhiteLabel/Home";
 import { Course } from "../pages/Kursus/Course";
 import Login from "../components/common/Login";
 import Registration from "../components/common/Registration";
@@ -38,6 +39,52 @@ const UserRoutes = [
   {
     path: "/register",
     element: <Registration />,
+  },
+  {
+    name: "label",
+    path: "/:slug",
+    children: [
+      {
+        path: "",
+        element: <HomeLabel />
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/register",
+        element: <Registration />,
+      },
+      {
+        name: "Course",
+        path: "/course",
+        children: [
+          {
+            path: "",
+            element: <Course />,
+          },
+          {
+            path: "/:itemId",
+            element: <HelloDetail />,
+          },
+        ],
+      },
+      {
+        name: "Live Streaming",
+        path: "/live-streaming",
+        children: [
+          {
+            path: "",
+            element: <Livestreaming />,
+          },
+          {
+            path: "/:itemId",
+            element: <DetailLivestream />,
+          },
+        ],
+      }
+    ],
   },
   {
     name: "Course",
