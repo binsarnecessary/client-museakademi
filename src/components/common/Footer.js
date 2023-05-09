@@ -1,6 +1,6 @@
 import React from "react";
 import LogoLarge from "../../assets/image/logo-large.png";
-import DigiStar from "../../assets/image/logo-digistar.png";
+import Intara from "../../assets/image/intara.png";
 import * as Icon from "react-bootstrap-icons";
 
 function Footer() {
@@ -61,11 +61,11 @@ function Footer() {
                 </div>
                 <div class="col-11">
                   <a
-                    href="https://wa.me/6285755055835"
+                    href="https://wa.me/6285173336607"
                     class="text-white"
                     target="_blank"
                   >
-                    <small>+62 857-5505-5835</small>
+                    <small>+62 851-7333-6607</small>
                   </a>
                 </div>
               </div>
@@ -126,13 +126,13 @@ function Footer() {
                 <img
                   alt="digistar"
                   class="another-logo mb-3"
-                  src={DigiStar}
+                  src={Intara}
                   width="150"
                 />{" "}
               </a>{" "}
             </div>
           </div>
-          <p>Copyright &copy; 2023. Muse Akademi</p>
+          <p>Copyright &copy; 2019. Muse Akademi</p>
         </div>
       </footer>
     </>
