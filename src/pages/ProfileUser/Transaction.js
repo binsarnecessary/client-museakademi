@@ -81,9 +81,9 @@ const Transaction = () => {
                     <div class="col">
                         <div class="btn-group" >
                             <button type="button active" className={`btn mr-2 ${filter === 'Semua' ? 'active' : ''}`} onClick={() => handleFilter('semua')} >Semua </button>
-                            <button type="button" className={`btn `} onClick={() => handleFilter('menunggu pembayaran')}>Menunggu Pembayaran</button>
-                            <button type="button" className={`btn `} onClick={() => handleFilter('menunggu konfirmasi')}>Menunggu Konfirmasi</button>
-                            <button type="button" className={`btn `} onClick={() => handleFilter('selesai')}>Selesai</button>
+                            <button type="button" className={`btn mr-2`} onClick={() => handleFilter('menunggu pembayaran')}>Menunggu Pembayaran</button>
+                            <button type="button" className={`btn mr-2`} onClick={() => handleFilter('menunggu konfirmasi')}>Menunggu Konfirmasi</button>
+                            <button type="button" className={`btn mr-2`} onClick={() => handleFilter('selesai')}>Selesai</button>
                             <button type="button" className={`btn `} onClick={() => handleFilter('tidak valid')}>Tidak valid</button>
                         </div>
                     </div>
@@ -112,7 +112,7 @@ const Transaction = () => {
                                                 <span class="text-muted small"><del>Rp 398.000</del></span>
                                             </div>
                                             <div>
-                                                <span class={`badge badge-${item.status === 'menunggu pembayaran' ? 'warning' : 'success'}`}>
+                                                <span class={`badge ${item.status === 'menunggu pembayaran' ? 'badge-warning' : item.status === 'menunggu konfirmasi' ? 'badge-info' : item.status === 'selesai' ? 'badge-success' : 'badge-danger'}`}>
                                                     {item.status}
                                                 </span>
                                             </div>
