@@ -26,6 +26,8 @@ import ClassroomSiswaNilai from '../pages/ClassroomSiswa/ClassroomSiswaNilai';
 import ClassroomSiswaSesiKursus from '../pages/ClassroomSiswa/ClassroomSiswaSesiKursus';
 import ClassroomSiswaSesiKursusDetailById from '../pages/ClassroomSiswa/ClassroomSiswaSesiKursusDetailById';
 
+import Transaction from '../pages/ProfileUser/Transaction';
+
 const UserRoutes = [
   {
     name: "Home Page",
@@ -35,6 +37,10 @@ const UserRoutes = [
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/testransaction",
+    element: <Transaction/>,
   },
   {
     path: "/register",

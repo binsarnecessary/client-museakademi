@@ -1,0 +1,20 @@
+
+
+
+.btn {
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s ease-out; 
+    outline: none;
+    justify-content: space-between;
+    
+  }
+  
+  .btn.active,
+  .btn:hover {
+    border-bottom-color: #3e8fd6;
+    color: #3e8fd6;
+    box-shadow: none;
+    outline: none;
+  }
+
+  
