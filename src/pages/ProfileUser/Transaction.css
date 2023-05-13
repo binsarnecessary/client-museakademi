@@ -11,9 +11,9 @@
     color: #3ABCD8;
   }
   
-  
   .btn-custom:focus {
     color: #3ABCD8;
+    font-size: 17px;
     border-bottom: 2px solid #3ABCD8;
     outline: none;
   }
