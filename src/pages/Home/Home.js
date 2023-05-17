@@ -4,6 +4,7 @@ import banner from "../../assets/image/illustration-banner.png";
 import service1 from "../../assets/image/service1.png";
 import service2 from "../../assets/image/service2.png";
 import service3 from "../../assets/image/service3.png";
+import service4 from "../../assets/image/service4.svg";
 import { Link } from "react-router-dom";
 
 import "../../assets/css/style.css";
@@ -36,23 +37,24 @@ export const Home = () => {
                   Learning Skills
                 </p>
                 <p class="px-4 hero-description">
-                  Berani tingkatkan skillmu di bidang Art, Multimedia dan Bisnis
-                  Jatuhkan pilihanmu di Muse Akademi untuk wujudkan mimpimu
-                  sebagai talent keren Yuk, jangan ragu klik kursus terbaikmu!
+                  Berani tingkatkan skillmu dibidang yang kamu pilih pada
+                  layanan course Muse Akademi untuk wujudkan mimpimu sebagai
+                  talent
                 </p>
-                <form class="d-none d-lg-block" action="#" method="get">
+                <form class="d-none d-lg-block">
                   <div class="mx-4 input-group">
                     <input
                       type="search"
-                      name="title"
                       class="form-control"
                       aria-label="search-input"
                       placeholder="Cari apa yang ingin Anda pelajari"
                     />
                     <div class="input-group-append">
-                      <button type="submit" class="btn btn-primary">
-                        <Icon.Search />
-                      </button>
+                      <Link to={"/course"}>
+                        <button type="submit" class="btn btn-primary">
+                          <Icon.Search />
+                        </button>
+                      </Link>
                     </div>
                   </div>
                 </form>
@@ -64,11 +66,11 @@ export const Home = () => {
         <section id="section-services" class="p-2 mb-0">
           <div class="container">
             <div class="row justify-content-center">
-              <div class="col-sm-12 col-lg-4">
+              <div class="col-sm-12 col-lg-3">
                 <div class="mt-3 service-item">
                   <div class="row">
-                    <div class="pt-2 col-2">
-                      <img src={service1} />
+                    <div class="pt-3 col-2">
+                      <img src={service1} width="50" height="50" />
                     </div>
                     <div class="pl-4 col-10">
                       <h6 class="text-white">Standar Industri</h6>
@@ -79,11 +81,11 @@ export const Home = () => {
                   </div>
                 </div>
               </div>
-              <div class="col-sm-12 col-lg-4">
+              <div class="col-sm-12 col-lg-3">
                 <div class="mt-3 service-item">
                   <div class="row">
-                    <div class="pt-2 col-2">
-                      <img src={service2} />
+                    <div class="pt-3 col-2">
+                      <img src={service2} width="50" height="50" />
                     </div>
                     <div class="pl-4 col-10">
                       <h6 class="text-white">Live Streaming</h6>
@@ -95,16 +97,32 @@ export const Home = () => {
                   </div>
                 </div>
               </div>
-              <div class="col-sm-12 col-lg-4">
+              <div class="col-sm-12 col-lg-3">
                 <div class="mt-3 service-item">
                   <div class="row">
-                    <div class="pt-2 col-2">
-                      <img src={service3} />
+                    <div class="pt-3 col-2">
+                      <img src={service3} width="50" height="50" />
                     </div>
                     <div class="pl-4 col-10">
                       <h6 class="text-white">Sertifikasi</h6>
                       <p class="text-white">
                         Dapatkan sertifikat keahlian setelah mengikuti kursus
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-12 col-lg-3">
+                <div class="mt-3 service-item">
+                  <div class="row">
+                    <div class="pt-3 col-2">
+                      <img src={service4} width="50" height="50" />
+                    </div>
+                    <div class="pl-4 col-10">
+                      <h6 class="text-white">Bootcamp</h6>
+                      <p class="text-white">
+                        Pembelajaran yang dilakukan secara class offline
                       </p>
                     </div>
                   </div>

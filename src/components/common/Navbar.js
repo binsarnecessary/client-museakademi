@@ -210,6 +210,11 @@ function Navbar() {
                             >
                               My Class
                             </NavDropdown.Item>
+                            <NavDropdown.Item
+                              onClick={() => navigate("/order-list")}
+                            >
+                              Transaksi
+                            </NavDropdown.Item>
                             <NavDropdown.Item onClick={handleLogout}>
                               Logout
                             </NavDropdown.Item>

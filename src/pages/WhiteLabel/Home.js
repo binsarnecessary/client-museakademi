@@ -15,7 +15,6 @@ import Navbar from "../../components/WhiteLabel/Navbar";
 import * as Icon from "react-bootstrap-icons";
 
 import { Incoming } from "./Incoming/Incoming";
-import { Free } from "./Free/Free";
 import { Live } from "./live/Live";
 
 const HomeLabel = () => {
@@ -35,9 +34,9 @@ const HomeLabel = () => {
                   Learning Skills
                 </p>
                 <p class="px-4 hero-description">
-                  Berani tingkatkan skillmu di bidang Art, Multimedia dan Bisnis
-                  Jatuhkan pilihanmu di Muse Akademi untuk wujudkan mimpimu
-                  sebagai talent keren Yuk, jangan ragu klik kursus terbaikmu!
+                  Berani tingkatkan skillmu dibidang yang kamu pilih pada
+                  layanan course Muse Akademi untuk wujudkan mimpimu sebagai
+                  talent
                 </p>
                 <form class="d-none d-lg-block" action="#" method="get">
                   <div class="mx-4 input-group">
@@ -116,26 +115,12 @@ const HomeLabel = () => {
         <div class="py-2">
           <Live />
           <Incoming />
-          <Free />
         </div>
 
         <section id="section-contact" class="py-4">
           <div class="container">
-            <div class="row d-flex">
-              <div class="mb-5 col-12 order-lg-3 col-lg-6">
-                <div class="mt-4 embed-responsive embed-responsive-16by9">
-                  <iframe
-                    class="embed-responsive-item"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d987.7965627577654!2d112.65960255599809!3d-7.979691598994575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb0a21913e0b89d!2sJl.%20Selat%20Karimata%20No.E6%2F1%2C%20Lesanpuro%2C%20Kec.%20Kedungkandang%2C%20Kota%20Malang%2C%20Jawa%20Timur%2065138!5e0!3m2!1sid!2sid!4v1596089738723!5m2!1sid!2sid"
-                    frameborder="0"
-                    allowfullscreen=""
-                    aria-hidden="false"
-                    tabindex="0"
-                  ></iframe>
-                </div>
-              </div>
-
-              <div class="col-12 order-lg-1 justify-content-sm-center justify-content-lg-between">
+            <div class="row">
+              <div class="justify-content-sm-center justify-content-lg-between">
                 <div class="section-header">
                   <h5 class="section-title">Hubungi Kami</h5>
                   <p class="section-description">

@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 export const ProductList = () => {
   const [course, setCourse] = useState([]);
+const { slug } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         //Check Valid Token From API
         const currentCourseRequest = await axios.get(
-          "https://server-museakademi-production.up.railway.app/api/course"
+          `https://server-museakademi-production.up.railway.app/api/course/mitra/${slug}`
         );
 
         const currentCourseResponse = currentCourseRequest.data;
@@ -30,7 +31,7 @@ export const ProductList = () => {
 
     fetchData();
   }, []);
-
+  
   const currentProducts = course;
 
 
@@ -43,7 +44,7 @@ export const ProductList = () => {
             <div class="mb-3 col-12 d-flex align-items-center justify-content-between">
               <div class="col justify-content-sm-center justify-content-lg-start">
                 <div class="section-header">
-                  <h5 class="text-white section-title">Kursus Akan Datang</h5>
+                  <h5 class="text-white section-title">Kursus Mitra</h5>
                 </div>
               </div>
               <Link

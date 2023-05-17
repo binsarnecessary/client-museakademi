@@ -1,0 +1,77 @@
+.btn-custom {
+    background-color: transparent;
+    color:black;
+    border: none;
+    padding: 0;
+    margin-right: 40px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .btn-custom:active {
+    color: #3ABCD8;
+  }
+  
+  .btn-custom:focus {
+    color: #3ABCD8;
+    font-size: 17px;
+    border-bottom: 2px solid #3ABCD8;
+    outline: none;
+  }
+  
+  
+.list-group-item {
+    margin-right: 50px; /* memberikan jarak antara ListGroup.Item */    
+    color: black;
+    background: none;
+    text-align: center;
+    justify-content: space-between;
+    cursor: pointer;
+    
+  }
+  .list-group-item:focus{
+    outline: none;
+  }
+ 
+  
+
+  
+  .list-group-item.active {
+    color: #007bff; /* memberikan warna biru ketika diklik */
+    border-bottom: 2px solid blue; /* memberikan border bottom berwarna biru */
+    background: none;
+    background-color: transparent;
+
+
+  }
+  
+
+
+
+
+/* .btn-group{
+    justify-content: space-between;
+    
+}
+
+
+.btn {
+    background: none;
+    color: black;
+    border: 0;
+    border-radius: 0;
+    
+    
+  }
+  .btn:hover,
+  .active-button {
+    color: blue;
+    border-bottom: 2px solid blue;
+    outline: 0;
+}
+
+
+
+
+
+
+   */

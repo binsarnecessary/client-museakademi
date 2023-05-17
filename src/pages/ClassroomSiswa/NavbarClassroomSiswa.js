@@ -78,12 +78,11 @@ const NavbarClassroomSiswa = () => {
           className="justify-content-end"
         >
           <Image
-            src={profil}
+            src={user.profile_picture}
             className="rounded-circle"
             height="45"
             alt="Avatar"
           ></Image>
-          <li className="nav-item">
             <a>
           <NavDropdown title={user.name} id="collapsible-nav-dropdown">
             <NavDropdown.Item href="/profile-user">Profil Saya</NavDropdown.Item>
@@ -91,7 +90,6 @@ const NavbarClassroomSiswa = () => {
             <NavDropdown.Item onClick={handleLogout} href="">Keluar</NavDropdown.Item>
           </NavDropdown>
           </a>
-          </li>
         </Navbar.Collapse>
         </div>
       </div>
