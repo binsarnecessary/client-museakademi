@@ -1,16 +1,41 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { useParams } from "react-router-dom";
 import LogoLarge from "../../assets/image/logo-large.png";
-import DigiStar from "../../assets/image/logo-digistar.png";
+import Intara from "../../assets/image/intara.png";
+import axios from "axios";
 import * as Icon from "react-bootstrap-icons";
 
 function Footer() {
+  const [mitra, setMitra] = useState([]);
+  const { slug } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Check Valid Token From API
+        const currentMitraRequest = await axios.get(
+          `https://server-museakademi-production.up.railway.app/api/mitra/${slug}`
+        );
+
+        const currentMitraResponse = currentMitraRequest.data;
+
+        if (currentMitraResponse.status) {
+          setMitra(currentMitraResponse.data.Mitra);
+        }
+      } catch (err) {
+        setMitra(false);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       <footer>
         <div class="container">
           <div class="row">
             <div class="col-12 col-lg-3 mb-4 text-center">
-              <img src={LogoLarge} alt="logo footer" class="logo img-fluid" />
+              <img src={mitra.logoMitra} alt="logo footer" class="logo img-fluid" />
             </div>
             <div class="col-12 col-lg-4 mb-4">
               <h6>Kontak</h6>
@@ -20,10 +45,10 @@ function Footer() {
                 </div>
                 <div class="col-11">
                   <a
-                    href="mailto:museakademi.official@gmail.com"
+                    href= {mitra.emailMitra}
                     class="text-white"
                   >
-                    <small>museakademi.official@gmail.com</small>
+                    <small>{mitra.emailMitra}</small>
                   </a>
                 </div>
               </div>
@@ -33,11 +58,11 @@ function Footer() {
                 </div>
                 <div class="col-11">
                   <a
-                    href="https://www.instagram.com/museakademi/"
+                    href="https://www.instagram.com/{mitra.instagramMitra}/"
                     class="text-white"
                     target="_blank"
                   >
-                    <small>@museakademi</small>
+                    <small>{mitra.instagramMitra}</small>
                   </a>
                 </div>
               </div>
@@ -47,11 +72,11 @@ function Footer() {
                 </div>
                 <div class="col-11">
                   <a
-                    href="https://www.facebook.com/musee.malang.1"
+                    href="https://www.facebook.com/"
                     class="text-white"
                     target="_blank"
                   >
-                    <small>Musė Akademi</small>
+                    <small>{mitra.facebookMitra}</small>
                   </a>
                 </div>
               </div>
@@ -61,11 +86,11 @@ function Footer() {
                 </div>
                 <div class="col-11">
                   <a
-                    href="https://wa.me/6285755055835"
+                    href="https://wa.me/6285173336607"
                     class="text-white"
                     target="_blank"
                   >
-                    <small>+62 857-5505-5835</small>
+                    <small>{mitra.waMitra}</small>
                   </a>
                 </div>
               </div>
@@ -76,8 +101,7 @@ function Footer() {
                 <div class="col-11">
                   <span>
                     <small>
-                      Jl. Selat Karimata E6/1, Lesanpuro, Kedungkandang, Kota
-                      Malang
+                      {mitra.alamatMitra}
                     </small>
                   </span>
                 </div>
@@ -126,13 +150,13 @@ function Footer() {
                 <img
                   alt="digistar"
                   class="another-logo mb-3"
-                  src={DigiStar}
+                  src={LogoLarge}
                   width="150"
                 />{" "}
               </a>{" "}
             </div>
           </div>
-          <p>Copyright &copy; 2023. Muse Akademi</p>
+          <p>Copyright &copy; 2019. Muse Akademi</p>
         </div>
       </footer>
     </>
