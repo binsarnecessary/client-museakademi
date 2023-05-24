@@ -17,7 +17,7 @@ export const Livestreaming = () => {
       try {
         //Check Valid Token From API
         const currentLivestreamingRequest = await axios.get(
-          "https://server-museakademi-production.up.railway.app/api/livestreaming"
+          "https://server-museakademi-production-456b.up.railway.app/api/livestreaming"
         );
 
         const currentLivestreamingResponse = currentLivestreamingRequest.data;

@@ -15,7 +15,7 @@ function DashboardUser() {
         const token = localStorage.getItem("token_key");
         //Check Valid Token From API
         const currentUserRequest = await axios.get(
-          "https://server-museakademi-production.up.railway.app/auth/me",
+          "https://server-museakademi-production-456b.up.railway.app/auth/me",
           {
             headers: {
               Authorization: `Bearer ${token}`,

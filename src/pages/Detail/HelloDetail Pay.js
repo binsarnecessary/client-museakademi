@@ -34,7 +34,7 @@ export const HelloDetail = () => {
       try {
         //Check Valid Token From API
         const currentCourseRequest = await axios.get(
-          `https://server-museakademi-production.up.railway.app/api/course/${itemId}`
+          `https://server-museakademi-production-456b.up.railway.app/api/course/${itemId}`
         );
 
         const currentCourseResponse = currentCourseRequest.data;
@@ -57,7 +57,7 @@ export const HelloDetail = () => {
 
   // const HandlePayment = async () => {
 
-  //     const paymentResponse = await axios.post("https://server-museakademi-production.up.railway.app/api/order");
+  //     const paymentResponse = await axios.post("https://server-museakademi-production-456b.up.railway.app/api/order");
   //     const json = await paymentResponse.json();
   //     const paymentURL = json.transaction_url;
   //     console.log(json);
@@ -113,7 +113,7 @@ export const HelloDetail = () => {
       userToSubmitPayment.append("course_price", courseprice_field.current.value);
 
       const registerRequest = await axios.post(
-        "https://server-museakademi-production.up.railway.app/api/order",
+        "https://server-museakademi-production-456b.up.railway.app/api/order",
         userToSubmitPayment
       );
 

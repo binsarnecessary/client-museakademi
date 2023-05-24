@@ -27,7 +27,7 @@ export const Course = () => {
       try {
         //Check Valid Token From API
         const currentCourseRequest = await axios.get(
-          'https://server-museakademi-production.up.railway.app/api/course'
+          'https://server-museakademi-production-456b.up.railway.app/api/course'
         );
 
         const currentCourseResponse = currentCourseRequest.data;

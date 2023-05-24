@@ -11,7 +11,7 @@ const Mitra = () => {
       try {
         //Check Valid Token From API
         const currentMitraRequest = await axios.get(
-          "https://server-museakademi-production.up.railway.app/api/mitra"
+          "https://server-museakademi-production-456b.up.railway.app/api/mitra"
         );
 
         const currentMitraResponse = currentMitraRequest.data;

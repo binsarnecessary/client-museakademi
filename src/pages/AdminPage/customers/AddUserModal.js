@@ -65,7 +65,7 @@ const AddUserModal = ({ isOpen, onClose }) => {
     formData.append("profile_picture", profilePicture);
 
     axios
-      .post("https://server-museakademi-production.up.railway.app/auth/register", formData)
+      .post("https://server-museakademi-production-456b.up.railway.app/auth/register", formData)
       .then((response) => {
         Swal.fire({
           title: 'Sukses!',

@@ -30,13 +30,12 @@ const HomeLabel = () => {
               </div>
               <div class="order-2 order-lg-1 col-sm-12 col-lg-6">
                 <p class="px-4 hero-header">
-                  The Future of Smart Learning is Muse Akademi Excellence
-                  Learning Skills
+                  Herbalogy DRK Hadir sebagai solusi Kesehatan Alternatif
+                  Bagi Masyarakat Indonesia dan Enterpreneurship Product Herbal
                 </p>
                 <p class="px-4 hero-description">
-                  Berani tingkatkan skillmu dibidang yang kamu pilih pada
-                  layanan course Muse Akademi untuk wujudkan mimpimu sebagai
-                  talent
+                  Bersama DRK Wujudkan kesehatan secara optimal melalui kursus cara meracik
+                  berobat berbahan herbal alami Indonesia
                 </p>
                 <form class="d-none d-lg-block" action="#" method="get">
                   <div class="mx-4 input-group">

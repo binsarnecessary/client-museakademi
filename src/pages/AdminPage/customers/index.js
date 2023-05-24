@@ -18,7 +18,7 @@ const Customers = () => {
       try {
         //Check Valid Token From API
         const dataReq = await axios.get(
-          "https://server-museakademi-production.up.railway.app/api/users"
+          "https://server-museakademi-production-456b.up.railway.app/api/users"
         );
 
         const dataResp = dataReq.data;
