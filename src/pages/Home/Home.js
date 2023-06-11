@@ -135,16 +135,15 @@ export const Home = () => {
         <div class="py-2">
           <Live />
           <Incoming />
-          <Free />
         </div>
 
-        <section id="section-categories" class="py-3">
+        <section id="section-courses" class="py-3">
           <div class="container">
             <div class="row">
               <div class="col justify-content-sm-center justify-content-lg-start">
                 <div class="section-header">
-                  <h5 class="text-white section-title">Mitra Kursus Kami</h5>
-                  <p class="text-white section-description">
+                  <h5 class="text-black section-title">Mitra Kursus Kami</h5>
+                  <p class="text-black section-description">
                     Paling banyak dicari oleh siswa di Indonesia
                   </p>
                 </div>
