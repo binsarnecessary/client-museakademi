@@ -1,14 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../../assets/css/bootstrap.css";
 import "../../assets/css/style.css";
-import { default as DataJadwalSesi } from "../ClassroomSiswa/Data/DataSesi";
+import { default as data } from "../ClassroomSiswa/Data/DataKursus";
 import { FaCalendarAlt } from "react-icons/fa";
 import { BsCalendar3 } from "react-icons/bs";
 
 const CardJadwalClassroomMentor = () => {
+  const { kursus } = useParams();
+  const item = data.find(p => p.kursus === kursus);
   return (
-    <div className="card mt-3">
+    <div key={item.kursus} className="card mt-3">
       <div className="card-body">
         <div className="table table-responsive">
           <thead className="thead-light">
@@ -19,13 +21,13 @@ const CardJadwalClassroomMentor = () => {
             </tr>
           </thead>
           <tbody height="100px">
-            {DataJadwalSesi.map((item) => (
+            {item.sesiKursus.map((sesiKursus) => (
             <tr className="">
               <td className="text-primary la-2x"><BsCalendar3/></td>
               <td>
-                  {item.sesi}<br></br>
+                  {sesiKursus.nameSesi}<br></br>
                 <p className="small text-primary">
-                  {item.deskripsi}
+                  {sesiKursus.deskripsi}
                 </p>
               </td>
           

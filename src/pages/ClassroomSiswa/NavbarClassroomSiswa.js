@@ -33,7 +33,7 @@ const NavbarClassroomSiswa = () => {
           {
             headers: {
               Authorization: `Bearer ${token}`,
-            },
+            }
           }
         );
 

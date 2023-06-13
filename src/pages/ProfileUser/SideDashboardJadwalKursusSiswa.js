@@ -1,5 +1,6 @@
 import React from 'react'
 import dataKursus from '../ClassroomSiswa/Data/DataKursus'
+import { Link } from 'react-router-dom'
 
 const SideDashboardJadwalKursusSiswa = () => {
   return (
@@ -11,9 +12,9 @@ const SideDashboardJadwalKursusSiswa = () => {
                     <i class="las la-calendar-day text-primary"></i>
                     <div>  
                       <span>
-                        <a href="/classroom/user" class="schedule-course-title">
+                        <Link to={`/classroom/user/${item.kursus}`} class="schedule-course-title" style={{textDecoration: "none", color: "black"}}>
                           {item.kursus}
-                        </a>
+                        </Link>
                         <br />
                         <span class="small">{item.kursusStart}</span>
                       </span>

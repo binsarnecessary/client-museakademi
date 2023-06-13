@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../assets/css/style.css";
 import "../../assets/css/bootstrap.css";
-import LogoMitra from "../../assets/image/um.png";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { NavDropdown } from "react-bootstrap";
@@ -111,7 +110,7 @@ function Navbar() {
         class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm"
       >
         <div key={mitra.nameMitra} class="container">
-          <Link class="navbar-brand" to="/um-malang">
+          <Link class="navbar-brand" to={`/${mitra.slug}`}>
             <img src={mitra.logoMitra} alt height={40} />
           </Link>
           

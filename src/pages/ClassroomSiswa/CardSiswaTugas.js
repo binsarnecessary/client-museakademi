@@ -1,12 +1,16 @@
 import React from "react";
-import { DataTugas } from "./Data/DataTugas";
+import items from "./Data/DataKursus";
+import { useParams } from "react-router-dom";
 
 const CardSiswaTugas = () => {
+  const { kursus } = useParams();
+  const item = items.find(p => p.kursus === kursus);
   return (
     <div className="row">
-      {DataTugas.map((item) => (
-      <div className="col-12 mb-5">
-        <div className="card">
+   
+      <div key={item.kursus} className="col-12 mb-5">
+      {item.tugas.map((kursus)=>(
+        <div className="card mb-5">
           <div className="card-header d-flex align-items-center justify-content-between">
             <span>Tugas & Evaluasi</span>
           </div>
@@ -17,19 +21,21 @@ const CardSiswaTugas = () => {
                   <thead>
                     <tr className="small text-muted">
                       <td width="60%">Judul</td>
-                      <td width="25%">Mulai</td>
-                      <td width="25%">Selesai</td>
+                      <td width="30%">Mulai</td>
+                      <td width="30%">Selesai</td>
                     </tr>
                   </thead>
+                  
                   <tbody>
                     <tr>
                       <td>
-                        <b>{item.judul}</b>
+                        <b>{kursus.judul}</b>
                       </td>
-                      <td>{item.mulai}<p>{item.waktuMulai}</p></td>
-                      <td>{item.selesai}<p>{item.waktuMulai}</p></td>
+                      <td>{kursus.dateStart}<p>{kursus.timeStart}</p></td>
+                      <td>{kursus.dateEnd}<p>{kursus.timeEnd}</p></td>
                     </tr>
                   </tbody>
+                  
                 </div>
                 <div className="table-responsive">
                   <thead>
@@ -46,13 +52,14 @@ const CardSiswaTugas = () => {
                     </tr>
                   </tbody>
                 </div>
-                <a href={item.url} class="btn btn-danger btn-sm float-left mt-3">Open</a>
+                <a href={kursus.urlTugas} target="_blank" class="btn btn-danger btn-sm float-left mt-3">Open</a>
               </div>
             </div>
           </div>
         </div>
+        ))}
       </div>
-      ))}
+    
     </div>
   );
 };

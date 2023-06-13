@@ -15,7 +15,7 @@ function DashboardUser() {
         const token = localStorage.getItem("token_key");
         //Check Valid Token From API
         const currentUserRequest = await axios.get(
-          "https://server-museakademi-production-456b.up.railway.app/auth/me",
+          "https://server-museakademi-production.up.railway.app/auth/me",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ function DashboardUser() {
             </p>
           </div>
         </div>
-
+        
         <div class="row">
           <div class="col-12 col-lg-7">
             <span class="text-muted">
@@ -139,7 +139,7 @@ function DashboardUser() {
                                 </td>
                               </tr>
                             </tbody>
-                          ))}
+                           ))}
                         </table>
                       </div>
                     </div>
@@ -154,7 +154,9 @@ function DashboardUser() {
             <SideDashboardJadwalKursusSiswa />
           </div>
         </div>
+       
       </div>
+      
       <Footer />
     </>
   );

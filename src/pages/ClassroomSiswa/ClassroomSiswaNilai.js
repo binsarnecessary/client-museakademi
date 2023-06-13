@@ -1,9 +1,12 @@
 import React from 'react'
-import DataNilai from './Data/DataNilai'
+import data from './Data/DataKursus'
 import musebg from '../../assets/image/muselogo.png'
 import SidebarClassroomSiswa from './SidebarClassroomSiswa'
+import { useParams } from 'react-router-dom'
 
 const ClassroomSiswaNilai = () => {
+  const { kursus } = useParams();
+  const item = data.find(p => p.kursus === kursus);
   return (
     <SidebarClassroomSiswa>
     <div className='container-fluid mt-2'>
@@ -28,7 +31,7 @@ const ClassroomSiswaNilai = () => {
                     <p className='align-center' style={{textAlign: 'center', fontSize: '70px'}}><b>56</b></p>
                 </div>
   </div> */}
-            <div className='col-12 col-lg-10 order-lg-1'>
+            <div className='col-12 col-lg-12 order-lg-1'>
 
                 <div className='card mb-3'>
                     <div className='card-header d-flex justify-content-between'>
@@ -36,19 +39,19 @@ const ClassroomSiswaNilai = () => {
                     </div>
                     <div className='card-body'>
                         <div className='row'>
-                            <div className='col-12'>
+                            <div className='col-12 col-lg-12'>
                                 <div className='table custom-table mb-2'>
                                     <thead className='thead-light'>
                                         <tr>
-                                            <th width="50%" clasName="text-center">Judul</th>
+                                            <th width="90%" clasName="text-center">Judul</th>
                                             <th width="20%">Nilai</th>
                                         </tr>
                                     </thead>
-                                    {DataNilai.map((item) => (
+                                    {item.nilai.map((item) => (
                                     <tbody style={{fontSize: '15px'}}>
                                         <tr>
                                             <td>{item.judul}</td>
-                                            <td>{item.nilai}</td>
+                                            <td>{item.grade}</td>
                                         </tr>
                                     </tbody>
                                      ))}

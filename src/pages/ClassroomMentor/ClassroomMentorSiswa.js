@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import DataSiswa from "../ClassroomSiswa/Data/DataSiswa";
+import { Link, useParams } from "react-router-dom";
+import items from "../ClassroomSiswa/Data/DataKursus";
 import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
 const ClassroomMentorSiswa = () => {
 const [search, setSearch] = useState('')
-
+const { kursus } = useParams();
+const data = items.find(p => p.kursus === kursus);
   return (
     <>
       <SidebarClassroomMentor>
-        <div className="container-fluid mt-3">
+        <div key={data.kursus} className="container-fluid mt-3">
           <div className="row">
             <h4>Siswa</h4>
             <div className="col-12 mb-5 mt-3">
@@ -45,15 +46,15 @@ const [search, setSearch] = useState('')
                         <div className="table table-responsive">
                           <thead className="thead-light">
                             <tr className="small text-muted">
-                              <th width="10%">No</th>
-                              <th width="25%">Nama Siswa</th>
-                              <th width="25%">Telepon</th>
-                              <th width="20%">Bergabung Pada</th>
+                              <th width="5%">No</th>
+                              <th width="35%">Nama Siswa</th>
+                              <th width="30%">Telepon</th>
+                              <th width="30%">Bergabung Pada</th>
                               <th width="10%">Opsi</th>
                             </tr>
                           </thead>
                           <tbody height="300px">
-                            {DataSiswa.filter((item) => {
+                            {data.siswa.filter((item) => {
                               return search.toLowerCase() === '' ? item : item.name.toLowerCase().includes(search);
                             }).map((item) => (
                             <tr key={item.id}>
@@ -63,7 +64,7 @@ const [search, setSearch] = useState('')
                               <td>{item.joinStart}</td>
                               <td>
                                 <Link
-                                  to={`/mentor/classroom/siswa-mentor/penilaian/${item.id}`}
+                                  to={`/mentor/classroom/siswa-mentor/${data.kursus}/${item.id}`}
                                   class="small badge badge-pill badge-primary"
                                 >
                                   Nilai

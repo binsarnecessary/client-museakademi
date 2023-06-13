@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 
 import Profile from "../pages/ProfileMentor/Profile";
@@ -7,8 +7,8 @@ import DaftarMentor from "../pages/ProfileMentor/DaftarMentor";
 import ProfilePic from "../pages/ProfileMentor/ProfilePic";
 import DashboardMentor from "../pages/ProfileMentor/DashboardMentor";
 import KursusMentor from "../pages/ProfileMentor/KursusMentor";
-import {AlurStreaming} from "../pages/LiveMentor/AlurStreaming";
-import {StreamingMentor} from "../pages/LiveMentor/StreamingMentor"
+import { AlurStreaming } from "../pages/LiveMentor/AlurStreaming";
+import { StreamingMentor } from "../pages/LiveMentor/StreamingMentor";
 
 import ClassroomMentorDashboard from "../pages/ClassroomMentor/CLassroomMentorDashboard";
 import ClassroomMentorClass from "../pages/ClassroomMentor/ClassroomMentorClass";
@@ -17,146 +17,126 @@ import ClassroomMentorTugas from "../pages/ClassroomMentor/ClassroomMentorTugas"
 import ClassroomMentorSiswa from "../pages/ClassroomMentor/ClassroomMentorSiswa";
 import ClassroomMentorEditTugas from "../pages/ClassroomMentor/ClassroomMentorEditTugas";
 
-import ClassroomMentorInputNilai from '../pages/ClassroomMentor/ClassroomMentorInputNilai';
-import ClassroomMentorUpdateNilai from '../pages/ClassroomMentor/ClassroomMentorUpdateNilai';
-import ClassroomMentorSesiKursus from '../pages/ClassroomMentor/ClassroomMentorSesiKursus'
-import ClassroomMentorSesiKursusDetailById from '../pages/ClassroomMentor/ClassroomMentorSesiKursusDetailById';
-import LiveStreamingLinkZoom from '../pages/ClassroomMentor/LiveStreamingLinkZoom';
-import AturJadwalMentor from '../pages/ProfileMentor/AturJadwalMentor';
-
+import ClassroomMentorInputNilai from "../pages/ClassroomMentor/ClassroomMentorInputNilai";
+import ClassroomMentorUpdateNilai from "../pages/ClassroomMentor/ClassroomMentorUpdateNilai";
+import ClassroomMentorSesiKursus from "../pages/ClassroomMentor/ClassroomMentorSesiKursus";
+import ClassroomMentorSesiKursusDetailById from "../pages/ClassroomMentor/ClassroomMentorSesiKursusDetailById";
+import LiveStreamingLinkZoom from "../pages/ClassroomMentor/LiveStreamingLinkZoom";
+import AturJadwalMentor from "../pages/ProfileMentor/AturJadwalMentor";
 
 const MentorRoutes = [
   {
     name: "Dashboard Mentor",
     path: "/mentor",
-    children : [
-        {
-            path: "/dashboard",
-            element: <DashboardMentor />,
-        },
-        {
-            path: "/atur-jadwal",
-            element: <AturJadwalMentor/>
-        },
-        {
-            path: "/course",
-            element: <KursusMentor />
-        },
-        {
-            path: "/profile",
+    children: [
+      {
+        path: "",
+        element: <DashboardMentor />,
+      },
+      {
+        path: "/atur-jadwal",
+        element: <AturJadwalMentor />,
+      },
+      {
+        path: "/course",
+        element: <KursusMentor />,
+      },
+      {
+        path: "/profile",
+        children: [
+          {
+            path: "",
+            element: <Profile />,
+          },
+          {
+            path: "/picture",
+            element: <ProfilePic />,
+          },
+          {
+            path: "/daftar-mentor",
+            element: <DaftarMentor />,
+          },
+          {
+            path: "/change-password",
+            element: <ChangePassword />,
+          },
+        ],
+      },
+      {
+        name: "Classroom Mentor",
+        path: "/classroom",
+        children: [
+          {
+            path: "/:kursus",
+            element: <ClassroomMentorDashboard />,
+          },
+          {
+            path: "/sesi-kursus",
             children: [
-                {
+              {
+                path: "/:kursus",
+                children: [
+                  {
                     path: "",
-                    element: <Profile />,
-                },
-                {
-                    path: "/picture",
-                    element: <ProfilePic />
-                },
-                {
-                    path: "/daftar-mentor",
-                    element: <DaftarMentor />,
-                },
-                {
-                    path: "/change-password",
-                    element: <ChangePassword />
-                },
+                    element: <ClassroomMentorSesiKursus />,
+                  },
+                  {
+                    path: "/:id",
+                    children: [
+                      {
+                        path: "",
+                        element: <ClassroomMentorSesiKursusDetailById />,
+                      },
+                      {
+                        path: "/:id",
+                        element: <LiveStreamingLinkZoom />,
+                      },
+                    ],
+                  },
+                ],
+              },
             ],
-        },
-        {
-            name: "Classroom Mentor",
-            path: "/classroom",
+          },
+          {
+            path: "/tugas-mentor",
             children: [
-                {
+              {
+                path: "/:kursus",
+                children: [
+                  {
                     path: "",
-                    element: <ClassroomMentorDashboard />,
-                },
-                {
-                    path: "/sesi-kursus",
-                    children: [
-                        {
-                            path: "",
-                            element: <ClassroomMentorSesiKursus/>, 
-                        },
-                        {
-                            path: "/sesi-kursus-id",
-                            children: [
-                                {
-                                    path: "/:id",
-                                    children: [
-                                        {
-                                            path: "",
-                                            element: <ClassroomMentorSesiKursusDetailById/>,
-                                        },
-                                        {
-                                            path: "/:id",
-                                            element: <LiveStreamingLinkZoom/>
-                                        }
-                                    ]
-                                    
-                                }
-                            ]
-                            
-                        }
-                    ]
-                    
-                },
-                {
-                    path: "/tugas-mentor",
-                    children: [
-                        {
-                            path: "",
-                            element: <ClassroomMentorTugas />,
-                        },
-                        {
-                            path: "/mentor-edit-tugas",
-                            element: <ClassroomMentorEditTugas />
-                        }
-                    ]
-                },
-                {
-                    path: "/siswa-mentor",
-                    children: [
-                        {
-                            path: "",
-                            element: <ClassroomMentorSiswa />,
-                        },
-                        {
-                            path: "/penilaian",
-                            children: [
-                                {
-                                    path: "/:id",
-                                    children: [
-                                        {
-                                            path: "",
-                                            element: <ClassroomMentorInputNilai />,
-                                        }
-                                    ]
-                       
-                                },
-                            ],
-                            
-                        }
-                    ]
-                },
-            ]
-        },
-        {
-            path: "/livestreaming",
+                    element: <ClassroomMentorTugas />,
+                  },
+                  {
+                    path: "/:id",
+                    element: <ClassroomMentorEditTugas />,
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            path: "/siswa-mentor",
             children: [
-                {
+              {
+                path: "/:kursus",
+                children: [
+                  {
                     path: "",
-                    element: <StreamingMentor />,
-                },
-                {
-                    path: "/bukajadwal",
-                    element: <AlurStreaming />
-                }
-            ]
-        }
-    ]
+                    element: <ClassroomMentorSiswa />,
+                  },
+                  {
+                    path: "/:id",
+                    element: <ClassroomMentorInputNilai />,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
   },
-
 ];
 
 export default MentorRoutes;

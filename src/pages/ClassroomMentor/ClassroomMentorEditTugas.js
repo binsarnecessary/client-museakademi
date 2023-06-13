@@ -1,19 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import SidebarClassroomMentor from "./SidebarClassroomMentor";
+import  data  from "../ClassroomSiswa/Data/DataKursus";
 
 const ClassroomMentorEditTugas = () => {
+  const { kursus, id } = useParams();
+  const item = data.find(p => p.kursus === kursus);
+  const tugas = item.tugas.find(a => a.id === +id);
+
   return (
     <>
       <SidebarClassroomMentor>
         <div className="container-fluid">
           <div className="row mt-lg-3">
-            <div className="col-12 col-lg-10 mb-3">
+            <div key={tugas.id} className="col-12 col-lg-10 mb-3">
               <h3>Edit Tugas & Evaluasi</h3>
             </div>
             <div className="col-12 col-lg-2 d-none d-sm-block">
               <Link
-                to="/mentor/classroom/tugas-mentor"
+                to={`/mentor/classroom/tugas-mentor/${item.kursus}`}
                 className="btn btn-primary btn-block"
               >
                 <i className="las la-reply mr-2"></i>

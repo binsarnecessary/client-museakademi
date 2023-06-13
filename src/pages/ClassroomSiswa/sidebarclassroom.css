@@ -23,9 +23,9 @@
 }
 
 .top_section{
-    display: flex;
+    display: block;
     align-items: center;
-    padding: 20px 15px;
+    padding: 8px 15px;
 }
 
 
@@ -69,9 +69,11 @@
 
 .logo-nav {
     display: block;
-    margin: 5px;
-    padding: auto;
+    margin-left: 45px;
     filter: brightness(0) invert(1);
+    padding: auto;
+    align-items: center;
+    justify-content: center;
 }
 
 

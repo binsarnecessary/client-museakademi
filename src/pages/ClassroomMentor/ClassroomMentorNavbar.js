@@ -84,7 +84,7 @@ const NavbarClassroomSiswa = () => {
           className="justify-content-end"
         >
           <Image
-            src={profil}
+            src={user.profile_picture}
             className="rounded-circle"
             height="45"
             alt="Avatar"

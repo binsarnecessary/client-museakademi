@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FaEdit, FaTrash, FaTrashAlt } from "react-icons/fa";
 import SidebarClassroomMentor from "./SidebarClassroomMentor";
-import { DataTugas } from "../ClassroomSiswa/Data/DataTugas";
+import  data  from "../ClassroomSiswa/Data/DataKursus";
 
 const ClassroomMentorTugas = () => {
 
+  {/*
   const [tugas, setTugas] = useState({
     link: "",
     judul: "",
@@ -43,38 +44,42 @@ const handleDelete=(index)=>{
     setTableData(filterData);
 }
 
+*/}
+
+const { kursus } = useParams();
+const item = data.find(p => p.kursus === kursus);
 
   return (
     <>
       <SidebarClassroomMentor>
         <div className="container-fluid">
           <div className="row mt-lg-3">
-            <div className="col-12 mb-5">
+            <div key={item.kursus} className="col-12 mb-5">
               <h4 className="mb-3">Tugas & Evaluasi</h4>
               <div className="card">
                 <div className="card-header d-flex align-items-center justify-content-between">
                   <span>Buat Tugas & Evaluasi</span>
                 </div>
-                <form onSubmit={handleSubmit}>
+                <form >
                 <div className="card-body">
                   <div className="row">
                     <div className="col-12 col-lg-10 form-group">
                       <label className="text-muted">Link</label>
-                      <input type="text" className="form-control" name="link" value={tugas.link} onChange={handleChange}></input>
+                      <input type="text" className="form-control" name="link"></input>
                     </div>
                     <div className="col-12 col-lg-10 form-group">
                       <label className="text-muted">Judul</label>
-                      <input type="text" className="form-control" name="judul" value={tugas.judul} onChange={handleChange}></input>
+                      <input type="text" className="form-control" name="judul"></input>
                     </div>
                     <div className="col-12 col-lg-5 form-group">
                       <label className="text-muted">Lama Pengerjaan</label>
-                      <input type="date" className="form-control mb-2" name="datestart" value={tugas.datestart} onChange={handleChange}></input>
-                      <input type="time" className="form-control"name="timestart" value={tugas.timestart} onChange={handleChange}></input>
+                      <input type="date" className="form-control mb-2" name="datestart"></input>
+                      <input type="time" className="form-control"name="timestart"></input>
                     </div>
                     <div className="col-12 col-lg-5 form-group">
                       <label className="text-white"> - </label>
-                      <input type="date" className="form-control mb-2" name="dateend" value={tugas.dateend} onChange={handleChange}></input>
-                      <input type="time" className="form-control" name="timeend" value={tugas.timeend} onChange={handleChange}></input>
+                      <input type="date" className="form-control mb-2" name="dateend"></input>
+                      <input type="time" className="form-control" name="timeend"></input>
                     </div>
                     <div class="col-12 d-none d-sm-block">
                       <button type="submit" class="btn btn-danger btn-sm float-left text-color-primary">
@@ -102,21 +107,21 @@ const handleDelete=(index)=>{
                       </tr>
                     </thead>
                     <tbody height="150px">
-                      {tableData.map((y, i) => (
+                      {item.tugas.map((tugas) => (
                       <tr>
-                        <td>{y.judul}</td>
-                        <td>{y.datestart} {y.timestart}</td>
-                        <td>{y.dateend} {y.timeend} </td>
+                        <td>{tugas.judul}</td>
+                        <td>{tugas.dateStart} {tugas.timeStart}</td>
+                        <td>{tugas.dateEnd} {tugas.timeEnd} </td>
                         <td>
                           <Link
-                            to="/mentor/classroom/tugas-mentor/mentor-edit-tugas"
+                            to={`/mentor/classroom/tugas-mentor/${item.kursus}/${tugas.id}`}
                             className="btn btn-success"
                           >
                             <FaEdit />
                           </Link>
                         </td>
                         <td>
-                        <button className='btn btn-danger' onClick={()=>handleDelete(i)}><FaTrash/></button>
+                        <button className='btn btn-danger'><FaTrash/></button>
                         </td>
                       </tr>
                       ))}

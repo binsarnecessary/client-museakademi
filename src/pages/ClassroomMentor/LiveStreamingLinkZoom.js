@@ -2,27 +2,28 @@ import React from "react";
 import Image from "react-bootstrap/Image";
 import zoom from "../../assets/image/zoom.png";
 import { Link, useParams } from "react-router-dom";
-import items from "../ClassroomSiswa/Data/DataSesi";
+import data from "../ClassroomSiswa/Data/DataKursus";
 import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
 const LiveStreamingLinkZoom = () => {
-  const { id } = useParams();
-  const item = items.find(p => p.id === +id);
+  const { kursus, id } = useParams();
+  const p = data.find(l => l.kursus === kursus);
+  const sesi = p.sesiKursus.find(sesi => sesi.id === +id);
   return (
     <SidebarClassroomMentor>
-      <div key={item.id} className="container-fluid  mt-3">
+      <div key={p.id} className="container-fluid  mt-3">
         <h3>Live Classes</h3>
-        <h5>{item.sesi}</h5>
+        <h5>{sesi.nameSesi}</h5>
         <Image
-          src={item.imageMentor}
+          src={sesi.imageMentor}
           className="rounded-circle"
           height="50"
           alt="Avatar"
         ></Image>
-        <span className="ml-3">{item.nameMentor}</span>
-        <div className="container-fluid col-3 mt-3">
+        <span className="ml-3">{p.nameMentor}</span>
+        <div className="container-fluid col-2 mt-3">
           <Image src={zoom}></Image>
-          <a href={item.live.url} class="btn btn-danger btn-block btn-lg" fdprocessedid="ntqaw">
+          <a href={sesi.url.urlzoom} class="btn btn-danger btn-block btn-lg" fdprocessedid="ntqaw">
             Join Live Class
           </a>
         </div>
@@ -36,11 +37,11 @@ const LiveStreamingLinkZoom = () => {
                 <tbody>
                   <tr>
                     <td width="50%">Date</td>
-                    <td>{item.tanggal}</td>
+                    <td>{p.kursusStart}</td>
                   </tr>
                   <tr>
                     <td width="50%">Duration</td>
-                    <td>{item.timeStart} - {item.timeEnd}</td>
+                    <td>{p.timeStart} - {p.timeEnd}</td>
                   </tr>
                 </tbody>
               </div>

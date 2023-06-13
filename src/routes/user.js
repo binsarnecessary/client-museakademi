@@ -6,6 +6,7 @@ import { default as HomeLabel} from "../pages/WhiteLabel/Home";
 import { Course } from "../pages/Kursus/Course";
 import Login from "../components/common/Login";
 import Registration from "../components/common/Registration";
+import Transaction from "../pages/ProfileUser/Transaction";
 
 import { HelloDetail } from "../pages/Detail/HelloDetail";
 import { Livestreaming } from "../pages/Livestreaming/Livestreaming";
@@ -26,8 +27,6 @@ import ClassroomSiswaNilai from '../pages/ClassroomSiswa/ClassroomSiswaNilai';
 import ClassroomSiswaSesiKursus from '../pages/ClassroomSiswa/ClassroomSiswaSesiKursus';
 import ClassroomSiswaSesiKursusDetailById from '../pages/ClassroomSiswa/ClassroomSiswaSesiKursusDetailById';
 
-import Transaction from '../pages/ProfileUser/Transaction';
-
 const UserRoutes = [
   {
     name: "Home Page",
@@ -40,7 +39,7 @@ const UserRoutes = [
   },
   {
     path: "/order-list",
-    element: <Transaction/>,
+    element: <Transaction />,
   },
   {
     path: "/register",
@@ -128,19 +127,19 @@ const UserRoutes = [
     path: "/classroom/user",
     children: [
       {
-        path: "",
+        path: "/:kursus",
         element: <ClassroomSiswaDashboard/>,
       },
       {
         path: "/sesi-kursus",
         children: [
           {
-            path: "",
-            element: <ClassroomSiswaSesiKursus/>,
-          },
-          {
-            path: "/sesi-kursus-id",
+            path: "/:kursus",
             children: [
+              {
+                path: "",
+                element: <ClassroomSiswaSesiKursus/>,
+              },
               {
                 path: "/:id",
                 children: [
@@ -150,48 +149,32 @@ const UserRoutes = [
                   },
                   {
                     path: "/:id",
-                    element: <LiveStreamingLinkZoom/>
+                    element: <LiveStreamingLinkZoom/>,
                   }
                 ]
-                
               }
-            ]
-          }
+            ]  
+          },
         ]
       },
       {
         path: "/tugas_siswa",
-        element: <ClassroomSiswaTugas />,
-      },
-      {
-        path: "/live-streaming-siswa",
         children: [
           {
-            path: "",
-            element: <ClassroomSiswaLive />,
-          },
-          {
-            path: "/live-streaming-id",
-            children: [
-              {
-                path: "/:id",
-                children: [
-                  {
-                    path: "/:id",
-                    element: <LiveStreamingLinkZoom/>
-                  }
-                ]
-
-                
-              },
-             
-            ],
-          },
-        ],
+            path: "/:kursus",
+            element: <ClassroomSiswaTugas/>,
+          }
+        ]
       },
       {
         path: "/nilai-siswa",
-        element: <ClassroomSiswaNilai/>,
+        children: [
+          {
+            path: "/:kursus",
+            element: <ClassroomSiswaNilai/>,
+          }
+        ]
+        
       }
     ],
   },
