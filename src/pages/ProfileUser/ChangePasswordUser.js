@@ -22,7 +22,7 @@ const ChangePasswordUser = () => {
     <>
       <Navbar />
       <div class="container"></div>
-      <div class="container mb-5">
+      <div class="container mb-5 mt-5">
         <div class="row">
           <div class="col-12 col-lg-3">
             <CompProfileUser />

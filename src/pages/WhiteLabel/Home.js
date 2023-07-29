@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import banner from "../../assets/image/illustration-banner.png";
 import service1 from "../../assets/image/service1.png";
 import service2 from "../../assets/image/service2.png";
 import service3 from "../../assets/image/service3.png";
 import axios from "axios";
-import { Link } from "react-router-dom";
+
 
 import "../../assets/css/style.css";
 import "../../assets/css/bootstrap.css";
@@ -18,6 +19,51 @@ import { Incoming } from "./Incoming/Incoming";
 import { Live } from "./live/Live";
 
 const HomeLabel = () => {
+
+  const { slug } = useParams();
+  const [mitra, setMitra] = useState([]);
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Check Valid Token From API
+        const currentMitraRequest = await axios.get(
+          `https://server-museakademi-production.up.railway.app/api/mitra/${slug}`
+        );
+
+        const currentMitraResponse = currentMitraRequest.data;
+        // console.log("🚀 ~ file: HelloDetail.js:28 ~ fetchData ~ currentCourseResponse:", currentCourseResponse)
+
+        if (currentMitraResponse.status) {
+          // console.log("🚀 ~ file: HelloDetail.js:31 ~ fetchData ~ currentCourseResponse.status:", currentCourseResponse.status)
+          // set to redux
+          // console.log(currentCourseResponse.data.course)
+
+          setMitra(currentMitraResponse.data.Mitra);
+        }
+      } catch (err) {
+        setMitra(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+const {
+  id,
+  emailMitra,
+  nameMitra,
+  instagramMitra,
+  facebookMitra,
+  waMitra,
+  alamatMitra,
+  courseTitle,
+  logoMitra,
+  headTagline,
+  paragraphText
+
+} = mitra;
+
   return (
     <>
       <Navbar />
@@ -30,12 +76,10 @@ const HomeLabel = () => {
               </div>
               <div class="order-2 order-lg-1 col-sm-12 col-lg-6">
                 <p class="px-4 hero-header">
-                  Herbalogy DRK Hadir sebagai solusi Kesehatan Alternatif
-                  Bagi Masyarakat Indonesia dan Enterpreneurship Product Herbal
+                  {headTagline}
                 </p>
                 <p class="px-4 hero-description">
-                  Bersama DRK Wujudkan kesehatan secara optimal melalui kursus cara meracik
-                  berobat berbahan herbal alami Indonesia
+                  {paragraphText}
                 </p>
                 <form class="d-none d-lg-block" action="#" method="get">
                   <div class="mx-4 input-group">

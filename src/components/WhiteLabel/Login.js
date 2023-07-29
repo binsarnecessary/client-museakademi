@@ -36,7 +36,7 @@ function Login({}) {
       };
 
       const loginRequest = await axios.post(
-        "https://server-museakademi-production-456b.up.railway.app/auth/login",
+        "https://server-museakademi-production.up.railway.app/auth/login",
         userToLoginPayload
       );
 
@@ -94,7 +94,7 @@ function Login({}) {
   //     };
 
   //     const loginGoogleRequest = await axios.post(
-  //       "https://server-museakademi-production-456b.up.railway.app/auth/login-google",
+  //       "https://server-museakademi-production.up.railway.app/auth/login-google",
   //       userToLoginPayload
   //     );
 

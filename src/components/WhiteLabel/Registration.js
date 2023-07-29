@@ -38,7 +38,7 @@ function Registration() {
       userToRegisterPayload.append("phone", phoneField.current.value);
 
       const registerRequest = await axios.post(
-        "https://server-museakademi-production-456b.up.railway.app/auth/register",
+        "https://server-museakademi-production.up.railway.app/auth/register",
         userToRegisterPayload,
         {
           headers: {

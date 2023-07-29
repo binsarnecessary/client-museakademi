@@ -1,5 +1,4 @@
-import React from "react";
-import Footer from "../../components/common/Footer";
+import React, { useState, useEffect } from "react";import Footer from "../../components/common/Footer";
 import KategoriCourse1 from "../../assets/image/KategoriCourse1.png";
 import Navbar from "../../components/common/Navbar";
 import "bootstrap/dist/css/bootstrap.css";
@@ -9,70 +8,104 @@ import "../../assets/css/ProfileStyling.css";
 import { Link, useParams } from "react-router-dom";
 import dataKursus from "../ClassroomSiswa/Data/DataKursus"
 import SideDashboardJadwalKursusMentor from "./SideDashboardJadwalKursusMentor";
+import axios from "axios";
 
 
 function DashboardMentor() {
+
+  const [isLoggedin, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState([]);
+  const [course, setCourse] = useState([]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    console.log('Searching for "${searchTerm}"');
+  };
+
+    const fetchData = async () => {
+      try {
+        //Get Token From Local Storage
+        const token = localStorage.getItem("token_key");
+
+        if (!token) {
+          setIsLoggedIn(false);
+          return;
+        }
+
+        //Check Valid Token From API
+        const currentUserRequest = await axios.get(
+          "https://server-museakademi-production.up.railway.app/auth/me",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const currentUserResponse = currentUserRequest.data;
+
+        if (currentUserResponse.status) {
+
+          setUser(currentUserResponse.data.user);
+          setIsLoggedIn(true);
+          userData(currentUserResponse.data.user.id)
+          console.log(userData)
+        } else {
+          setIsLoggedIn(false);
+        }
+      } catch (err) {
+        setIsLoggedIn(false);
+      }
+    };
+
+    useEffect(() => {
+    fetchData();
+  }, []);
+
+// Course
+
+
+    const userData = async (user) => {
+      try {
+        //Check Valid Token From API
+        const currentCourseRequest = await axios.get(
+          `https://server-museakademi-production.up.railway.app/api/course/mentor/${user}`
+        );
+        console.log(user, "oeeeeeeeee")
+        const currentCourseResponse = currentCourseRequest.data;
+        // console.log("🚀 ~ file: HelloDetail.js:28 ~ fetchData ~ currentCourseResponse:", currentCourseResponse)
+
+        if (currentCourseResponse.status) {
+          // console.log("🚀 ~ file: HelloDetail.js:31 ~ fetchData ~ currentCourseResponse.status:", currentCourseResponse.status)
+          // set to redux
+          // console.log(currentCourseResponse.data.course)
+
+          setCourse(currentCourseResponse.data.course);
+        }
+      } catch (err) {
+        setCourse(false);
+      }
+    };
+
+    useEffect(() => {
+
+  }, []); 
   return (
     <>
       <Navbar />
-      <div class="container mb-5">
+      <div class="container mb-lg-5">
         <div class="row mt-lg-4 ">
           <div id="header-dashboard" class="col-12 mt-5">
             <h3>Dashboard Mentor</h3>
             <p>
-              Hai, Sambo! <span v-html="selectedSmiley"></span>
+              Hai, {user.name}<span v-html="selectedSmiley"></span>
             </p>
           </div>
         </div>
 
         <div class="row">
           <div class="col-12 col-lg-7">
-            <span class="text-muted">
-              <small>Statistik Kursus</small>
-            </span>
-            
-            <div class="statistic-row my-2">
-              <div class="statistic-col card">
-                <div class="statistic-item">
-                  <i class="las la-briefcase text-primary"> </i>
-                  <div>
-                    <h4>2</h4>
-                    <span class="text-muted">Kursus Aktif</span>
-                  </div>
-                </div>
-              </div>
-              <div class="statistic-col card">
-                <div class="statistic-item">
-                  <i class="las la-briefcase text-primary"></i>
-                  <div>
-                    <h4>2</h4>
-                    <span class="text-muted">Total Kursus</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="statistic-row my-2">
-              <div class="statistic-col card">
-                <div class="statistic-item">
-                  <i class="las la-briefcase text-primary"> </i>
-                  <div>
-                    <h4>2</h4>
-                    <span class="text-muted">Kursus Selesai</span>
-                  </div>
-                </div>
-              </div>
-              <div class="statistic-col card">
-                <div class="statistic-item">
-                  <i class="las la-graduation-cap text-primary"></i>
-                  <div>
-                    <h4>2</h4>
-                    <span class="text-muted">Total Siswa</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <div class="row mt-3">
               <div class="col-12 mb-3">
                 <div class="card">
@@ -81,7 +114,7 @@ function DashboardMentor() {
                       <a>
                         <div style={{ display: "flex", alignItems: "center" }}>
                           <div style={{ flex: 1 }}>
-                            Kursus yang telah selesai
+                            Daftar Kursus yang Diajar
                           </div>
                           <div>
                             <Link to={"/mentor/atur-jadwal"} className="btn btn-danger btn-sm">
@@ -92,7 +125,7 @@ function DashboardMentor() {
                       </a>
                       
                       <div class="mt-4">
-                        <table class="table custom-table">
+                        <table class="table table-responsive">
                           <thead class="thead-light">
                             <tr>
                               <th
@@ -115,17 +148,22 @@ function DashboardMentor() {
                               </th>
                             </tr>
                           </thead>
-                          {dataKursus.map((item)=>(
+                          
                           <tbody>
-                            <tr>
+                          {course.map(c=>(
+                          
+                            <tr key={c.id}>
+                         
                               <td class="text-left font-">
-                                {item.kursus}
+                                {c.courseTitle}
                               </td>
-                              <td class="text-center">{item.kursusStart}</td>
-                              <td class="text-right">{item.kursusEnd}</td>
+                              <td class="text-center">{c.courseStartDate}</td>
+                              <td class="text-right">{c.courseEndDate}</td>
                             </tr>
+                             ))}
                           </tbody>
-                          ))}
+                         
+                         
                         </table>
                       </div>
                        

@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../ClassroomSiswa/sidebarclassroom.css";
 import {
   FaTachometerAlt,
@@ -10,6 +10,7 @@ import { NavLink, useParams } from "react-router-dom";
 import LogoNavbar from "../../assets/image/logo-navbar.png";
 import Navbar23 from "./ClassroomMentorNavbar";
 import items from "../ClassroomSiswa/Data/DataKursus"
+import axios from "axios";
 
 const SidebarClassroomMentor = ({ children }) => {
 {/*
@@ -37,8 +38,40 @@ const SidebarClassroomMentor = ({ children }) => {
   ];
 */}
 
-const { kursus } = useParams();
-const item = items.find(p => p.kursus === kursus);
+/* const { kursus } = useParams();
+const item = items.find(p => p.kursus === kursus); */
+
+  //  const { kursus } = useParams();
+  //  const item = items.find(p => p.kursus === kursus);
+  const { itemId } = useParams();
+  const [course, setCourse] = useState({});
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Check Valid Token From API
+        const currentCourseRequest = await axios.get(
+          `https://server-museakademi-production.up.railway.app/api/course/${itemId}`
+        );
+  
+        const currentCourseResponse = currentCourseRequest.data;
+        // console.log("🚀 ~ file: HelloDetail.js:28 ~ fetchData ~ currentCourseResponse:", currentCourseResponse)
+  
+        if (currentCourseResponse.status) {
+          // console.log("🚀 ~ file: HelloDetail.js:31 ~ fetchData ~ currentCourseResponse.status:", currentCourseResponse.status)
+          // set to redux
+          // console.log(currentCourseResponse.data.course)
+  
+          setCourse(currentCourseResponse.data.course);
+        }
+      } catch (err) {
+        setCourse(false);
+      }
+    };
+  
+    fetchData();
+  }, [itemId]);
+
   return (
     <>
       <Navbar23 />
@@ -58,8 +91,8 @@ const item = items.find(p => p.kursus === kursus);
             </div>
 
             <NavLink
-                to={`/mentor/classroom/${item.kursus}`}
-                key={item.kursus}
+                to={`/mentor/classroom/${course.id}`}
+                key={course.id}
                 className="link2"
                 activeclassName="active"
             >
@@ -68,8 +101,8 @@ const item = items.find(p => p.kursus === kursus);
             </NavLink>  
 
             <NavLink
-                to={`/mentor/classroom/sesi-kursus/${item.kursus}`}
-                key={item.kursus}
+                to={`/mentor/classroom/sesi-kursus/${course.id}`}
+                key={course.id}
                 className="link2"
                 activeclassName="active"
             >
@@ -78,8 +111,8 @@ const item = items.find(p => p.kursus === kursus);
             </NavLink> 
 
             <NavLink
-                to={`/mentor/classroom/tugas-mentor/${item.kursus}`}
-                key={item.kursus}
+                to={`/mentor/classroom/tugas-mentor/${course.id}`}
+                key={course.id}
                 className="link2"
                 activeclassName="active"
             >
@@ -88,8 +121,8 @@ const item = items.find(p => p.kursus === kursus);
             </NavLink>  
 
             <NavLink
-                to={`/mentor/classroom/siswa-mentor/${item.kursus}`}
-                key={item.kursus}
+                to={`/mentor/classroom/siswa-mentor/${course.id}`}
+                key={course.id}
                 className="link2"
                 activeclassName="active"
             >

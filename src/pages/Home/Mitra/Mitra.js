@@ -11,7 +11,7 @@ const Mitra = () => {
       try {
         //Check Valid Token From API
         const currentMitraRequest = await axios.get(
-          "https://server-museakademi-production-456b.up.railway.app/api/mitra"
+          "https://server-museakademi-production.up.railway.app/api/mitra"
         );
 
         const currentMitraResponse = currentMitraRequest.data;
@@ -50,8 +50,8 @@ const textContainerStyle = {
                   <img height={'60px'} src={mitra.logoMitra} alt={mitra.nameMitra} />
                 </Link>
                 <div class="media-body">
-                  <h6 class="mt-1 mb-0 text-small"><small><b>{mitra.courseMitra}</b></small></h6>
-                    <small>{mitra.nameMitra}</small>
+                  <h6 class="mt-3 mb-0 text-small"><small><b>{mitra.courseMitra}</b></small></h6>
+                    <span>{mitra.nameMitra}</span>
                  
                 </div>
               </div>

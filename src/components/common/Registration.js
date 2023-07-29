@@ -38,7 +38,7 @@ function Registration() {
       userToRegisterPayload.append("phone", phoneField.current.value);
 
       const registerRequest = await axios.post(
-        "https://server-museakademi-production-456b.up.railway.app/auth/register",
+        "https://server-museakademi-production.up.railway.app/auth/register",
         userToRegisterPayload,
         {
           headers: {
@@ -146,14 +146,14 @@ function Registration() {
                 Daftar Akun
               </Button>
             </Form>
-            <div class="text-muted text-center small py-2">atau</div>
+            {/* <div class="text-muted text-center small py-2">atau</div>
             <a href="" class="btn-google btn btn-sm btn-block">
               <i class="fa fa-google"></i>
               <span class="ml-2">Masuk dengan Google</span>
-            </a>
+            </a> */}
 
             <div class="text-center small py-3">
-              <a href="">Lupa Kata Sandi?</a>
+              {/* <a href="">Lupa Kata Sandi?</a> */}
               <br />
               Sudah punya akun?
               <p>

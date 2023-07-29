@@ -52,7 +52,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
 
         //Check Valid Token From API
         const currentUserRequest = await axios.get(
-          "https://server-museakademi-production-456b.up.railway.app/auth/me",
+          "https://server-museakademi-production.up.railway.app/auth/me",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -107,7 +107,8 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
           <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
             <MenuIcon />
           </IconButton>
-          <FlexBetween
+           {/*
+           <FlexBetween
             backgroundColor={theme.palette.background.alt}
             borderRadius="9px"
             gap="3rem"
@@ -117,14 +118,14 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
             <IconButton>
               <Search />
             </IconButton>
-          </FlexBetween>
+          </FlexBetween> */}
         </FlexBetween>
 
         {/* RIGHT SIDE */}
         <FlexBetween gap="1.5rem">
-          <IconButton>
+          {/* <IconButton>
             <SettingsOutlined sx={{ fontSize: "25px" }} />
-          </IconButton>
+          </IconButton> */}
 
           <FlexBetween>
             <Button
@@ -140,7 +141,7 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
               <Box
                 component="img"
                 alt="profile"
-                src={admin.profile_pictures}
+                src={admin.profile_picture}
                 height="32px"
                 width="32px"
                 borderRadius="50%"

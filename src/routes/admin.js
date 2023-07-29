@@ -2,16 +2,21 @@ import React from "react";
 
 
 import Dashboard from "../pages/AdminPage/dashboard";
-import Products from "../pages/AdminPage/products";
-import Customers from "../pages/AdminPage/customers";
-import Transactions from "../pages/AdminPage/transactions";
-import Geography from "../pages/AdminPage/geography";
-import Overview from "../pages/AdminPage/overview";
+import Tugas from "../pages/AdminPage/tugas";
+import Users from "../pages/AdminPage/users";
+import Kategori from "../pages/AdminPage/kategori";
+import Mitra from "../pages/AdminPage/mitra";
+import Kursus from "../pages/AdminPage/course";
 import Daily from "../pages/AdminPage/daily";
 import Monthly from "../pages/AdminPage/monthly";
 import Breakdown from "../pages/AdminPage/breakdown";
 import Admin from "../pages/AdminPage/admin";
-import Performance from "../pages/AdminPage/performance";
+import Mentor from "../pages/AdminPage/mentor";
+import Live from "../pages/AdminPage/live";
+import Session from "../pages/AdminPage/session";
+import updateUser from "../pages/AdminPage/users/updateUser";
+import Nilai from "../pages/AdminPage/nilai";
+import Sertifikat from "../pages/AdminPage/sertifikat";
 
 const AdminRoutes = [
     {
@@ -24,44 +29,54 @@ const AdminRoutes = [
             },
             {
                 path: "/course",
-                element: <Products />,
+                element: <Kursus />,
             },
             {
-                path: "/mentors",
-                element: <Customers />,
+                path: "/users",
+                children: [
+                    {
+                        path: "",
+                        element: <Users />,
+                    },
+                ]
+                
             },
             {
-                path: "/payments",
-                element: <Transactions />,
+                path: "/kategori",
+                element: <Kategori />,
             },
             {
-                path: "/geography",
-                element: <Geography />,
+                path: "/mitra",
+                element: <Mitra />,
             },
             {
-                path: "/kursus",
-                element: <Overview />,
-            },
-            {
-                path: "/schedule",
-                element: <Daily />,
+                path: "/session",
+                element: <Session />,
             },
             {
                 path: "/livestreaming",
-                element: <Monthly />,
+                element: <Live />,
             },
             {
-                path: "/breakdown",
-                element: <Breakdown />,
+                path: "/tugas",
+                element: <Tugas />,
             },
             {
                 path: "/admin",
                 element: <Admin />,
             },
             {
-                path: "/performance",
-                element: <Performance />,
-            }
+                path: "/mentor",
+                element: <Mentor />,
+            },
+            {
+                path: "/nilai",
+                element: <Nilai />,
+            },
+            {
+                path: "/sertifikat",
+                element: <Sertifikat />,
+            },
         ]
         
     }

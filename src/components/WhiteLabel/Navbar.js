@@ -30,7 +30,7 @@ function Navbar() {
 
         //Check Valid Token From API
         const currentUserRequest = await axios.get(
-          "https://server-museakademi-production-456b.up.railway.app/auth/me",
+          "https://server-museakademi-production.up.railway.app/auth/me",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -86,7 +86,7 @@ function Navbar() {
       try {
         //Check Valid Token From API
         const currentMitraRequest = await axios.get(
-          `https://server-museakademi-production-456b.up.railway.app/api/mitra/${slug}`
+          `https://server-museakademi-production.up.railway.app/api/mitra/${slug}`
         );
 
         const currentMitraResponse = currentMitraRequest.data;

@@ -1,16 +1,74 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import items from "../ClassroomSiswa/Data/DataKursus";
 import SidebarClassroomMentor from "./SidebarClassroomMentor";
+import axios from "axios";
 
 const ClassroomMentorSiswa = () => {
 const [search, setSearch] = useState('')
-const { kursus } = useParams();
-const data = items.find(p => p.kursus === kursus);
+
+const { itemId } = useParams();
+const [user, setUser] = useState([]);
+const [course, setCourse] = useState({});
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Check Valid Token From API
+        const currentUserRequest = await axios.get(
+          "https://server-museakademi-production.up.railway.app/api/users/role/user"
+        );
+
+        const currentUserResponse = currentUserRequest.data;
+        // console.log("🚀 ~ file: HelloDetail.js:28 ~ fetchData ~ currentCourseResponse:", currentCourseResponse)
+
+        if (currentUserResponse.status) {
+          // console.log("🚀 ~ file: HelloDetail.js:31 ~ fetchData ~ currentCourseResponse.status:", currentCourseResponse.status)
+          // set to redux
+          // console.log(currentCourseResponse.data.course)
+
+          setUser(currentUserResponse.data.user);
+        }
+      } catch (err) {
+        setUser(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Check Valid Token From API
+        const currentCourseRequest = await axios.get(
+          `https://server-museakademi-production.up.railway.app/api/course/${itemId}`
+        );
+
+        const currentCourseResponse = currentCourseRequest.data;
+        // console.log("🚀 ~ file: HelloDetail.js:28 ~ fetchData ~ currentCourseResponse:", currentCourseResponse)
+
+        if (currentCourseResponse.status) {
+          // console.log("🚀 ~ file: HelloDetail.js:31 ~ fetchData ~ currentCourseResponse.status:", currentCourseResponse.status)
+          // set to redux
+          // console.log(currentCourseResponse.data.course)
+
+          setCourse(currentCourseResponse.data.course);
+        }
+      } catch (err) {
+        setCourse(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+console.log(user)
+
   return (
     <>
       <SidebarClassroomMentor>
-        <div key={data.kursus} className="container-fluid mt-3">
+        <div  className="container-fluid mt-3">
           <div className="row">
             <h4>Siswa</h4>
             <div className="col-12 mb-5 mt-3">
@@ -46,33 +104,34 @@ const data = items.find(p => p.kursus === kursus);
                         <div className="table table-responsive">
                           <thead className="thead-light">
                             <tr className="small text-muted">
-                              <th width="5%">No</th>
                               <th width="35%">Nama Siswa</th>
                               <th width="30%">Telepon</th>
-                              <th width="30%">Bergabung Pada</th>
+                          
                               <th width="10%">Opsi</th>
                             </tr>
                           </thead>
-                          <tbody height="300px">
-                            {data.siswa.filter((item) => {
-                              return search.toLowerCase() === '' ? item : item.name.toLowerCase().includes(search);
-                            }).map((item) => (
-                            <tr key={item.id}>
-                              <td>{item.id}</td>
-                              <td>{item.name}</td>
-                              <td>{item.phone}</td>
-                              <td>{item.joinStart}</td>
+                          
+                          <tbody height="">
+                           {user.filter((users) => {
+                              return search.toLowerCase() === '' ? users : users.name.toLowerCase().includes(search);
+                            }).map((users) => ( 
+                           
+                            <tr key={users.id}>
+                              <td>{users.name}</td>
+                              <td>{users.phone}</td>
+                            
                               <td>
-                                <Link
-                                  to={`/mentor/classroom/siswa-mentor/${data.kursus}/${item.id}`}
+                                 <Link
+                                  to={`/mentor/classroom/siswa-mentor/${course.id}/${users.id}`}
                                   class="small badge badge-pill badge-primary"
                                 >
                                   Nilai
                                 </Link>
                               </td>
                             </tr>
-                            ))}
+                           ))}
                           </tbody>
+                           
                         </div>
                       </div>
                     </div>

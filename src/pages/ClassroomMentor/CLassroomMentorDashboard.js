@@ -1,11 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../assets/css/dashboard-classroom.css";
 import "../../assets/css/style.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 import CardJadwalClassroomMentor from "./CardJadwalClassroomMentor";
 import SidebarClassroomMentor from "./SidebarClassroomMentor";
 
 const ClassroomMentorDashboard = () => {
+
+  const {itemId} = useParams();
+  const [course, setCourse] = useState([]);
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Check Valid Token From API
+        const currentCourseRequest = await axios.get(
+          `https://server-museakademi-production.up.railway.app/api/course/${itemId}`
+        );
+
+        const currentCourseResponse = currentCourseRequest.data;
+        // console.log("🚀 ~ file: HelloDetail.js:28 ~ fetchData ~ currentCourseResponse:", currentCourseResponse)
+
+        if (currentCourseResponse.status) {
+          // console.log("🚀 ~ file: HelloDetail.js:31 ~ fetchData ~ currentCourseResponse.status:", currentCourseResponse.status)
+          // set to redux
+          // console.log(currentCourseResponse.data.course)
+
+          setCourse(currentCourseResponse.data.course);
+        }
+      } catch (err) {
+        setCourse(false);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       <SidebarClassroomMentor>
@@ -20,38 +50,11 @@ const ClassroomMentorDashboard = () => {
               <div className="statistic-item">
                 <i className="las la-briefcase text-primary"></i>
                 <div>
-                  <h4>4</h4>
-                  <span className="text-muted">Sesi Kursus</span>
+                  <h5>{course.courseTitle}</h5>
+                  <span className="text-muted">{course.courseDescription}</span>
                 </div>
               </div>
-            </div>
-            <div className="statistic-col card shadow-sm">
-              <div className="statistic-item">
-                <i className="las la-video text-primary"></i>
-                <div>
-                  <h4>4</h4>
-                  <span className="text-muted">Live Class</span>
-                </div>
-              </div>
-            </div>
-            <div className="statistic-col card shadow-sm">
-              <div className="statistic-item">
-                <i className="las la-clipboard-list text-primary"></i>
-                <div>
-                  <h4>3</h4>
-                  <span className="text-muted">Tugas Diberikan</span>
-                </div>
-              </div>
-            </div>
-            <div className="statistic-col card shadow-sm">
-              <div className="statistic-item">
-              <i class="las la-user text-primary"></i>
-                <div>
-                  <h4>10</h4>
-                  <span className="text-muted">Siswa</span>
-                </div>
-              </div>
-            </div>
+            </div>  
           </div>
           <div className="row">
             <div className="col-12">

@@ -31,7 +31,7 @@ function Navbar() {
 
         //Check Valid Token From API
         const currentUserRequest = await axios.get(
-          "https://server-museakademi-production-456b.up.railway.app/auth/me",
+          "https://server-museakademi-production.up.railway.app/auth/me",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -129,7 +129,7 @@ function Navbar() {
                     // Render mentor-specific content
                     <>
                       <li class="nav-item d-none d-sm-inline-block">
-                        <Link class="nav-link" to="/mentor/dashboard">
+                        <Link class="nav-link" to="">
                           <i class="las la-chalkboard-teacher d-lg-none"></i>
                           <span>Kursus</span>
                         </Link>
@@ -161,7 +161,7 @@ function Navbar() {
                               Profile
                             </NavDropdown.Item>
                             <NavDropdown.Item
-                              onClick={() => navigate("/mentor/classroom")}
+                              onClick={() => navigate("/mentor")}
                             >
                               My Class
                             </NavDropdown.Item>

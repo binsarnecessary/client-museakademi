@@ -22,9 +22,9 @@ const ChangePassword = () => {
   return (
     <>
       <Navbar />
-      <div class="container mt-5"></div>
+      <div class="container"></div>
       <div class="container mb-5">
-        <div class="row mt-lg-5">
+        <div class="row mt-lg-3">
           <div class="col-12 col-lg-3 mt-5">
             <CompProfile />
           </div>

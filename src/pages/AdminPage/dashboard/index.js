@@ -62,7 +62,7 @@ const Dashboard = () => {
       <FlexBetween>
         <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
 
-        <Box>
+        {/* <Box>
           <Button
             sx={{
               backgroundColor: theme.palette.secondary.light,
@@ -75,7 +75,7 @@ const Dashboard = () => {
             <DownloadOutlined sx={{ mr: "10px" }} />
             Download Reports
           </Button>
-        </Box>
+        </Box> */}
       </FlexBetween>
 
       <Box
@@ -90,26 +90,26 @@ const Dashboard = () => {
       >
         {/* ROW 1 */}
         <StatBox
-          title="Total Customers"
-          value={data && data.totalCustomers}
-          increase="+14%"
-          description="Since last month"
-          icon={
-            <Email
-              sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
-            />
-          }
+           title="You Can See USERS of Muse Akademi in Sidebar"
+          // value={data && data.totalCustomers}
+          // increase="+14%"
+          // description="Since last month"
+          // icon={
+          //   <Email
+          //     sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+          //   />
+          // }
         />
         <StatBox
-          title="Sales Today"
-          value={data && data.todayStats.totalSales}
-          increase="+21%"
-          description="Since last month"
-          icon={
-            <PointOfSale
-              sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
-            />
-          }
+          title="You Can Created, Edit, and Delete any Course in Muse Akademi"
+          // value={data && data.todayStats.totalSales}
+          // increase="+21%"
+          // description="Since last month"
+          // icon={
+          //   <PointOfSale
+          //     sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+          //   />
+          // }
         />
         <Box
           gridColumn="span 8"
@@ -121,26 +121,26 @@ const Dashboard = () => {
           <OverviewChart view="sales" isDashboard={true} />
         </Box>
         <StatBox
-          title="Monthly Sales"
-          value={data && data.thisMonthStats.totalSales}
-          increase="+5%"
-          description="Since last month"
-          icon={
-            <PersonAdd
-              sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
-            />
-          }
+          title="You Can Created, Edit, and Delete any Asessmen in Muse Akademi"
+          // value={data && data.thisMonthStats.totalSales}
+          // increase="+5%"
+          // description="Since last month"
+          // icon={
+          //   <PersonAdd
+          //     sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+          //   />
+          // }
         />
         <StatBox
-          title="Yearly Sales"
-          value={data && data.yearlySalesTotal}
-          increase="+43%"
-          description="Since last month"
-          icon={
-            <Traffic
-              sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
-            />
-          }
+          title="Other Mitra of Muse Akademi You Can See at Sidebar Here"
+          // value={data && data.yearlySalesTotal}
+          // increase="+43%"
+          // description="Since last month"
+          // icon={
+          //   <Traffic
+          //     sx={{ color: theme.palette.secondary[300], fontSize: "26px" }}
+          //   />
+          // }
         />
 
         {/* ROW 2 */}

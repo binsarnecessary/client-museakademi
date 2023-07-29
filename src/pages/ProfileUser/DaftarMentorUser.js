@@ -1,61 +1,191 @@
 import CompProfileUser from "../../components/profileMentor/CompProfileUser";
 import Navbar from "../../components/common/Navbar";
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, {useRef, useState, useEffect } from "react";
 import "react-phone-input-2/lib/style.css";
 import Footer from "../../components/common/Footer";
+import { useDispatch } from "react-redux";
+import axios, { Axios } from "axios";
+import Swal from "sweetalert2";
+import { addUser } from "../../store/slices/authSlice";
 
 const DaftarMentorUser = () => {
-  const navigate = useNavigate();
+
+
+  // user yg login
+
+ const dispatch = useDispatch();
+ const navigate = useNavigate();
+ const [isLoggedin, setIsLoggedIn] = useState(false);
+ const [user, setUser] = useState({});
+
+ useEffect(() => {
+   const fetchData = async () => {
+     try {
+       //Get Token From Local Storage
+       const token = localStorage.getItem("token_key");
+
+       if (!token) {
+         setIsLoggedIn(false);
+         return;
+       }
+
+       //Check Valid Token From API
+       const currentUserRequest = await axios.get(
+         "https://server-museakademi-production.up.railway.app/auth/me",
+         {
+           headers: {
+             Authorization: `Bearer ${token}`,
+           },
+         }
+       );
+
+       const currentUserResponse = currentUserRequest.data;
+
+       if (currentUserResponse.status) {
+         // set to redux
+         dispatch(
+           addUser({
+             user: currentUserResponse.data.user,
+             token: token,
+           })
+         );
+
+         setUser(currentUserResponse.data.user);
+         setIsLoggedIn(true);
+       } else {
+         setIsLoggedIn(false);
+       }
+     } catch (err) {
+       setIsLoggedIn(false);
+     }
+   };
+
+   fetchData();
+ }, []);
+
+  // POST MENTOR
+
+const user_id = useRef("")
+const skill = useRef("");
+const nomorKTP = useRef("");
+const scanKTP  = useRef("");
+const fileCV = useRef("");
+const linkVideo = useRef("");
+const aboutMe = useRef("");
+
+const [errorResponse, setErrorResponse] = useState({
+  isError: false,
+  message: "",
+});
+
+const addMentor = async (e) => {
+  e.preventDefault();
+
+  try {
+    const postMentor = new FormData();
+
+    postMentor.append("user_id", user_id.current.value);
+    postMentor.append("skill", skill.current.value);
+    postMentor.append("nomorKTP", nomorKTP.current.value);
+    postMentor.append("scanKTP", scanKTP.current.value);
+    postMentor.append("fileCV", fileCV.current.value);
+    postMentor.append("linkVideo", linkVideo.current.value);
+    postMentor.append("aboutMe", aboutMe.current.value);
+
+    const postMentorRequest = await axios.post(
+      "https://server-museakademi-production.up.railway.app/api/mentor",
+      postMentor,
+      
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    const postMentorResponse = postMentorRequest.data;
+    console.log(postMentorRequest);
+    if(postMentorResponse.status) {
+       Swal.fire({
+          title: 'Sukses!',
+          text: 'Anda berhasil mendaftar mentor',
+          icon: 'success',
+          confirmButtonText: 'OK',
+          willClose(popup) {
+            window.location.reload()
+          }
+        })
+    }
+  } catch (err) {
+    console.log(err);
+    const response = err.response.data;
+
+    setErrorResponse({
+      isError: true,
+      message: response.message,
+    });
+
+    Swal.fire({
+      title: 'Gagal!',
+      text: "Periksa Kembali Data Isian Anda",
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+
+  }
+};
+
 
   return (
     <>
       <Navbar />
-      <div class="container mt-5"></div>
-      <div class="container mb-5">
-        <div class="row mt-lg-5 ">
-          <div class="col-12 col-lg-3">
+      <div className="container mt-5"></div>
+      <div className="container mb-5">
+        <div className="row mt-lg-5 ">
+          <div className="col-12 col-lg-3">
             <CompProfileUser />
           </div>
-          <div class="col-12 col-lg-9">
+          <div className="col-12 col-lg-9">
             <h5>Mendaftar Sebagai Mentor</h5>
-            <p class="small text-muted">
+            <p className="small text-muted">
               Ayo daftarkan diri Anda sebagai mentor dengan cara melengkapi isian dibawah ini
             </p>
 
-            <form method="post" action="" enctype="multipart/form-data">
-                        <input type="hidden" name="csrfmiddlewaretoken" value="F16jngT8I67YgYP50or563UDNP3GL9304MBDh5OApO7QF3sUlRCa6f6DzJJRkmpE"/>
-                        <div class="row">
-                            <div class="col-12 col-lg-6 form-group">
-                                <label for="id_firstname">Nomor KTP</label>
-                                    <input class="form-control" name="NomorKTP" type="text" placeholder="Nomor Kartu Tanda Penduduk " fdprocessedid="to1rph"/>
+            <form onSubmit={addMentor}>
+
+                        <div className="row">
+                            <div className="col-12 col-lg-6 form-group">
+                                <label>User ID</label>
+                                    <input className="form-control" name="user_id" type="number"  ref={user_id} value={user.id}/>
                             </div>
-                            <div class="col-12 col-lg-6 form-group">
-                                <label for="id_firstname">Scan KTP</label>
-                                    <input type="file" name="ScanKTP" class="form-control" placeholder="JPG Maks 300 KB" required="" id="id_firstname" fdprocessedid="4nyfx5"/>
+                            <div className="col-12 col-lg-6 form-group">
+                                <label>Skill</label>
+                                    <input className="form-control" name="skill" type="text" placeholder="Keahlian anda"  ref={skill}/>
                             </div>
-                            <div class="col-12 col-lg-6 form-group">
-                                <label for="id_lastname">File Sertifikasi</label>
-                                    <input type="file" name="Sertifikasi" class="form-control" placeholder="PDF Maks 300 KB" required="" id="id_lastname" fdprocessedid="2kq6cc"/>
+                            <div className="col-12 col-lg-6 form-group">
+                                <label>About Me</label>
+                                    <input className="form-control" name="aboutMe" type="text" placeholder="Deskripsikan diri anda"  ref={aboutMe}/>
                             </div>
-                            <div class="col-12 col-lg-6 form-group">
-                                <label for="id_username">File CV</label>
-                                    <input type="file" name="CV" class="form-control" placeholder="PDF Maks 300 KB" minlength="8" required="" id="id_username" fdprocessedid="wmtt0e"/>
+                            <div className="col-12 col-lg-6 form-group">
+                                <label>Nomor KTP</label>
+                                    <input className="form-control" name="nomorKTP" type="number" placeholder="Nomor KTP anda" ref={nomorKTP}/>
                             </div>
-                            <div class="col-12 col-lg-6 form-group">
-                                <label for="id_phone">Portofolio</label>
-                                    <input type="file" name="Portofolio" class="form-control" placeholder="PDF Maks 300 KB" maxlength="15" minlength="10" required="" id="id_phone" fdprocessedid="n5a3a"/>
+                            <div className="col-12 col-lg-6 form-group">
+                                <label>Scan KTP</label>
+                                    <input type="url" name="scanKTP" className="form-control" placeholder="Isi dengan link drive" ref={scanKTP}/>
                             </div>
-                            <div class="col-12 col-lg-6 form-group">
-                                <label for="id_address">Surat Lamaran</label>
-                                    <input type="file" name="SuratLamaran" class="form-control" placeholder="PDF Maks 100 KB" required="" id="id_address"></input>
+                            <div className="col-12 col-lg-6 form-group">
+                                <label>File CV</label>
+                                    <input type="url" name="fileCV" className="form-control" placeholder="Isi dengan link drive" ref={fileCV}/>
                             </div>
-                            <div class="col-12 col-lg-6 form-group">
-                                <label for="id_address">Link Video</label>
-                                    <input type="url" name="SuratLamaran" class="form-control" placeholder="" required="" id="id_address"></input>
+                       
+                            <div className="col-12 col-lg-6 form-group">
+                                <label>Link Video</label>
+                                    <input type="url" name="linkVideo" placeholder="Video pengenalan diri anda" className="form-control" required="" ref={linkVideo}></input>
                             </div>
-                            <div class="col-12">
-                                <button type="submit" name="action" class="btn btn-primary btn-block" fdprocessedid="dok02l">Simpan Perubahan</button>
+                            <div className="col-12">
+                                <button type="submit" name="action" className="btn btn-primary btn-block">Simpan Perubahan</button>
                             </div>
                         </div>
                     </form>

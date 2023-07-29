@@ -21,21 +21,34 @@ export const HelloDetail = () => {
   const [relatedProduct, setRelatedProduct] = useState([]);
   const navigate = useNavigate();
   const token = localStorage.getItem("token_key");
-
+  const [session, setSession] = useState([]);
+  const [userId,setUserId] = useState("")
   const [errorResponse, setErrorResponse] = useState({
     isError: false,
     message: "",
   });
+  const [courseId,setCourseId] = useState("")
 
   // const detailProduct = course.find(course => course.id === parseInt(itemId));
   // const relatedProduct = course.filter(course => course.courseCategory === detailProduct.category);
-
+  const getUserData= async ()=>{
+    const currentUserRequest = await axios.get(
+      "https://server-museakademi-production.up.railway.app/auth/me",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+      setUserId(currentUserRequest.data.data.user.id)
+  }
   useEffect(() => {
+    getUserData()
     const fetchData = async () => {
       try {
         //Check Valid Token From API
         const currentCourseRequest = await axios.get(
-          `https://server-museakademi-production-456b.up.railway.app/api/course/${itemId}`
+          `https://server-museakademi-production.up.railway.app/api/course/${itemId}`
         );
 
         const currentCourseResponse = currentCourseRequest.data;
@@ -45,7 +58,7 @@ export const HelloDetail = () => {
           // console.log("🚀 ~ file: HelloDetail.js:31 ~ fetchData ~ currentCourseResponse.status:", currentCourseResponse.status)
           // set to redux
           // console.log(currentCourseResponse.data.course)
-
+          setCourseId(currentCourseRequest.data.data.course.id)
           setCourse(currentCourseResponse.data.course);
         }
       } catch (err) {
@@ -91,34 +104,63 @@ export const HelloDetail = () => {
     link8,
   } = course;
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        //Check Valid Token From API
+        const currentSessionRequest = await axios.get(
+          `https://server-museakademi-production.up.railway.app/api/session/course/${itemId}`
+        );
+
+        const currentSessionResponse = currentSessionRequest.data;
+        // console.log("🚀 ~ file: HelloDetail.js:28 ~ fetchData ~ currentCourseResponse:", currentCourseResponse)
+
+        if (currentSessionResponse.status) {
+          // console.log("🚀 ~ file: HelloDetail.js:31 ~ fetchData ~ currentCourseResponse.status:", currentCourseResponse.status)
+          // set to redux
+          // console.log(currentCourseResponse.data.course)
+          setSession(currentSessionResponse.data.session);
+        }
+      } catch (err) {
+        setSession(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const courseid_field = useRef("");
   const courseprice_field = useRef("");
-
+  const grossAmount = useRef("")
   const onPayment = async (e) => {
     e.preventDefault();
     if (!token) {
       navigate("/login");
       return;
     }
-    
     try {
+      console.log(courseId)
       const userToSubmitPayment = new FormData();
 
-      userToSubmitPayment.append("course_id", courseid_field.current.value);
+      userToSubmitPayment.append("course_id", courseId);
       userToSubmitPayment.append(
-        "course_price",
+        "gross_amount",
         courseprice_field.current.value
       );
+      userToSubmitPayment.append(
+        "user_id",userId
+      )
 
       const registerRequest = await axios.post(
-        "https://server-museakademi-production-456b.up.railway.app/api/order",
+        "https://server-museakademi-production.up.railway.app/api/order",
         userToSubmitPayment
       );
+   
 
       const registerResponse = registerRequest.data;
-      const orderData = registerResponse.data.registered_course;
-
-      window.location.href = `${orderData.transaction_url}`;
+      const orderData = registerResponse.data.transaction_create.registered_course;
+      console.log(registerRequest.data)
+      window.location.href = `${registerResponse.data.transaction_create.transaction_url}`;
     } catch (err) {
       console.log(err);
       const response = err.response.data;
@@ -129,6 +171,31 @@ export const HelloDetail = () => {
       });
     }
   };
+
+  // const tes = () => {
+  //   const [transactionData, setTransactionData] = useState({});
+  //   useEffect(() => {
+  //     const fetchTransactionData = async () => {
+  //       try {
+  //         const response = await axios.get('https://server-museakademi-production.up.railway.app/api/order/'); 
+  //         setTransactionData(response.data);
+        
+  
+  //         if (response.data.transaction_status === 'pending') {
+  //           const updatedTransactionData = { ...response.data, transaction_status: 'settlement' };
+  //           await axios.patch('https://server-museakademi-production.up.railway.app/api/handling/', updatedTransactionData);
+  //           setTransactionData(updatedTransactionData);
+  //         }
+  //         console.log(transactionData)
+  //       } catch (error) {
+  //         console.log(error)
+  //       }
+  //     };
+  
+  //     fetchTransactionData();
+  //   }, []);
+
+  // }
 
   return (
     <>
@@ -173,6 +240,7 @@ export const HelloDetail = () => {
                 <div className="cardlist">
                   <h5 className="mb-3">Jadwal Sesi Kursus</h5>
                   <div>
+                  {session.map(session=> (
                     <Card style={{ width: "38rem", marginBottom: "1rem" }}>
                       <Card.Body>
                         <Icon.Calendar2Week
@@ -181,91 +249,15 @@ export const HelloDetail = () => {
                         />
                         <Card.Text className="mt-2" />
                         <a
-                          href={link1}
+                          href=""
                           className="text-dark font-weight-normal"
                           target="_blank"
                         >
-                          Sesi 1 : {sesi1}
+                          Sesi {session.nameSession}
                         </a>
                       </Card.Body>
                     </Card>
-
-                    <Card style={{ width: "38rem", marginBottom: "1rem" }}>
-                      <Card.Body>
-                        <Icon.Calendar2Week
-                          size={45}
-                          className="float-left mr-3 text-primary"
-                        />
-                        <Card.Text className="mt-2" />
-                        Sesi 2 : {sesi2}
-                      </Card.Body>
-                    </Card>
-
-                    <Card style={{ width: "38rem", marginBottom: "1rem" }}>
-                      <Card.Body>
-                        <Icon.Calendar2Week
-                          size={45}
-                          className="float-left mr-3 text-primary"
-                        />
-                        <Card.Text className="mt-2" />
-                        Sesi 3 : {sesi3}
-                      </Card.Body>
-                    </Card>
-
-                    <Card style={{ width: "38rem", marginBottom: "1rem" }}>
-                      <Card.Body>
-                        <Icon.Calendar2Week
-                          size={45}
-                          className="float-left mr-3 text-primary"
-                        />
-                        <Card.Text className="mt-2" />
-                        Sesi 4 : {sesi4}
-                      </Card.Body>
-                    </Card>
-
-                    <Card style={{ width: "38rem", marginBottom: "1rem" }}>
-                      <Card.Body>
-                        <Icon.Calendar2Week
-                          size={45}
-                          className="float-left mr-3 text-primary"
-                        />
-                        <Card.Text className="mt-2" />
-                        Sesi 5 : {sesi5}
-                      </Card.Body>
-                    </Card>
-
-                    <Card style={{ width: "38rem", marginBottom: "1rem" }}>
-                      <Card.Body>
-                        <Icon.Calendar2Week
-                          size={45}
-                          className="float-left mr-3 text-primary"
-                        />
-                        <Card.Text className="mt-2" />
-                        Sesi 6 : {sesi6}
-                      </Card.Body>
-                    </Card>
-
-                    <Card style={{ width: "38rem", marginBottom: "1rem" }}>
-                      <Card.Body>
-                        <Icon.Calendar2Week
-                          size={45}
-                          className="float-left mr-3 text-primary"
-                        />
-                        <Card.Text className="mt-2" />
-                        Sesi 7 : {sesi7}
-                      </Card.Body>
-                    </Card>
-
-                    <Card style={{ width: "38rem", marginBottom: "1rem" }}>
-                      <Card.Body>
-                        <Icon.Calendar2Week
-                          size={45}
-                          className="float-left mr-3 text-primary"
-                        />
-                        <Card.Text className="mt-2" />
-                        Sesi 8 : {sesi8}
-                      </Card.Body>
-                    </Card>
+                  ))}
                   </div>
                 </div>
               </div>
@@ -320,8 +312,8 @@ export const HelloDetail = () => {
             <MentorProfile />
             <h5 className="mt-2 ">Kursus Yang Mungkin anda Sukai</h5>
             <RecomendationList
-              productData={productData}
-              rekomendasi={"Rekomendasi"}
+              /* productData={productData}
+              rekomendasi={"Rekomendasi"} */
             />
             <div class="mb-3 col-12 mt-2">
               <div class="flex-row overflow-auto list-courses d-flex flex-nowrap align-items-stretch">

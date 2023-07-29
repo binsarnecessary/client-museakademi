@@ -36,7 +36,7 @@ function App() {
         <CssBaseline />
         <Routes>
           {routesDefine(UserRoutes)}
-          <Route path="/" element={<ProtectedRoutesMentor />}>
+          <Route path="/" /* element={<ProtectedRoutesMentor />} */>
             <Route>{routesDefine(MentorRoutes)}</Route>
           </Route>
           <Route path="/" element={<ProtectedRoutesAdmin />}>

@@ -36,7 +36,7 @@ function Login({}) {
       };
 
       const loginRequest = await axios.post(
-        "https://server-museakademi-production-456b.up.railway.app/auth/login",
+        "https://server-museakademi-production.up.railway.app/auth/login",
         userToLoginPayload
       );
 
@@ -54,7 +54,7 @@ function Login({}) {
         );
 
         if (loginResponse.data.role === "mentor") {
-          navigate("/mentor/dashboard");
+          navigate("/mentor");
         } else if (loginResponse.data.role === "admin") {
           navigate("/admin/dashboard");
         } else {
@@ -94,7 +94,7 @@ function Login({}) {
   //     };
 
   //     const loginGoogleRequest = await axios.post(
-  //       "https://server-museakademi-production-456b.up.railway.app/auth/login-google",
+  //       "https://server-museakademi-production.up.railway.app/auth/login-google",
   //       userToLoginPayload
   //     );
 
@@ -144,17 +144,17 @@ function Login({}) {
                 Masuk
               </button>
             </Form>
-            <div class="text-muted text-center small py-2">atau</div>
+            {/* <div class="text-muted text-center small py-2">atau</div>
 
             <a href="" class="btn-google btn btn-sm btn-block">
               <i class="fa fa-google"></i>
               <span class="ml-2">Masuk dengan Google</span>
-            </a>
+            </a> */}
 
             <div class="text-center small py-3">
-              <a href="">Lupa Kata Sandi?</a>
+              {/* <a href="">Lupa Kata Sandi?</a> */}
               <br />
-              Belum punya akun ?<a href="/registration"> Daftarkan segera !</a>
+              Belum punya akun ?<a href="/register"> Daftarkan segera !</a>
             </div>
           </div>
         </div>

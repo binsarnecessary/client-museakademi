@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import 'bootstrap-icons/font/bootstrap-icons.css'
-
+import axios from "axios";
 import "./sidebarclassroom.css";
 import { NavLink, useParams } from "react-router-dom";
 import LogoNavbar from "../../assets/image/logo-navbar.png";
@@ -37,9 +37,36 @@ const menuItem = [
 */}
 
 const SidebarClassroomSiswa = ({ children }) => {
-  const { kursus } = useParams();
-  const item = items.find(p => p.kursus === kursus);
+//  const { kursus } = useParams();
+//  const item = items.find(p => p.kursus === kursus);
+const { itemId } = useParams();
+const [course, setCourse] = useState({});
 
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      //Check Valid Token From API
+      const currentCourseRequest = await axios.get(
+        `https://server-museakademi-production.up.railway.app/api/course/${itemId}`
+      );
+
+      const currentCourseResponse = currentCourseRequest.data;
+      // console.log("🚀 ~ file: HelloDetail.js:28 ~ fetchData ~ currentCourseResponse:", currentCourseResponse)
+
+      if (currentCourseResponse.status) {
+        // console.log("🚀 ~ file: HelloDetail.js:31 ~ fetchData ~ currentCourseResponse.status:", currentCourseResponse.status)
+        // set to redux
+        // console.log(currentCourseResponse.data.course)
+
+        setCourse(currentCourseResponse.data.course);
+      }
+    } catch (err) {
+      setCourse(false);
+    }
+  };
+
+  fetchData();
+}, [itemId]);
   return (
     <>
 
@@ -61,8 +88,8 @@ const SidebarClassroomSiswa = ({ children }) => {
 
 
               <NavLink
-                to={`/classroom/user/${item.kursus}`}
-                key={item.kursus}
+                to={`/classroom/user/${course.id}`}
+                key={course.id}
                 className="link2"
                 activeclassName="active"
               >
@@ -71,8 +98,8 @@ const SidebarClassroomSiswa = ({ children }) => {
               </NavLink>
 
               <NavLink
-                to={`/classroom/user/sesi-kursus/${item.kursus}`}
-                key={item.kursus}
+                to={`/classroom/user/sesi-kursus/${course.id}`}
+                key={course.id}
                 className="link2"
                 activeclassName="active"
               >
@@ -81,8 +108,8 @@ const SidebarClassroomSiswa = ({ children }) => {
               </NavLink>
 
               <NavLink
-                to={`/classroom/user/tugas_siswa/${item.kursus}`}
-                key={item.kursus}
+                to={`/classroom/user/tugas_siswa/${course.id}`}
+                key={course.id}
                 className="link2"
                 activeclassName="active"
               >
@@ -91,8 +118,8 @@ const SidebarClassroomSiswa = ({ children }) => {
               </NavLink>
 
               <NavLink
-                to={`/classroom/user/nilai-siswa/${item.kursus}`}
-                key={item.kursus}
+                to={`/classroom/user/nilai-siswa/${course.id}`}
+                key={course.id}
                 className="link2"
                 activeclassName="active"
               >

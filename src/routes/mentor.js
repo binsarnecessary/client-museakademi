@@ -30,7 +30,7 @@ const MentorRoutes = [
     path: "/mentor",
     children: [
       {
-        path: "",
+        path: "/",
         element: <DashboardMentor />,
       },
       {
@@ -67,21 +67,21 @@ const MentorRoutes = [
         path: "/classroom",
         children: [
           {
-            path: "/:kursus",
+            path: "/:itemId",
             element: <ClassroomMentorDashboard />,
           },
           {
             path: "/sesi-kursus",
             children: [
               {
-                path: "/:kursus",
+                path: "/:itemId",
                 children: [
                   {
                     path: "",
                     element: <ClassroomMentorSesiKursus />,
                   },
                   {
-                    path: "/:id",
+                    path: "/:sesiId",
                     children: [
                       {
                         path: "",
@@ -93,6 +93,7 @@ const MentorRoutes = [
                       },
                     ],
                   },
+                  
                 ],
               },
             ],
@@ -101,7 +102,7 @@ const MentorRoutes = [
             path: "/tugas-mentor",
             children: [
               {
-                path: "/:kursus",
+                path: "/:itemId",
                 children: [
                   {
                     path: "",
@@ -119,14 +120,14 @@ const MentorRoutes = [
             path: "/siswa-mentor",
             children: [
               {
-                path: "/:kursus",
+                path: "/:itemId",
                 children: [
                   {
                     path: "",
                     element: <ClassroomMentorSiswa />,
                   },
                   {
-                    path: "/:id",
+                    path: "/:siswaId",
                     element: <ClassroomMentorInputNilai />,
                   },
                 ],

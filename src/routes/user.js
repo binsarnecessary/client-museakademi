@@ -25,6 +25,7 @@ import ClassroomSiswaTugas from "../pages/ClassroomSiswa/ClassroomSiswaTugas";
 import LiveStreamingLinkZoom from "../pages/ClassroomSiswa/LiveStreamingLinkZoom";
 import ClassroomSiswaNilai from '../pages/ClassroomSiswa/ClassroomSiswaNilai';
 import ClassroomSiswaSesiKursus from '../pages/ClassroomSiswa/ClassroomSiswaSesiKursus';
+
 import ClassroomSiswaSesiKursusDetailById from '../pages/ClassroomSiswa/ClassroomSiswaSesiKursusDetailById';
 
 const UserRoutes = [
@@ -127,32 +128,33 @@ const UserRoutes = [
     path: "/classroom/user",
     children: [
       {
-        path: "/:kursus",
+        path: "/:itemId",
         element: <ClassroomSiswaDashboard/>,
       },
       {
         path: "/sesi-kursus",
         children: [
           {
-            path: "/:kursus",
+            path: "/:itemId",
             children: [
               {
                 path: "",
                 element: <ClassroomSiswaSesiKursus/>,
               },
               {
-                path: "/:id",
+                path: "/:sesiId",
                 children: [
                   {
                     path: "",
                     element: <ClassroomSiswaSesiKursusDetailById/>,
                   },
                   {
-                    path: "/:id",
+                    path: "/:itemId",
                     element: <LiveStreamingLinkZoom/>,
                   }
                 ]
-              }
+              },
+             
             ]  
           },
         ]
@@ -161,7 +163,7 @@ const UserRoutes = [
         path: "/tugas_siswa",
         children: [
           {
-            path: "/:kursus",
+            path: "/:itemId",
             element: <ClassroomSiswaTugas/>,
           }
         ]
@@ -170,7 +172,7 @@ const UserRoutes = [
         path: "/nilai-siswa",
         children: [
           {
-            path: "/:kursus",
+            path: "/:itemId",
             element: <ClassroomSiswaNilai/>,
           }
         ]
